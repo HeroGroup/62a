@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$pageTitle}} | Arcworks</title>
+    <title>62&#xb0; Architecture | {{$pageTitle}}</title>
 
     <!-- Lib styles -->
     <link rel="stylesheet" href="/libs/bootstrap-4.3.1/css/bootstrap.min.css">
@@ -35,22 +35,22 @@
                         <button class="menu-toggle menu-close icomoon-left-arrow-long" id="js-close-menu"></button>
                         <ul class="nav main-menu">
                             <li id="projects" class="nav-item">
-                                <a class="nav-link" href="{{route('projects')}}">Projects</a>
+                                <a class="nav-link" href="{{route('site.projects')}}">Projects</a>
                             </li>
                             <li id="what-we-do" class="nav-item">
-                                <a class="nav-link" href="{{route('whatWeDo')}}">What We Do</a>
+                                <a class="nav-link" href="{{route('site.whatWeDo')}}">What We Do</a>
                             </li>
                             <li id="about" class="nav-item">
-                                <a class="nav-link" href="{{route('about')}}">About Us</a>
+                                <a class="nav-link" href="{{route('site.about')}}">About Us</a>
                             </li>
                             <li id="events" class="nav-item">
-                                <a class="nav-link" href="{{route('events')}}">Events</a>
+                                <a class="nav-link" href="{{route('site.events')}}">Events</a>
                             </li>
                             <li id="career" class="nav-item">
-                                <a class="nav-link" href="{{route('career')}}">Career</a>
+                                <a class="nav-link" href="{{route('site.career')}}">Career</a>
                             </li>
                             <li id="contact" class="nav-item">
-                                <a class="nav-link" href="{{route('contact')}}">Contact</a>
+                                <a class="nav-link" href="{{route('site.contact')}}">Contact</a>
                             </li>
                         </ul>
                     </div>
