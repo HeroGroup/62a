@@ -14,6 +14,9 @@ Route::name('site.')->group(function () {
     Route::get('/what-we-do', 'SiteController@whatWeDo')->name('whatWeDo');
 });
 
+Auth::routes(['register' => false]);
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::namespace('Admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::prefix('admin')->group(function () {
@@ -30,8 +33,3 @@ Route::namespace('Admin')->group(function () {
         });
     });
 });
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
