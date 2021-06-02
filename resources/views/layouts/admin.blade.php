@@ -16,6 +16,11 @@
 
     <!-- Custom styles for this template-->
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/assets/css/colored-toast.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -33,7 +38,22 @@
 
             @include('layouts.topbar')
 
-            @yield('content')
+            <div class="container-fluid">
+                <div style="display:flex;justify-content:space-between;padding-bottom:10px">
+                    <h1 class="h3 mb-2 text-gray-800">{{$pageTitle}}</h1>
+                    @if(isset($newButton))
+                        <a href="{{isset($newButtonUrl) ? $newButtonUrl : '#'}}" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">{{isset($newButtonText) ? $newButtonText : 'add'}}</span>
+                        </a>
+                    @endif
+                </div>
+
+                @yield('content')
+
+            </div>
 
         </div>
         <!-- End of Main Content -->
@@ -42,7 +62,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; <b>62&#xb0; Architecture</b> 2021</span>
                 </div>
             </div>
         </footer>
@@ -78,15 +98,38 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/assets/js/sb-admin-2.min.js"></script>
+<script src="/assets/js/sweetalert2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        if("{{\Illuminate\Support\Facades\Session::has('message')}}" === "1") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+            Toast.fire({
+                icon: "{{\Illuminate\Support\Facades\Session::get('type')}}" === 'danger' ? 'danger' : 'success',
+                title: "{{\Illuminate\Support\Facades\Session::get('message')}}"
+            });
+        }
+    });
+</script>
 
 </body>
 
