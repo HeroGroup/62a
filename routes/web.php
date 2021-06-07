@@ -21,13 +21,15 @@ Route::namespace('Admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::name('admin.')->group(function () {
-                Route::get('/', function () {
-                    return view('admin.index');
-                })->name('index');
+                Route::get('/', function () { return view('admin.index'); })->name('index');
                 Route::resource('users', 'UserController');
                 Route::get('users/{user}/resetPassword', 'UserController@resetPassword')->name('users.resetPassword');
                 Route::get('users/{user}/profile', 'UserController@changePassword')->name('users.profile');
                 Route::post('users/updatePassword', 'UserController@updatePassword')->name('users.updatePassword');
+
+                Route::resource('projects', 'ProjectController');
+                Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');
+
 
             });
         });

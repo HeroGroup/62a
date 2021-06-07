@@ -82,12 +82,12 @@ class UserController extends Controller
             if ($request->password == $request->password_confirmation) {
                 auth()->user()->update(['password' => Hash::make($request->password)]);
 
-                return redirect(route('admin.users.profile', auth()->id()))->with('message', 'password updated successfully.')->with('type', 'success');
+                return back()->with('message', 'password updated successfully.')->with('type', 'success');
             } else {
-                return redirect(route('admin.users.profile', auth()->id()))->with('message', 'Password and password confirmation are not the same.')->with('type', 'danger');
+                return back()->with('message', 'Password and password confirmation are not the same.')->with('type', 'danger');
             }
         } else {
-            return redirect(route('admin.users.profile', auth()->id()))->with('message', 'Current password is incorrect.')->with('type', 'danger');
+            return back()->with('message', 'Current password is incorrect.')->with('type', 'danger');
         }
     }
 }

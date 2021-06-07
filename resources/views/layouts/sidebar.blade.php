@@ -101,6 +101,12 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.projects.index')}}">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Projects</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Administrators</span></a>

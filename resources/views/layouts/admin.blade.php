@@ -17,6 +17,8 @@
     <!-- Custom styles for this template-->
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/assets/css/colored-toast.css" rel="stylesheet">
+    <link href="/assets/css/selectize.bootstrap3.min.css" rel="stylesheet">
+    <link href="/assets/css/image-uploader.css" rel="stylesheet">
 
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
@@ -84,6 +86,7 @@
 <!-- Custom scripts for all pages-->
 <script src="/assets/js/sb-admin-2.min.js"></script>
 <script src="/assets/js/sweetalert2.min.js"></script>
+<script src="/assets/js/selectize.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -104,10 +107,14 @@
                 }
             });
             Toast.fire({
-                icon: "{{\Illuminate\Support\Facades\Session::get('type')}}" === 'danger' ? 'danger' : 'success',
+                icon: "{{\Illuminate\Support\Facades\Session::get('type')}}" === 'danger' ? 'error' : 'success',
                 title: "{{\Illuminate\Support\Facades\Session::get('message')}}"
             });
         }
+
+        $('select:not(select[name=DataTables_Table_0_length])').selectize({
+            sortField: 'text'
+        });
     });
 </script>
 
