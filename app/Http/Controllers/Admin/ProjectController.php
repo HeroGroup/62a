@@ -26,13 +26,17 @@ class ProjectController extends Controller
             $projectId = DB::table('projects')->insertGetId([
                 'title_en' => $request->title_en
             ]);
+
             if($request->has('categories')) {
-                foreach
-                DB::table('project_categories')->insert([
-                    'project_id' => $projectId,
-                    'category_id' =>
-                ]);
+                $categories = $request->categories;
+                foreach($categories as $category) {
+                    DB::table('project_categories')->insert([
+                        'project_id' => $projectId,
+                        'category_id' => $category
+                    ]);
+                }
             }
+
             $projectTitle = $request->title_en;
             return view('admin.projects.imageUpload', compact('projectId','projectTitle'));
         } catch(\Exception $exception) {
@@ -74,7 +78,7 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         try {
-            $project = DB::table('projects')->find($id);
+            // $project = DB::table('projects')->find($id);
             return back()->with('message','Delete action is not permitted at the moment.')->with('type','danger');
         } catch(\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
@@ -83,12 +87,36 @@ class ProjectController extends Controller
 
     public function imageUpload(Request $request)
     {
-        return $this->success("success", $request->project_id);
-        if ($request->hasFile('img')) {
-            // $document = \request('img');
-            $document = $request->img;
-            $fileName = $document->getClientOriginalName().'.'.time();
+        // dd($_FILES);
+        try {
+            $projectId = $request->project_id;
+            if ($request->hasFile('img')) {
+                $document = $request->img;
+                $fileName = time() . '-' . $document->getClientOriginalName();
+                $document->move("resources/assets/images/project_images/$projectId/", $fileName);
+                $imageUrl = "/resources/assets/images/project_images/$projectId/" . $fileName;
 
+                DB::table('project_photos')->insert([
+                    'project_id' => $projectId,
+                    'photo_url' => $imageUrl
+                ]);
+
+                return $this->success('photo uploaded successfully');
+            } else {
+                return $this->fail("invalid image");
+            }
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function deleteImage(Request $request)
+    {
+        try {
+            DB::table('project_photos')->where('photo_url','LIKE', $request->photo_url)->delete();
+            return $this->success('photo deleted successfully');
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
         }
     }
 }

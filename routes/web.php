@@ -29,6 +29,7 @@ Route::namespace('Admin')->group(function () {
 
                 Route::resource('projects', 'ProjectController');
                 Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');
+                Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');
 
 
             });
