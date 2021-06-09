@@ -47,8 +47,10 @@ class ProjectController extends Controller
     public function show($id)
     {
         try {
+            $categories = DB::table('categories')->pluck('title_en','id')->toArray();
+            $photos = DB::table('project_photos')->where('project_id',$id)->get();
             $project = DB::table('projects')->find($id);
-            return view('admin.projects.show',compact('project'));
+            return view('admin.projects.show',compact('project','photos','categories'));
         } catch(\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
         }
@@ -113,8 +115,21 @@ class ProjectController extends Controller
     public function deleteImage(Request $request)
     {
         try {
-            DB::table('project_photos')->where('photo_url','LIKE', $request->photo_url)->delete();
+            DB::table('project_photos')->where('id',$request->photo_id)->delete();
             return $this->success('photo deleted successfully');
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function makeCover(Request $request)
+    {
+        try {
+            $photo = DB::table('project_photos')->find($request->photo_id);
+            DB::table('project_photos')->where('project_id',$photo->project_id)->update(['is_cover' => 0]);
+            DB::table('project_photos')->where('id',$request->photo_id)->update(['is_cover' => 1]);
+
+            return $this->success('photo updated successfully');
         } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }
