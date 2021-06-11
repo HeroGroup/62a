@@ -1,7 +1,7 @@
-@extends('layouts.admin', ['pageTitle' => 'New Project'])
+@extends('layouts.admin', ['pageTitle' => 'New Project', 'active' => 'projects'])
 @section('content')
     <div class="card shadow mb-4">
-        <div class="card-body">
+        <div class="card-body border-bottom-success">
             <form method="post" action="{{route('admin.projects.store')}}">
                 @csrf
 

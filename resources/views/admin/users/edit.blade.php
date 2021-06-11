@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['pageTitle' => 'Edit Administrator'])
+@extends('layouts.admin', ['pageTitle' => 'Edit Administrator', 'active' => 'administrators'])
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">

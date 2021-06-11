@@ -1,12 +1,10 @@
-<!-- Upload  -->
 <form id="file-upload-form" action="#" class="uploader">
-    <input type="hidden" name="project_id" value="{{$projectId}}" />
-    <input id="file-upload" type="file" name="fileUpload" accept="image/*" multiple />
+    <input id="file-upload" type="file" name="fileUpload" accept="image/*" @if(isset($multiple)) multiple @endif />
 
     <label for="file-upload" id="file-drag">
         <div id="start" class="start">
             <i class="fa fa-download" aria-hidden="true"></i>
-            <div>Select Project Images from your computer, or drag here</div>
+            <div>{{$uploadText}}</div>
             <div id="notimage" class="notimage hidden">Please select an image</div>
         </div>
 
@@ -22,9 +20,10 @@
 </form>
 
 <script>
+    var uploadRoute = "{{ $uploadRoute }}";
+
     function ekUpload() {
         function Init() {
-
             var fileSelect = document.getElementById('file-upload'),
                 fileDrag = document.getElementById('file-drag');
 
@@ -158,16 +157,19 @@
                     let formData = new FormData();
                     formData.append('img', file);
                     formData.append('_token', "{{csrf_token()}}");
-                    formData.append('project_id', "{{$projectId}}");
+                    formData.append('temp', "{{$temp}}");
 
                     // Start upload
-                    xhr.open('POST', "{{ route('admin.projects.imageUpload') }}", true);
+                    xhr.open('POST', uploadRoute, true);
 
                     xhr.addEventListener("load", function() {
-                        // none display loading button
-                        setTimeout(function() {
-                            document.getElementById(file.name).style.display = "none";
-                        }, 1000);
+                        var response = JSON.parse(xhr.response);
+                        if(response.status === 1) {
+                            // hide loading button
+                            setTimeout(function() {
+                                document.getElementById(file.name).style.display = "none";
+                            }, 1000);
+                        }
                     });
 
                     xhr.send(formData);

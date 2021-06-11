@@ -32,6 +32,14 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');
                 Route::post('/projects/makeCover','ProjectController@makeCover')->name('projects.makeCover');
 
+                Route::resource('aboutUs', 'AboutUsController');
+                Route::post('/aboutUs/memberImageUpload','AboutUsController@memberImageUpload')->name('aboutUs.memberImageUpload');
+
+                Route::get('/landing', 'LandingController@index')->name('landing.index');
+                Route::post('/landing/uploadBannerImage', 'LandingController@uploadBannerImage')->name('landing.uploadBannerImage');
+                Route::put('/landing/updateBannerDetails', 'LandingController@updateBannerDetails')->name('landing.updateBannerDetails');
+                Route::delete('/landing/deleteBanner', 'LandingController@deleteBanner')->name('landing.deleteBanner');
+
             });
         });
     });

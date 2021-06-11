@@ -24,7 +24,21 @@ class ProjectController extends Controller
     {
         try {
             $projectId = DB::table('projects')->insertGetId([
-                'title_en' => $request->title_en
+                'title_en' => $request->title_en,
+                'title_hy' => $request->title_hy,
+                'description_en' => $request->description_en,
+                'description_hy' => $request->description_hy,
+                'location_en' => $request->location_en,
+                'location_hy' => $request->location_hy,
+                'type_en' => $request->type_en,
+                'type_hy' => $request->type_hy,
+                'year' => $request->year,
+                'size_en' => $request->size_en,
+                'size_hy' => $request->size_hy,
+                'budget_en' => $request->budget_en,
+                'budget_hy' => $request->budget_hy,
+                'is_active' => $request->is_active,
+                'created_at' => Carbon\Carbon::now(),
             ]);
 
             if($request->has('categories')) {

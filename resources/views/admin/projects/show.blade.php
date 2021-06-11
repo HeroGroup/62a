@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['pageTitle' => 'Project '.$project->title_en])
+@extends('layouts.admin', ['pageTitle' => 'Project '.$project->title_en, 'active' => 'projects'])
 @section('content')
 <style>
     .photo {
@@ -9,7 +9,7 @@
     }
 </style>
     <div class="card shadow mb-4">
-        <a href="#projectInformation" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+        <a href="#projectInformation" class="d-block card-header py-3 border-bottom-success" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
             <h6 class="m-0 font-weight-bold text-primary">Project Information</h6>
         </a>
         <div class="collapse" id="projectInformation">
@@ -112,11 +112,11 @@
     </div>
 
     <div class="card shadow mb-4">
-        <a href="#projectPhotos" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+        <a href="#projectPhotos" class="d-block card-header py-3 border-bottom-info" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
             <h6 class="m-0 font-weight-bold text-primary">Project Photos</h6>
         </a>
         <div class="collapse" id="projectPhotos">
-            <div class="card-body">
+            <div class="card-body ">
                 <div class="row" style="padding:10px;">
                 @if($photos->count() > 0)
                 @foreach($photos as $photo)
@@ -141,7 +141,7 @@
     </div>
 
     <div class="card shadow mb-4">
-        <a href="#uploadMore" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+        <a href="#uploadMore" class="d-block card-header py-3 border-bottom-primary" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
             <h6 class="m-0 font-weight-bold text-primary">Upload more Photos</h6>
         </a>
         <div class="collapse" id="uploadMore">

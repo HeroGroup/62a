@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['pageTitle' => $user->name.' Profile'])
+@extends('layouts.admin', ['pageTitle' => $user->name.' Profile', 'active' => 'administrators'])
 @section('content')
   <div class="row">
     <div class="col-lg-6">

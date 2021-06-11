@@ -19,6 +19,7 @@
     <link href="/assets/css/colored-toast.css" rel="stylesheet">
     <link href="/assets/css/selectize.bootstrap3.min.css" rel="stylesheet">
     <link href="/assets/css/image-uploader.css" rel="stylesheet">
+    <link href="/assets/css/slider.css" rel="stylesheet">
 
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
@@ -116,8 +117,45 @@
             sortField: 'text'
         });
     });
+
+    function destroy(route,id,elementId) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: "Delete this record?",
+            text: "Bear in mind that deleting is irreversible!",
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: 'lightgray',
+            confirmButtonText: 'Delete'
+        }).then((willDelete) => {
+            if (willDelete) {
+                let formData = new FormData();
+                formData.append('_token', "{{csrf_token()}}");
+                formData.append('_method', "DELETE");
+                formData.append('id',id);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', route, true);
+                xhr.addEventListener("load", function() {
+                    var response = JSON.parse(xhr.response);
+                    if(response.status === 1) {
+                        document.getElementById(elementId).remove();
+                    } else {
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'error',
+                          title: response.message,
+                          showConfirmButton: false,
+                          timer: 3000
+                        })
+                    }
+                });
+                xhr.send(formData);
+            }
+        });
+    }
 </script>
-
 </body>
-
 </html>
