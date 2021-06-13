@@ -39,6 +39,20 @@
             <span>About Us (Members)</span></a>
     </li>
 
+    <li class="nav-item" id="contactUs">
+        <a class="nav-link" href="{{route('admin.contactUs.index')}}">
+            <i class="fas fa-fw fa-phone"></i>
+            <span>Contact Us</span>&nbsp;
+            <span style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;">New Message</span>
+        </a>
+    </li>
+
+    <li class="nav-item" id="officeDetails">
+        <a class="nav-link" href="{{route('admin.officeDetails.index')}}">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Office Details </span></a>
+    </li>
+
     <li class="nav-item" id="administrators">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-users"></i>

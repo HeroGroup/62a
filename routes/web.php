@@ -40,6 +40,13 @@ Route::namespace('Admin')->group(function () {
                 Route::put('/landing/updateBannerDetails', 'LandingController@updateBannerDetails')->name('landing.updateBannerDetails');
                 Route::delete('/landing/deleteBanner', 'LandingController@deleteBanner')->name('landing.deleteBanner');
 
+                Route::get('/contactUs','ContactUsController@index')->name('contactUs.index');
+                Route::get('/contactUs/{id}/show','ContactUsController@show')->name('contactUs.show');
+                Route::post('/contactUs/store','ContactUsController@store')->name('contactUs.store');
+
+                Route::get('/officeDetails','ContactUsController@officeDetails')->name('officeDetails.index');
+                Route::put('/officeDetails','ContactUsController@updateOfficeDetails')->name('officeDetails.update');
+
             });
         });
     });
