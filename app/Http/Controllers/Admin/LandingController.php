@@ -24,7 +24,8 @@ class LandingController extends Controller
                 $photoUrl = "/resources/assets/images/banners/" . $fileName;
 
                 DB::table('banners')->insert([
-                    'image_url' => $photoUrl
+                    'image_url' => $photoUrl,
+                    'created_at' => \Carbon\Carbon::now()
                 ]);
 
                 return $this->success("banner created successfully");
@@ -47,6 +48,7 @@ class LandingController extends Controller
                 'location_en' => $request->location_en,
                 'location_hy' => $request->location_hy,
                 'is_active' => $request->is_active ? 1 : 0,
+                'updated_at' => \Carbon\Carbon::now()
             ]);
             return back()->with('message', 'banner updated successfully')->with('type','success');
         } catch(\Exception $exception) {

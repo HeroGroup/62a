@@ -129,8 +129,8 @@
             confirmButtonColor: '#d33',
             cancelButtonColor: 'lightgray',
             confirmButtonText: 'Delete'
-        }).then((willDelete) => {
-            if (willDelete) {
+        }).then((result) => {
+            if (result.isConfirmed) {
                 let formData = new FormData();
                 formData.append('_token', "{{csrf_token()}}");
                 formData.append('_method', "DELETE");
@@ -142,6 +142,13 @@
                     var response = JSON.parse(xhr.response);
                     if(response.status === 1) {
                         document.getElementById(elementId).remove();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: "removed successfully",
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
                     } else {
                         Swal.fire({
                           position: 'top-end',

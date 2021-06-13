@@ -66,6 +66,7 @@ class AboutUsController extends Controller
                 'position_hy' => $request->position_hy,
                 'description_en' => $request->description_en,
                 'description_hy' => $request->description_hy,
+                'updated_at' => \Carbon\Carbon::now()
             ]);
             return redirect(route('admin.aboutUs.index'))->with('message','Member updated successfully')->with('type','success');
         } catch (\Exception $exception) {
