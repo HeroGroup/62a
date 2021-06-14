@@ -18,7 +18,7 @@
             @foreach($banners as $banner)
                 <div class="row" id="{{$banner->id}}">
                     <div class="col-sm-6">
-                        <img src="{{$banner->image_url}}" style="width:100%;"/>
+                        <img src="{{$banner->image_url}}" alt="{{$banner->title_en}}" style="width:100%;"/>
                     </div>
                     <div class="col-sm-6">
                         <div style="text-align:center;">
@@ -116,9 +116,8 @@
                 @endforeach
 
             <!-- New Banner Modal-->
-            <div class="modal fade" id="new-banner-modal" tabindex="-1" role="dialog" aria-labelledby="newBannerModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade" id="new-banner-modal" tabindex="-1" role="dialog" aria-labelledby="newBannerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="newBannerModalLabel">New Banner</h5>

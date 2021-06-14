@@ -29,6 +29,11 @@ class ContactUsController extends Controller
         }
     }
 
+    public function reply(Request $request)
+    {
+        return back()->with('message','Email settings has not been set yet!')->with('type','danger');
+    }
+
     public function store(Request $request)
     {
         try {
@@ -43,13 +48,23 @@ class ContactUsController extends Controller
         }
     }
 
+    public function newMessages()
+    {
+        try {
+            $count = DB::table('contact_us')->whereNull('viewed_at')->count();
+            return $this->success("count= ", $count);
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
     public function officeDetails()
     {
-        $details = DB::table('office_details')->get();
+        $details = DB::table('office_details')->first();
         return view('admin.contactUs.officeDetails',compact('details'));
     }
 
-    public function updateOfficeDetails()
+    public function updateOfficeDetails(Request $request)
     {
         try {
             DB::table('office_details')
@@ -69,7 +84,7 @@ class ContactUsController extends Controller
                     'updated_at' => \Carbon\Carbon::now(),
                 ]);
                 return back()->with('message','updated successfully')->with('type','success');
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
         }
     }

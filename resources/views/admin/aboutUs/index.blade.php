@@ -19,7 +19,7 @@
                                 <span class="text">Remove</span>
                             </a>
                         </div>
-                        <h5 style="color:gray;">{{$member->position_en}}<h5>
+                        <h5 style="color:gray;">{{$member->position_en}}</h5>
                     </div>
                 </div>
             @endforeach

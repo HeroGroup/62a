@@ -42,8 +42,8 @@
     <li class="nav-item" id="contactUs">
         <a class="nav-link" href="{{route('admin.contactUs.index')}}">
             <i class="fas fa-fw fa-phone"></i>
-            <span>Contact Us</span>&nbsp;
-            <span style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;">New Message</span>
+            <span>Contact Us</span>
+            <span id="new-message" style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;display:none;">New Message</span>
         </a>
     </li>
 
@@ -51,6 +51,12 @@
         <a class="nav-link" href="{{route('admin.officeDetails.index')}}">
             <i class="fas fa-fw fa-home"></i>
             <span>Office Details </span></a>
+    </li>
+
+    <li class="nav-item" id="whatWeDo">
+        <a class="nav-link" href="{{route('admin.whatWeDo.index')}}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>What We Do</span></a>
     </li>
 
     <li class="nav-item" id="administrators">
@@ -69,7 +75,18 @@
 </ul>
 
 <script>
-    var active = "{{$active}}";
-    document.getElementById(active).classList.add("active");
+    window.onload = function() {
+        var active = "{{$active}}";
+        document.getElementById(active).classList.add("active");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "{{route('admin.contactUs.newMessages')}}");
+        xhr.addEventListener("load", function () {
+            var response = JSON.parse(xhr.response);
+            if (response.status === 1 && response.data > 0)
+                document.getElementById('new-message').style.display = "inline-block";
+        });
+        xhr.send();
+    }
 </script>
 <!-- End of Sidebar -->

@@ -41,11 +41,16 @@ Route::namespace('Admin')->group(function () {
                 Route::delete('/landing/deleteBanner', 'LandingController@deleteBanner')->name('landing.deleteBanner');
 
                 Route::get('/contactUs','ContactUsController@index')->name('contactUs.index');
-                Route::get('/contactUs/{id}/show','ContactUsController@show')->name('contactUs.show');
+                Route::get('/contactUs/show/{id}','ContactUsController@show')->name('contactUs.show');
                 Route::post('/contactUs/store','ContactUsController@store')->name('contactUs.store');
+                Route::post('/contactUs/reply','ContactUsController@reply')->name('contactUs.reply');
+                Route::get('/contactUs/newMessages','ContactUsController@newMessages')->name('contactUs.newMessages');
 
                 Route::get('/officeDetails','ContactUsController@officeDetails')->name('officeDetails.index');
                 Route::put('/officeDetails','ContactUsController@updateOfficeDetails')->name('officeDetails.update');
+
+                Route::resource('whatWeDo', 'WhatWeDoController');
+                Route::post('/whatWeDo/itemImageUpload','WhatWeDoController@itemImageUpload')->name('whatWeDo.itemImageUpload');
 
             });
         });

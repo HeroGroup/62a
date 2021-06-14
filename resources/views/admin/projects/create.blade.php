@@ -86,9 +86,10 @@
                 </div>
 
                 <div class="form-group row" style="margin-bottom:30px;">
-                <div class="col-md-12">
-                    <a href="{{route('admin.projects.index')}}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <div class="col-md-12">
+                        <a href="{{route('admin.projects.index')}}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
                 </div>
             </form>
         </div>
