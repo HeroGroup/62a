@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'Career', 'active' => 'career'])
+@extends('layouts.site', ['pageTitle' => 'Career', 'active' => 'contact'])
 @section('content')
     <section class="page-title fade-from-top">
         <div class="container">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="slide-image-wrap">
-                        <img src="../../public/images/contact_1.jpg" class="slide-image-left event__thumb w-100" alt="">
+                        <img src="/images/contact_1.jpg" class="slide-image-left event__thumb w-100" alt="">
                     </div>
                 </div>
             </div>

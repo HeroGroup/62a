@@ -1,75 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Arcworks</title>
+@extends('layouts.site', ['pageTitle' => 'About', 'active' => 'index'])
+@section('content')
 
-    <!-- Lib styles -->
-    <link rel="stylesheet" href="/libs/bootstrap-4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/libs/slick/slick.css">
-    <link rel="stylesheet" href="/libs/simpleLightbox/simplelightbox.min.css">
-
-    <!-- Font styles -->
-    <link rel="stylesheet" href="/assets/fonts/NunitoSans/NunitoSans.css">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="/assets/fonts/icomoon/style.css">
-
-    <!-- Site styles -->
-    <link rel="stylesheet" href="/assets/css/main.min.css">
-
-    <link rel="icon" href="/favicon.png"/>
-</head>
-
-<body class="home">
-    <div class="trans-layer"></div>
-
-    <header id="main-header" class="site-header header-home is-fixed">
-        <div class="page-backdrop"></div>
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <a href="/" class="logo header-logo"><img src="/images/logo.svg" alt=""></a>
-                <div class="header-nav ml-auto">
-                    <button class="menu-toggle icomoon-menu" id="js-open-menu"></button>
-                    <div class="main-menu-wrap" id="js-main-menu">
-                        <button class="menu-toggle menu-close icomoon-left-arrow-long" id="js-close-menu"></button>
-                        <ul class="nav main-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="projects.html">Projects</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="what-we-do.html">What We Do</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('site.about')}}">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="events.html">Events</a>
-                               <!-- <ul class="sub-menu nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="events.html">Events List</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="event-single.html">Events Single</a>
-                                    </li>
-                                </ul> -->
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="career.html">Career</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main id="main-content" class="site-content bg-lines">
 
         <section class="hero" data-bgColorStart="204, 179, 157" data-bgColorEnd="209, 209, 209">
             <div class="hero-slider d-flex flex-column">
@@ -130,50 +61,50 @@
             <div class="container">
                 <div class="section-title d-md-flex align-items-center">
                     <h2 class="mb-md-0 mb-4 mr-md-4">Projects</h2>
-                    <a href="projects.html" class="btn btn-primary">All projects <i class="icomoon-right-arrow-long"></i></a>
+                    <a href="{{route('site.projects',0)}}" class="btn btn-primary">All projects <i class="icomoon-right-arrow-long"></i></a>
                 </div>
 
                 <div class="row project-list">
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="/images/home_2.jpg" alt="" class="project-item__img"></a>
+                            <a href="{{route('site.project',0)}}" class="project-item__img-link"><img src="/images/home_2.jpg" alt="" class="project-item__img"></a>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">A viewpoint to Talamanca</a></h4>
+                        <h4 class="project-item__title"><a href="{{route('site.project',0)}}">A viewpoint to Talamanca</a></h4>
                         <div class="project-item__loc">Minato-ku, Tokyo</div>
                     </div>
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="/images/home_3.jpg" alt="" class="project-item__img"></a>
+                            <a href="{{route('site.project',0)}}" class="project-item__img-link" data-delay="300"><img src="/images/home_3.jpg" alt="" class="project-item__img"></a>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Casa Don Juan</a></h4>
+                        <h4 class="project-item__title"><a href="{{route('site.project',0)}}">Casa Don Juan</a></h4>
                         <div class="project-item__loc">Ecuador</div>
                     </div>
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="/images/home_4.jpg" alt="" class="project-item__img"></a>
+                            <a href="{{route('site.project',0)}}" class="project-item__img-link"><img src="/images/home_4.jpg" alt="" class="project-item__img"></a>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Natural breeze & lighting symphony</a></h4>
+                        <h4 class="project-item__title"><a href="{{route('site.project',0)}}">Natural breeze & lighting symphony</a></h4>
                         <div class="project-item__loc">Nha Trang, Vietnam</div>
                     </div>
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="/images/home_5.jpg" alt="" class="project-item__img"></a>
+                            <a href="{{route('site.project',0)}}" class="project-item__img-link" data-delay="300"><img src="/images/home_5.jpg" alt="" class="project-item__img"></a>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Hechingen Studio</a></h4>
+                        <h4 class="project-item__title"><a href="{{route('site.project',0)}}">Hechingen Studio</a></h4>
                         <div class="project-item__loc">Shenzhen, China</div>
                     </div>
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="/images/home_6.jpg" alt="" class="project-item__img"></a>
+                            <a href="{{route('site.project',0)}}" class="project-item__img-link"><img src="/images/home_6.jpg" alt="" class="project-item__img"></a>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Boneo Country House</a></h4>
+                        <h4 class="project-item__title"><a href="{{route('site.project',0)}}">Boneo Country House</a></h4>
                         <div class="project-item__loc">VIC, Australia</div>
                     </div>
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="/images/home_7.jpg" alt="" class="project-item__img"></a>
+                            <a href="{{route('site.project',0)}}" class="project-item__img-link" data-delay="300"><img src="/images/home_7.jpg" alt="" class="project-item__img"></a>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Downside Up House</a></h4>
+                        <h4 class="project-item__title"><a href="{{route('site.project',0)}}">Downside Up House</a></h4>
                         <div class="project-item__loc">Melbourne, Australia</div>
                     </div>
                 </div>
@@ -207,98 +138,25 @@
                     <div class="col-lg-3 fade-from-top" data-delay="200">
                         <div class="event">
                             <div class="event__date date">September 7, 2020</div>
-                            <h4 class="event__title"><a href="event-single.html">BuildTech Asia events</a></h4>
+                            <h4 class="event__title"><a href="{{route('site.event',0)}}">BuildTech Asia events</a></h4>
                             <div class="event__loc location"><i class="icomoon-pin"></i> CA, United States</div>
                         </div>
                     </div>
                     <div class="col-lg-3 fade-from-top" data-delay="400">
                         <div class="event">
                             <div class="event__date date">July 24, 2020</div>
-                            <h4 class="event__title"><a href="event-single.html">Webinar sponsorship information art modern architecture </a></h4>
+                            <h4 class="event__title"><a href="{{route('site.event',0)}}">Webinar sponsorship information art modern architecture </a></h4>
                             <div class="event__loc location"><i class="icomoon-pin"></i> Beijing, China</div>
                         </div>
                     </div>
                     <div class="col-lg-3 fade-from-top" data-delay="600">
                         <div class="event">
                             <div class="event__date date">December 15, 2019</div>
-                            <h4 class="event__title"><a href="event-single.html">Future of Interior trade show and conference</a></h4>
+                            <h4 class="event__title"><a href="{{route('site.event',0)}}">Future of Interior trade show and conference</a></h4>
                             <div class="event__loc location"><i class="icomoon-pin"></i> La Plata, Argentina</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
-
-    <footer id="main-footer" class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="widget-col col-lg-2">
-                    <div class="widget widget-logo">
-                        <a href="/" class="logo footer-logo"><img src="/images/logo-footer.svg" alt=""></a>
-                    </div>
-                </div>
-
-                <div class="widget-col col-lg-3">
-                    <div class="widget widget-text">
-                        <p>310.900.4000</p>
-                        <p><a href="mailto:office@arc.works">office@arc.works</a></p>
-                        <p>Monday — Sunday 8:00‒22:00</p>
-                    </div>
-                </div>
-
-                <div class="widget-col col-lg-3">
-                    <div class="widget widget-text">
-                        <p>212 Wilshire Blvd. Suite 1245</p>
-                        <p>San Francisco, California</p>
-                        <p>CA 90015</p>
-                    </div>
-                </div>
-
-                <div class="widget-col col-lg-4">
-                    <div class="widget widget-newsletter">
-                        <h6>Newsletter Sign Up</h6>
-                        <div class="input-group">
-                            <input type="email" class="form-control form-control-sm"  placeholder="Email address" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-secondary btn-sm" type="button" id="button-addon2">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-auto">
-                    <div class="copy-text">© Arcworks. All Rights Reserved.</div>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav footer-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Terms of use</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Privacy policy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Lib scripts  -->
-    <script src="/libs/jquery/jquery-3.3.1.min.js"></script>
-    <script src="/libs/bootstrap-4.3.1/js/popper.min.js"></script>
-    <script src="/libs/bootstrap-4.3.1/js/bootstrap.min.js"></script>
-    <script src="/libs/greensock-js/TweenMax.min.js"></script>
-    <script src="/libs/scrollreveal/scrollreveal.min.js"></script>
-    <script src="/libs/slick/slick.min.js"></script>
-    <script src="/libs/simpleLightbox/simple-lightbox.min.js"></script>
-    <script src="/libs/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="/libs/isotope/isotope.min.js"></script>
-
-    <!-- Site scripts  -->
-    <script src="/assets/js/common.min.js"></script>
-</body>
-
-</html>
+@endsection
