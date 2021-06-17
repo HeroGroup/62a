@@ -3,6 +3,7 @@
     <div class="card shadow mb-4">
         <div class="card-body border-bottom-primary">
             <div class="row">
+            @if($projects->count()>0)
             @foreach($projects as $project)
                 <div class="col-md-4">
                     <a style="cursor:pointer;text-decoration:none;color:#333;" href="{{route('admin.projects.show',$project->id)}}">
@@ -17,6 +18,9 @@
                     </a>
                 </div>
             @endforeach
+            @else
+            <h3>No Projects Yet!</h3>
+            @endif
             </div>
         </div>
     </div>

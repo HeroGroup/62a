@@ -6,25 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AboutUsController extends Controller
+class TeamMemberController extends Controller
 {
     public function index()
     {
-        $items = DB::table('about_us')->get();
-        return view('admin.aboutUs.index',compact('items'));
+        $members = DB::table('team_members')->get();
+        return view('admin.teamMembers.index',compact('members'));
     }
 
     public function create()
     {
-        return view('admin.aboutUs.create');
+        return view('admin.teamMembers.create');
     }
 
     public function store(Request $request)
     {
         try {
-            $newId = DB::table('about_us')->insertGetId([
-                'title_en' => $request->title_en,
-                'title_hy' => $request->title_hy,
+            $newId = DB::table('team_members')->insertGetId([
+                'name' => $request->name,
+                'position_en' => $request->position_en,
+                'position_hy' => $request->position_hy,
                 'description_en' => $request->description_en,
                 'description_hy' => $request->description_hy,
                 'created_at' => \Carbon\Carbon::now()
@@ -33,13 +34,13 @@ class AboutUsController extends Controller
             if($request->hasFile('photo')) {
                 $document = $request->photo;
                 $fileName = time() . '-' . $document->getClientOriginalName();
-                $document->move("resources/assets/images/about_us/", $fileName);
-                $photoUrl = "/resources/assets/images/about_us/" . $fileName;
+                $document->move("resources/assets/images/team_members/", $fileName);
+                $photoUrl = "/resources/assets/images/team_members/" . $fileName;
 
-                DB::table('about_us')->where('id',$newId)->update(['photo_url' => $photoUrl]);
+                DB::table('team_members')->where('id',$newId)->update(['photo_url' => $photoUrl]);
             }
 
-            return redirect(route('admin.aboutUs.index'))->with('message','New Item created successfully')->with('type','success');
+            return redirect(route('admin.teamMembers.index'))->with('message','New Member created successfully')->with('type','success');
         } catch(\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
         }
@@ -47,8 +48,8 @@ class AboutUsController extends Controller
 
     public function show($id)
     {
-        $item = DB::table('about_us')->find($id);
-        return view('admin.aboutUs.show',compact('item'));
+        $member = DB::table('team_members')->find($id);
+        return view('admin.teamMembers.show',compact('member'));
     }
 
     public function edit($id)
@@ -59,14 +60,15 @@ class AboutUsController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            DB::table('about_us')->where('id',$id)->update([
-                'title_en' => $request->title_en,
-                'title_hy' => $request->title_hy,
+            DB::table('team_members')->where('id',$id)->update([
+                'name' => $request->name,
+                'position_en' => $request->position_en,
+                'position_hy' => $request->position_hy,
                 'description_en' => $request->description_en,
                 'description_hy' => $request->description_hy,
                 'updated_at' => \Carbon\Carbon::now()
             ]);
-            return redirect(route('admin.aboutUs.index'))->with('message','Item updated successfully')->with('type','success');
+            return redirect(route('admin.teamMembers.index'))->with('message','Member updated successfully')->with('type','success');
         } catch (\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
         }
@@ -75,23 +77,23 @@ class AboutUsController extends Controller
     public function destroy($id)
     {
         try {
-            DB::table('about_us')->where('id',$id)->delete();
+            DB::table('team_members')->where('id',$id)->delete();
             return $this->success("deleted successfully");
         } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }
     }
 
-    public function imageUpload(Request $request)
+    public function memberImageUpload(Request $request)
     {
         try {
             if($request->hasFile('img')) {
                 $document = $request->img;
                 $fileName = time() . '-' . $document->getClientOriginalName();
-                $document->move("resources/assets/images/about_us/", $fileName);
-                $photoUrl = "/resources/assets/images/about_us/" . $fileName;
+                $document->move("resources/assets/images/team_members/", $fileName);
+                $photoUrl = "/resources/assets/images/team_members/" . $fileName;
 
-                DB::table('about_us')->where('id',$request->temp)->update(['photo_url' => $photoUrl]);
+                DB::table('team_members')->where('id',$request->temp)->update(['photo_url' => $photoUrl]);
 
                 return $this->success("image uploaded successfully");
             } else {
@@ -101,5 +103,4 @@ class AboutUsController extends Controller
             return $this->fail($exception->getMessage());
         }
     }
-
 }

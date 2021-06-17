@@ -42,7 +42,17 @@ class ContactUsController extends Controller
                 'name' => $request->name,
                 'message' => $request->message,
             ]);
-            return $this->success("message posted successfully.");
+            return back()->with('message',"message posted successfully.")->with('type','success');
+        } catch (\Exception $exception) {
+            return back()->with('message',$exception->getMessage())->with('type','danger');
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $contact = DB::table('contact_us')->where('id',$id)->delete();
+            return $this->success("deleted successfully");
         } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }
@@ -83,6 +93,18 @@ class ContactUsController extends Controller
                     'mobile' => $request->mobile,
                     'updated_at' => \Carbon\Carbon::now(),
                 ]);
+
+                if($request->hasFile('photo')) {
+                    $document = $request->photo;
+                    $fileName = time() . '-' . $document->getClientOriginalName();
+                    $document->move("resources/assets/images/office/", $fileName);
+                    $photoUrl = "/resources/assets/images/office/" . $fileName;
+
+                    DB::table('office_details')
+                        ->where('id',$request->id)
+                        ->update(['photo_url' => $photoUrl]);
+                }
+
                 return back()->with('message','updated successfully')->with('type','success');
         } catch (\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');

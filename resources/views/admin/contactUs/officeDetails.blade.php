@@ -2,9 +2,8 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body border-bottom-success">
-            <form method="post" action="{{route('admin.officeDetails.update')}}">
+            {{ Form::open(array('url' => route('admin.officeDetails.update'), 'method' => 'PUT', 'files' => 'true')) }}
                 @csrf
-                <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="id" value="{{$details->id}}">
 
                 <div class="form-group row" style="margin-bottom: 30px;">
@@ -73,12 +72,26 @@
                 </div>
 
                 <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label>Current Office Photo</label>
+                        <img src="{{$details->photo_url}}" alt="{{$details->title_en}} Photo" width="100%" />
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="photo">Choose New Office Photo</label>
+                        <input type="file" name="photo" accept="image/*"  />
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
                     <div class="col-md-12">
                         <a href="{{route('admin.officeDetails.index')}}" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

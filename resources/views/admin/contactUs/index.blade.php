@@ -3,7 +3,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             @foreach($messages as $message)
-                <div class="col-md-4">
+                <div class="col-md-4" id="{{$message->id}}">
                     <div class="card mb-4 py-3 border-left-info">
                         <div class="card-body" style="padding-top:0;padding-bottom:0;">
                             <a href="{{route('admin.contactUs.show',$message->id)}}" style="color:inherit;text-decoration: none;">
@@ -12,6 +12,13 @@
                                 <p>{{$message->message}}</p>
                             </a>
                             <div style="text-align: right;">
+                                <button class="btn btn-danger btn-icon-split" onclick="destroy('{{route('admin.contactUs.destroy',$message->id)}}','{{$message->id}}','{{$message->id}}')">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Delete</span>
+                                </button>
+                                &nbsp;
                                 <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#reply-modal-{{$message->id}}">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-reply"></i>

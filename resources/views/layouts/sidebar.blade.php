@@ -36,7 +36,13 @@
     <li class="nav-item" id="aboutUs">
         <a class="nav-link" href="{{route('admin.aboutUs.index')}}">
             <i class="fas fa-fw fa-users"></i>
-            <span>About Us (Members)</span></a>
+            <span>About Us</span></a>
+    </li>
+
+    <li class="nav-item" id="teamMembers">
+        <a class="nav-link" href="{{route('admin.teamMembers.index')}}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Team Members</span></a>
     </li>
 
     <li class="nav-item" id="contactUs">
@@ -49,7 +55,7 @@
 
     <li class="nav-item" id="officeDetails">
         <a class="nav-link" href="{{route('admin.officeDetails.index')}}">
-            <i class="fas fa-fw fa-home"></i>
+            <i class="fas fa-fw fa-building"></i>
             <span>Office Details </span></a>
     </li>
 
@@ -61,7 +67,7 @@
 
     <li class="nav-item" id="administrators">
         <a class="nav-link" href="{{route('admin.users.index')}}">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fas fa-fw fa-user"></i>
             <span>Administrators</span></a>
     </li>
 

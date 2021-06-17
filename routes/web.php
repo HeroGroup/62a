@@ -12,6 +12,9 @@ Route::name('site.')->group(function () {
     Route::get('/project/{project}', 'SiteController@project')->name('project');
     Route::get('/about', 'SiteController@about')->name('about');
     Route::get('/what-we-do', 'SiteController@whatWeDo')->name('whatWeDo');
+    Route::post('/contactUs/store','Admin\ContactUsController@store')->name('contactUs.store');
+
+    Route::get('/getFooter', 'SiteController@getFooter')->name('getFooter');
 });
 
 Auth::routes(['register' => false]);
@@ -33,7 +36,9 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/projects/makeCover','ProjectController@makeCover')->name('projects.makeCover');
 
                 Route::resource('aboutUs', 'AboutUsController');
-                Route::post('/aboutUs/memberImageUpload','AboutUsController@memberImageUpload')->name('aboutUs.memberImageUpload');
+                Route::post('/aboutUs/imageUpload','AboutUsController@imageUpload')->name('aboutUs.imageUpload');
+                Route::resource('teamMembers', 'TeamMemberController');
+                Route::post('/teamMembers/memberImageUpload','TeamMemberController@memberImageUpload')->name('teamMembers.memberImageUpload');
 
                 Route::get('/landing', 'LandingController@index')->name('landing.index');
                 Route::post('/landing/uploadBannerImage', 'LandingController@uploadBannerImage')->name('landing.uploadBannerImage');
@@ -42,8 +47,8 @@ Route::namespace('Admin')->group(function () {
 
                 Route::get('/contactUs','ContactUsController@index')->name('contactUs.index');
                 Route::get('/contactUs/show/{id}','ContactUsController@show')->name('contactUs.show');
-                Route::post('/contactUs/store','ContactUsController@store')->name('contactUs.store');
                 Route::post('/contactUs/reply','ContactUsController@reply')->name('contactUs.reply');
+                Route::delete('/contactUs/destroy/{id}','ContactUsController@destroy')->name('contactUs.destroy');
                 Route::get('/contactUs/newMessages','ContactUsController@newMessages')->name('contactUs.newMessages');
 
                 Route::get('/officeDetails','ContactUsController@officeDetails')->name('officeDetails.index');

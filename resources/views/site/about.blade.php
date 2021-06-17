@@ -2,94 +2,59 @@
 @section('content')
 <section class="page-title fade-from-top">
     <div class="container">
-        <h1 class="page-title__h fade-from-top" data-delay="100">Meet our people</h1>
-        <div class="page-title__text fade-from-top" data-delay="200">We have a passion for simplicity and sustainability, always balancing form with function and delight.</div>
+        <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Meet our people' : 'Meet our people'}}</h1>
+        <div class="page-title__text fade-from-top" data-delay="200">
+            {{session('lang') == 'hy' ? 'MWe have a passion for simplicity and sustainability, always balancing form with function and delight.' : 'We have a passion for simplicity and sustainability, always balancing form with function and delight.'}}
+        </div>
     </div>
 </section>
 
 <section class="team section fade-from-top" data-delay="300">
     <div class="container">
         <div class="row">
+        @foreach($members as $member)
             <div class="col-lg-4 col-md-6">
                 <div class="team-card">
                     <div class="slide-image-wrap">
-                        <img src="/images/team_1.jpg" class="team-card__img" alt="Ivanka Young">
+                        <img src="{{$member->photo_url}}" class="team-card__img" alt="Ivanka Young">
                     </div>
-                    <h4 class="team-card__name">Ivanka Young</h4>
-                    <div class="team-card__post">AIA Partner</div>
+                    <h4 class="team-card__name">{{$member->name}}</h4>
+                    <div class="team-card__post">{{session('lang') == 'hy' ? $member->position_hy : $member->position_en}}</div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-card">
-                    <div class="slide-image-wrap">
-                        <img src="/images/team_2.jpg" class="team-card__img" alt="Robert Hutsch">
-                    </div>
-                    <h4 class="team-card__name">Robert Hutsch</h4>
-                    <div class="team-card__post">Chief Administrative Officer</div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-card">
-                    <div class="slide-image-wrap">
-                        <img src="/images/team_3.jpg" class="team-card__img" alt="Erica Kpale">
-                    </div>
-                    <h4 class="team-card__name">Erica Kpale</h4>
-                    <div class="team-card__post">AIA, AICP, LEED AP </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6" data-delay="300">
-                <div class="team-card">
-                    <div class="slide-image-wrap">
-                        <img src="/images/team_4.jpg" class="team-card__img" alt="Mika Nekoranec">
-                    </div>
-                    <h4 class="team-card__name">Mika Nekoranec</h4>
-                    <div class="team-card__post">AIA</div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6" data-delay="400">
-                <div class="team-card">
-                    <div class="slide-image-wrap">
-                        <img src="/images/team_5.jpg" class="team-card__img" alt="Adam F. Spielmann">
-                    </div>
-                    <h4 class="team-card__name">Adam F. Spielmann</h4>
-                    <div class="team-card__post">Founding Partner</div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-card">
-                    <div class="slide-image-wrap">
-                        <img src="/images/team_1.jpg" class="team-card__img" alt="Alexander Migelsky">
-                    </div>
-                    <h4 class="team-card__name">Alexander Migelsky</h4>
-                    <div class="team-card__post">Director of Historic Preservation</div>
-                </div>
-            </div>
+        @endforeach
         </div>
     </div>
 </section>
 
 <section class="pb-large">
     <div class="container">
+    @for($i=0;$i<count($items);$i+=2)
         <div class="row justify-content-between">
+        @if($item[$i])
             <div class="col-lg-6 mb-5">
                 <div class="card">
-                    <img src="/images/about_1.jpg" class="card-img-top" alt="">
+                    <img src="{{$item[$i]->photo_url}}" alt="{{$item[$i]->title_en}}" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h3 class="card-title">We pride ourselves on being solution providers</h3>
-                        <p class="card-text">To provide exceptional services to the insurance industry and thier clients, the property owner.</p>
+                        <h3 class="card-title">{{session('lang') == 'hy' ? $item[$i]->title_hy : $item[$i]->title_en}}</h3>
+                        <p class="card-text">{{session('lang') == 'hy' ? $item[$i]->description_hy : $item[$i]->description_en}}</p>
                     </div>
                 </div>
             </div>
+        @endif
+        @if($item[$i+1])
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title mt-3">World's leading building design firm</h3>
-                        <p class="card-text">We believe that the best design results from deep insight into the people and passions that animate each unique environment.</p>
+                        <h3 class="card-title mt-3">{{session('lang') == 'hy' ? $item[$i+1]->title_hy : $item[$i+1]->title_en}}</h3>
+                        <p class="card-text">{{session('lang') == 'hy' ? $item[$i+1]->description_hy : $item[$i+1]->description_en}}</p>
                     </div>
-                    <img src="/images/what_we_do_2.jpg" class="card-img-bottom" alt="">
+                    <img src="{{$item[$i+1]->photo_url}}" class="card-img-bottom" alt="{{$item[$i+1]->title_en}}">
                 </div>
             </div>
+        @endif
         </div>
+    @endfor
     </div>
 </section>
 
@@ -97,37 +62,25 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 abs-box abs-box-right">
-                <h3>Have any questions?</h3>
-                <form class="questions-form">
+                <h3>{{session('lang') == 'hy' ? 'Have any questions?' : 'Have any questions?'}}</h3>
+                <form class="questions-form" method="post" action="{{route('site.contactUs.store')}}">
+                    @csrf
                     <div class="row">
                         <div class="col-lg form-group">
-                            <input type="email" class="form-control" placeholder="E-mail">
+                            <input type="email" name="email" class="form-control" placeholder="E-mail">
                         </div>
                         <div class="col-lg form-group">
-                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text" name="name" class="form-control" placeholder="Name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Message" rows="1"></textarea>
+                        <textarea class="form-control" name="message" placeholder="Message" rows="1"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-icon form-btn"><i class="icomoon-letter"></i> Send us a message</button>
+                    <button type="submit" class="btn btn-icon form-btn">
+                        <i class="icomoon-letter"></i> {{session('lang') == 'hy' ? 'Send us a message' : 'Send us a message'}}
+                    </button>
                 </form>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="brands">
-    <div class="container">
-        <div class="row align-items-center brand-list">
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-1.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-2.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-3.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-4.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-5.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-6.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-7.png" alt=""></div>
-            <div class="brand-list__item col-md-3 col-6"><img src="/images/brand-8.png" alt=""></div>
         </div>
     </div>
 </section>

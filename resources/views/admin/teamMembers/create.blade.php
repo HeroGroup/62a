@@ -1,18 +1,25 @@
-@extends('layouts.admin', ['pageTitle' => 'New Item', 'active' => 'aboutUs'])
+@extends('layouts.admin', ['pageTitle' => 'New Team Member', 'active' => 'teamMembers'])
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body border-bottom-success">
-            {{ Form::open(array('url' => route('admin.aboutUs.store'), 'method' => 'POST', 'files' => 'true')) }}
+            {{ Form::open(array('url' => route('admin.teamMembers.store'), 'method' => 'POST', 'files' => 'true')) }}
                 @csrf
 
                 <div class="form-group row" style="margin-bottom:30px;">
                     <div class="col-md-6">
-                        <label for="title_en">Title (en)</label>
-                        <input class="form-control" name="title_en" id="title_en" value="{{old('title_en')}}">
+                        <label for="name">Name</label>
+                        <input class="form-control" name="name" id="name" value="{{old('name')}}" required>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="position_en">Position (en)</label>
+                        <input class="form-control" name="position_en" id="position_en" value="{{old('position_en')}}">
                     </div>
                     <div class="col-md-6">
-                        <label for="title_hy">Title (Armenian)</label>
-                        <input class="form-control" name="title_hy" id="title_hy" value="{{old('title_hy')}}">
+                        <label for="position_hy">Position (Armenian)</label>
+                        <input class="form-control" name="position_hy" id="position_hy" value="{{old('position_hy')}}">
                     </div>
                 </div>
 
@@ -36,7 +43,7 @@
 
                 <div class="form-group row" style="margin-bottom:30px;">
                 <div class="col-md-12">
-                    <a href="{{route('admin.aboutUs.index')}}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{route('admin.teamMembers.index')}}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>
             {!! Form::close() !!}
