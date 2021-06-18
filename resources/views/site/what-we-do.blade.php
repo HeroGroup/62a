@@ -1,15 +1,19 @@
-@extends('layouts.site', ['pageTitle' => 'About', 'active' => 'what-we-do'])
+@extends('layouts.site', ['pageTitle' => 'What We Do', 'active' => 'what-we-do'])
 @section('content')
-
-
         <section class="page-title fade-from-top">
             <div class="container">
-                <h1 class="page-title__h fade-from-top" data-delay="100">A full-service design firm providing architecture</h1>
-                <div class="page-title__text fade-from-top" data-delay="200">We have a passion for simplicity and sustainability, always balancing form with function and delight.</div>
+                <h1 class="page-title__h fade-from-top" data-delay="100">
+                    {{session('lang') == 'hy' ? $section->title_hy : $section->title_en}}
+                </h1>
+                <div class="page-title__text fade-from-top" data-delay="200">
+                    {{session('lang') == 'hy' ? $section->description_hy : $section->description_en}}
+                </div>
 
                 <div class="page-title__counter counter fade-from-top" data-delay="400">
                     <div class="counter-num">19</div>
-                    <div class="counter-text">years of global excellence</div>
+                    <div class="counter-text">
+                        {{session('lang') == 'hy' ? 'years of global excellence' : 'years of global excellence'}}
+                    </div>
                 </div>
             </div>
         </section>
@@ -17,50 +21,26 @@
         <section class="section">
             <div class="container">
                 <div class="row justify-content-between fade-from-top-children">
+                @foreach($items as $item)
                     <div class="col-md-5 mb-5">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title">Architecture</h3>
-                                <p class="card-text">To further develop our corporate strengths we have established a corporate mandate to maintain strong core values that truly reflect the companys philosophy.</p>
+                                <h3 class="card-title">{{session('lang') == 'hy' ? $item->title_hy : $item->title_en}}</h3>
+                                <p class="card-text">
+                                    {{session('lang') == 'hy' ? $item->description_hy : $item->description_en}}
+                                </p>
                             </div>
                             <div class="slide-image-wrap">
-                                <img src="../../public/images/what_we_do_2.jpg" class="card-img-bottom" alt="Architecture">
+                                <img src="{{$item->photo_url}}" class="card-img-bottom" alt="{{$item->title_en}}">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card mb-5">
-                            <div class="slide-image-wrap">
-                                <img src="../../public/images/what_we_do_2.jpg" class="card-img-top" alt="Architecture">
-                            </div>
-                            <div class="card-body">
-                                <h3 class="card-title">Planning</h3>
-                                <p class="card-text">During this phase, we will work to provide a detailed analysis of the project and we will establish project along with our clients.</p>
-                            </div>
-                        </div>
-                    </div>
+                @endforeach
                 </div>
             </div>
         </section>
 
-        <section class="bg-section" style="background-image: url('../../public/images/what_we_do_3.jpg')">
-        </section>
-
-        <section>
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-md-5 py-5">
-                        <h3 class="mb-3">Strategic Design</h3>
-                        <div class="section-text">We are focused on sustainable business that delivers the best possible project results. We are committed to providing the highest level of professionalism, service response, and quality workmanship.</div>
-                    </div>
-                    <div class="col-md-6 mt-lg-n5" >
-                        <div class="slide-image-wrap">
-                            <img src="../../public/images/what_we_do_4.jpg" alt="Strategic Design">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section class="bg-section" style="background-image: url('{{$section->image_url}}')"></section>
 
         <section class="section icons-section">
             <div class="container">
@@ -113,78 +93,22 @@
             </div>
 
             <div class="offices-carousel js-offices-carousel" >
+            @foreach($offices as $office)
                 <div class="office-item full-height">
                     <div class="container">
-                        <h2 class="mb-3 js-office-item-title office-item-title">Chicago</h2>
-                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">Show on map <i class="icomoon-pin"></i></button>
+                        <h2 class="mb-3 js-office-item-title office-item-title">{{session('lang') == 'hy' ? $office->city_hy : $office->city_en}}</h2>
+                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">
+                            {{session('lang') == 'hy' ? 'Show on Map' : 'Show on Map'}} <i class="icomoon-pin"></i>
+                        </button>
                         <div class="office-item__image">
-                            <img src="../../public/images/image_4.jpg" alt="">
+                            <img src="{{$office->photo_url}}" alt="{{$office->title_en}}">
                         </div>
                         <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11882.127060704288!2d-87.61670486274774!3d41.88141960480525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2b587c65e43b%3A0x2594a4440fff56bd!2z0KfQuNC60LDQs9C-LdCb0YPQvywg0KfQuNC60LDQs9C-LCDQmNC70LvQuNC90L7QudGBIDYwNjAxLCDQodCo0JA!5e0!3m2!1sru!2sua!4v1557226177063!5m2!1sru!2sua" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97583.88432336322!2d44.418527203961425!3d40.15350050893358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406aa2dab8fc8b5b%3A0x3d1479ae87da526a!2sYerevan%2C%20Armenia!5e0!3m2!1sen!2s!4v1623940854545!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
-                <div class="office-item full-height">
-                    <div class="container">
-                        <h2 class="mb-3 js-office-item-title office-item-title">Detroit</h2>
-                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">Show on map <i class="icomoon-pin"></i></button>
-                        <div class="office-item__image">
-                            <img src="../../public/images/home_8.jpg" alt="">
-                        </div>
-                        <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11882.127060704288!2d-87.61670486274774!3d41.88141960480525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2b587c65e43b%3A0x2594a4440fff56bd!2z0KfQuNC60LDQs9C-LdCb0YPQvywg0KfQuNC60LDQs9C-LCDQmNC70LvQuNC90L7QudGBIDYwNjAxLCDQodCo0JA!5e0!3m2!1sru!2sua!4v1557226177063!5m2!1sru!2sua" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="office-item full-height">
-                    <div class="container">
-                        <h2 class="mb-3 js-office-item-title office-item-title">Los Angeles</h2>
-                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">Show on map <i class="icomoon-pin"></i></button>
-                        <div class="office-item__image">
-                            <img src="../../public/images/image_2.jpg" alt="">
-                        </div>
-                        <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11882.127060704288!2d-87.61670486274774!3d41.88141960480525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2b587c65e43b%3A0x2594a4440fff56bd!2z0KfQuNC60LDQs9C-LdCb0YPQvywg0KfQuNC60LDQs9C-LCDQmNC70LvQuNC90L7QudGBIDYwNjAxLCDQodCo0JA!5e0!3m2!1sru!2sua!4v1557226177063!5m2!1sru!2sua" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="office-item full-height">
-                    <div class="container">
-                        <h2 class="mb-3 js-office-item-title office-item-title">Sacramento</h2>
-                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">Show on map <i class="icomoon-pin"></i></button>
-                        <div class="office-item__image">
-                            <img src="../../public/images/home_8.jpg" alt="">
-                        </div>
-                        <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11882.127060704288!2d-87.61670486274774!3d41.88141960480525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2b587c65e43b%3A0x2594a4440fff56bd!2z0KfQuNC60LDQs9C-LdCb0YPQvywg0KfQuNC60LDQs9C-LCDQmNC70LvQuNC90L7QudGBIDYwNjAxLCDQodCo0JA!5e0!3m2!1sru!2sua!4v1557226177063!5m2!1sru!2sua" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="office-item full-height">
-                    <div class="container">
-                        <h2 class="mb-3 js-office-item-title office-item-title">San Diego</h2>
-                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">Show on map <i class="icomoon-pin"></i></button>
-                        <div class="office-item__image">
-                            <img src="../../public/images/image_4.jpg" alt="">
-                        </div>
-                        <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11882.127060704288!2d-87.61670486274774!3d41.88141960480525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2b587c65e43b%3A0x2594a4440fff56bd!2z0KfQuNC60LDQs9C-LdCb0YPQvywg0KfQuNC60LDQs9C-LCDQmNC70LvQuNC90L7QudGBIDYwNjAxLCDQodCo0JA!5e0!3m2!1sru!2sua!4v1557226177063!5m2!1sru!2sua" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="office-item full-height">
-                    <div class="container">
-                        <h2 class="mb-3 js-office-item-title office-item-title">San Francisco</h2>
-                        <button class="btn btn-outline-secondary js-show-on-map-btn" data-toggle="modal" data-target="#js-office-map-modal">Show on map <i class="icomoon-pin"></i></button>
-                        <div class="office-item__image">
-                            <img src="../../public/images/image_2.jpg" alt="">
-                        </div>
-                        <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11882.127060704288!2d-87.61670486274774!3d41.88141960480525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2b587c65e43b%3A0x2594a4440fff56bd!2z0KfQuNC60LDQs9C-LdCb0YPQvywg0KfQuNC60LDQs9C-LCDQmNC70LvQuNC90L7QudGBIDYwNjAxLCDQodCo0JA!5e0!3m2!1sru!2sua!4v1557226177063!5m2!1sru!2sua" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
             </div>
 
             <!-- MAP MODAL -->

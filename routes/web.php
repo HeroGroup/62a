@@ -34,6 +34,7 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');
                 Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');
                 Route::post('/projects/makeCover','ProjectController@makeCover')->name('projects.makeCover');
+                Route::post('/projects/updateBottomSection', 'ProjectController@updateBottomSection')->name('projects.updateBottomSection');
 
                 Route::resource('aboutUs', 'AboutUsController');
                 Route::post('/aboutUs/imageUpload','AboutUsController@imageUpload')->name('aboutUs.imageUpload');
@@ -44,6 +45,8 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/landing/uploadBannerImage', 'LandingController@uploadBannerImage')->name('landing.uploadBannerImage');
                 Route::put('/landing/updateBannerDetails', 'LandingController@updateBannerDetails')->name('landing.updateBannerDetails');
                 Route::delete('/landing/deleteBanner', 'LandingController@deleteBanner')->name('landing.deleteBanner');
+                Route::put('/landing/updateTopSection', 'LandingController@updateTopSection')->name('landing.updateTopSection');
+                Route::put('/landing/updateBottomSection', 'LandingController@updateBottomSection')->name('landing.updateBottomSection');
 
                 Route::get('/contactUs','ContactUsController@index')->name('contactUs.index');
                 Route::get('/contactUs/show/{id}','ContactUsController@show')->name('contactUs.show');
@@ -56,6 +59,7 @@ Route::namespace('Admin')->group(function () {
 
                 Route::resource('whatWeDo', 'WhatWeDoController');
                 Route::post('/whatWeDo/itemImageUpload','WhatWeDoController@itemImageUpload')->name('whatWeDo.itemImageUpload');
+                Route::post('/whatWeDo/updateSection', 'WhatWeDoController@updateSection')->name('whatWeDo.updateSection');
 
             });
         });

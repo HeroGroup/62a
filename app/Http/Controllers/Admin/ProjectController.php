@@ -11,7 +11,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = DB::table('projects')->get();
-        return view('admin.projects.index',compact('projects'));
+        $bottom = DB::table('sections')->where('position','LIKE','projects-bottom')->first();
+
+        return view('admin.projects.index',compact('projects','bottom'));
     }
 
     public function create()
@@ -37,8 +39,8 @@ class ProjectController extends Controller
                 'size_hy' => $request->size_hy,
                 'budget_en' => $request->budget_en,
                 'budget_hy' => $request->budget_hy,
-                'is_active' => $request->is_active,
-                'created_at' => Carbon\Carbon::now(),
+                'is_active' => 1,
+                'created_at' => \Carbon\Carbon::now(),
             ]);
 
             if($request->has('categories')) {
@@ -84,7 +86,34 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $project = DB::table('projects')->where('id', $id)->update($request->all());
+            $project = DB::table('projects')->where('id', $id)->update([
+                'title_en' => $request->title_en,
+                'title_hy' => $request->title_hy,
+                'description_en' => $request->description_en,
+                'description_hy' => $request->description_hy,
+                'location_en' => $request->location_en,
+                'location_hy' => $request->location_hy,
+                'type_en' => $request->type_en,
+                'type_hy' => $request->type_hy,
+                'year' => $request->year,
+                'size_en' => $request->size_en,
+                'size_hy' => $request->size_hy,
+                'budget_en' => $request->budget_en,
+                'budget_hy' => $request->budget_hy,
+                'is_active' => $request->is_active ? 1 : 0,
+                'updated_at' => \Carbon\Carbon::now(),
+            ]);
+
+            if($request->has('categories')) {
+                DB::table('project_categories')->where('project_id',$id)->delete();
+                $categories = $request->categories;
+                foreach($categories as $category) {
+                    DB::table('project_categories')->insert([
+                        'project_id' => $id,
+                        'category_id' => $category
+                    ]);
+                }
+            }
             return back()->with('message','Project created successfully.')->with('type','success');
         } catch(\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
@@ -105,7 +134,7 @@ class ProjectController extends Controller
     {
         // dd($_FILES);
         try {
-            $projectId = $request->project_id;
+            $projectId = $request->temp;
             if ($request->hasFile('img')) {
                 $document = $request->img;
                 $fileName = time() . '-' . $document->getClientOriginalName();
@@ -144,6 +173,35 @@ class ProjectController extends Controller
             DB::table('project_photos')->where('id',$request->photo_id)->update(['is_cover' => 1]);
 
             return $this->success('photo updated successfully');
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function updateBottomSection(Request $request)
+    {
+        try {
+            DB::table('sections')->where('position','like','projects-bottom')->update([
+                'title_en' => $request->title_en,
+                'title_hy' => $request->title_hy,
+                'description_en' => $request->description_en,
+                'description_hy' => $request->description_hy,
+                'is_active' => $request->is_active ? 1 : 0,
+                'updated_at' => \Carbon\Carbon::now()
+            ]);
+
+            if($request->hasFile('photo')) {
+                $document = $request->photo;
+                $fileName = time() . '-' . $document->getClientOriginalName();
+                $document->move("resources/assets/images/sections/", $fileName);
+                $photoUrl = "/resources/assets/images/sections/" . $fileName;
+
+                DB::table('sections')->where('position','like','projects-bottom')->update([
+                    'image_url' => $photoUrl,
+                ]);
+            }
+
+            return back()->with('message',"Updated Successfully")->with('type','success');
         } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }

@@ -9,7 +9,12 @@ class SiteController extends Controller
 {
     public function index()
     {
-        return view('site.index');
+        $banners = DB::table('banners')->where('is_active',1)->get();
+        $projects = DB::table('projects')->take(6)->get();
+        $top = DB::table('sections')->where('position','top')->where('is_active',1)->first();
+        $bottom = DB::table('sections')->where('position','bottom')->where('is_active',1)->first();
+
+        return view('site.index',compact('banners','projects','top','bottom'));
     }
 
     public function career()
@@ -35,12 +40,31 @@ class SiteController extends Controller
 
     public function projects()
     {
-        return view('site.projects');
+        $categories = DB::select('select categories.id,categories.title_en,categories.title_hy,count(*) as cnt
+        from categories,project_categories
+        where categories.id = project_categories.category_id
+        group by id,title_en,title_hy;');
+
+        $projects = DB::select('select projects.id,projects.title_en,projects.title_hy,projects.location_en,projects.location_hy,project_photos.photo_url
+        from projects, project_photos
+        where projects.id = project_photos.project_id
+        and project_photos.is_cover=1
+        and projects.is_active=1;');
+
+        $totalProjects = DB::table('projects')->count();
+
+        $bottom = DB::table('sections')->where('position','LIKE','projects-bottom')->where('is_active',1)->first();
+
+        return view('site.projects',compact('categories','projects','totalProjects','bottom'));
     }
 
-    public function project($project)
+    public function project($projectId)
     {
-        return view('site.project-single', compact('project'));
+        $project = DB::table('projects')->find($projectId);
+        $photos = DB::table('project_photos')->where('project_id',$projectId)->get();
+        $projects = DB::table('projects')->where('id','!=',$projectId)->take(2)->get();
+
+        return view('site.project-single', compact('project','photos','projects'));
     }
 
     public function about()
@@ -52,7 +76,10 @@ class SiteController extends Controller
 
     public function whatWeDo()
     {
-        return view('site.what-we-do');
+        $items = DB::table('what_we_do_items')->get();
+        $section = DB::table('sections')->where('position','LIKE','what-we-do')->where('is_active',1)->first();
+        $offices = DB::table('office_details')->get();
+        return view('site.what-we-do',compact('items','section','offices'));
     }
 
     public function getFooter()

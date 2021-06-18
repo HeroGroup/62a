@@ -18,6 +18,15 @@
                 @csrf
                 <input type="hidden" name="_method" value="put" />
 
+                <div style="margin-bottom:30px;">
+                    <span> Inactive </span>
+                    <label class="switch">
+                        <input type="checkbox" name="is_active" @if($project->is_active == 1) checked @endif >
+                        <span class="slider round"></span>
+                    </label>
+                    <span> Active </span>
+                </div>
+
                 <div class="form-group row" style="margin-bottom:30px;">
                     <div class="col-md-6">
                         <label for="categories">Project Category</label>
@@ -146,7 +155,13 @@
         </a>
         <div class="collapse" id="uploadMore">
             <div class="card-body">
-                @component('components.imageUploader', ['projectId' => $project->id])@endcomponent
+                @component('components.imageUploaderGeneral', [
+                    'uploadText' => 'Select Project Images from your computer, or drag here',
+                    'uploadRoute' => route('admin.projects.imageUpload'),
+                    'temp' => $project->id,
+                    'multiple' => true
+                    ])
+                @endcomponent
             </div>
         </div>
     </div>

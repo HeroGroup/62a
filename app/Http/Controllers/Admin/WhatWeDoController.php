@@ -11,7 +11,8 @@ class WhatWeDoController extends Controller
     public function index()
     {
         $items = DB::table('what_we_do_items')->get();
-        return view('admin.whatWeDo.index',compact('items'));
+        $section = DB::table('sections')->where('position','LIKE','what-we-do')->first();
+        return view('admin.whatWeDo.index',compact('items','section'));
     }
 
     public function create()
@@ -93,6 +94,34 @@ class WhatWeDoController extends Controller
                 return $this->fail("invalid image");
             }
         } catch(\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function updateSection(Request $request)
+    {
+        try {
+            DB::table('sections')->where('position','like','what-we-do')->update([
+                'title_en' => $request->title_en,
+                'title_hy' => $request->title_hy,
+                'description_en' => $request->description_en,
+                'description_hy' => $request->description_hy,
+                'updated_at' => \Carbon\Carbon::now()
+            ]);
+
+            if($request->hasFile('photo')) {
+                $document = $request->photo;
+                $fileName = time() . '-' . $document->getClientOriginalName();
+                $document->move("resources/assets/images/sections/", $fileName);
+                $photoUrl = "/resources/assets/images/sections/" . $fileName;
+
+                DB::table('sections')->where('position','like','what-we-do')->update([
+                    'image_url' => $photoUrl,
+                ]);
+            }
+
+            return back()->with('message',"Updated Successfully")->with('type','success');
+        } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }
     }

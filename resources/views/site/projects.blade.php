@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'About', 'active' => 'projects'])
+@extends('layouts.site', ['pageTitle' => 'Projects', 'active' => 'projects'])
 @section('content')
 
         <section class="page-title projects-title fade-from-top">
@@ -13,103 +13,50 @@
         <section class="projects">
             <div class="container">
                 <div class="project-filter js-project-filter fade-from-top" data-delay="300">
-                    <button class="project-filter__btn active" data-filter="*">All Projects<span class="count">31</span></button>
-                    <button class="project-filter__btn" data-filter=".interior">Interior Design<span class="count">14</span></button>
-                    <button class="project-filter__btn" data-filter=".office">Office<span class="count">3</span></button>
-                    <button class="project-filter__btn" data-filter=".industrial">Industrial<span class="count">8</span></button>
-                    <button class="project-filter__btn" data-filter=".studio">Design Studio<span class="count">6</span></button>
+                    <button class="project-filter__btn active" data-filter="*">All Projects<span class="count">{{$totalProjects}}</span></button>
+                    @foreach($categories as $category)
+                        <button class="project-filter__btn" data-filter=".{{$category->id}}">{{session('lang') == 'hy' ? $category->title_hy : $category->title_en}}<span class="count">{{$category->cnt}}</span></button>
+                    @endforeach
                 </div>
                 <div class="row project-list js-project-list fade-from-top-children">
-                    <div class="col-md-6 project-item interior">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="../../public/images/home_6.jpg" alt="" class="project-item__img"></a>
+                    @foreach($projects as $project)
+                        <?php $res = "";
+                        $cats = \Illuminate\Support\Facades\DB::table('project_categories')->where('project_id',$project->id)->get();
+                        foreach($cats as $cat) {
+                            $res .= (" " . $cat->category_id);
+                        } ?>
+                        <div class="col-md-6 project-item {{$res}}">
+                            <div class="slide-image-wrap">
+                                <a href="{{route('site.project',$project->id)}}" class="project-item__img-link">
+                                    <img src="{{$project->photo_url}}" alt="{{$project->title_en}}" class="project-item__img">
+                                </a>
+                            </div>
+                            <h4 class="project-item__title">
+                                <a href="project-single.html">{{session('lang') == 'hy' ? $project->title_hy : $project->title_en}}</a>
+                            </h4>
+                            <div class="project-item__loc">{{session('lang') == 'hy' ? $project->location_hy : $project->location_en}}</div>
                         </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Bono Country House</a></h4>
-                        <div class="project-item__loc">VIC, Australia</div>
-                    </div>
-                    <div class="col-md-6 project-item interior">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="../../public/images/home_7.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Downside Up House</a></h4>
-                        <div class="project-item__loc">Melbourne, Australia</div>
-                    </div>
-                    <div class="col-md-6 project-item office">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="../../public/images/home_3.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Casa Don Juan</a></h4>
-                        <div class="project-item__loc">Ecuador</div>
-                    </div>
-                    <div class="col-md-6 project-item industrial">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="../../public/images/home_2.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">A viewpoint to Talamanca</a></h4>
-                        <div class="project-item__loc">Minato-ku, Tokyo</div>
-                    </div>
-                    <div class="col-md-6 project-item industrial">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="../../public/images/home_5.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Techiner Studio</a></h4>
-                        <div class="project-item__loc">Shenzhen, China</div>
-                    </div>
-                    <div class="col-md-6 project-item office studio">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="../../public/images/home_4.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Natural breeze & lighting symphony</a></h4>
-                        <div class="project-item__loc">Nha Trang, Vietnam</div>
-                    </div>
-                    <div class="col-md-6 project-item interior studio">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link"><img src="../../public/images/project_1.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Brilliant House</a></h4>
-                        <div class="project-item__loc">Dutchess County, NY, United States</div>
-                    </div>
-                    <div class="col-md-6 project-item studio">
-                        <div class="slide-image-wrap">
-                            <a href="project-single.html" class="project-item__img-link" data-delay="300"><img src="../../public/images/project_2.jpg" alt="" class="project-item__img"></a>
-                        </div>
-                        <h4 class="project-item__title"><a href="project-single.html">Dutch County Residence</a></h4>
-                        <div class="project-item__loc">Miami, FL, United States</div>
-                    </div>
-                </div>
-                <div class="text-center projects-load">
-                    <button class="btn btn-primary">Loading... <i class="icomoon-refresh"></i></button>
+                    @endforeach
                 </div>
             </div>
         </section>
 
+        @if(isset($bottom) && $bottom)
         <section class="projects-contacts position-relative ">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 projects-contacts__img image-full">
-                        <div class="image-full-box"><img src="../../public/images/projects-1-bg.jpg" alt=""></div>
+                        <div class="image-full-box"><img src="{{$bottom->image_url}}" alt="{{$bottom->title_en}}"></div>
                     </div>
                     <div class="col-lg-7 projects-contacts__text abs-box abs-box-right" data-delay="200">
-                        <h2>Who we work with</h2>
-                        <p>As a national, multidisciplinary firm, we have produced unique design solutions for some of the country’s most forward thinking organizations, and have earned a reputation for design excellence.</p>
-                        <a href="contact.html" class="btn btn-icon hero-btn"><i class="icomoon-right-arrow"></i> Contact Us</a>
+                        <h2>{{session('lang') == 'hy' ? $bottom->title_en : $bottom->title_hy}}</h2>
+                        <p>{{session('lang') == 'hy' ? $bottom->description_en : $bottom->description_hy}}</p>
+                        <a href="{{route('site.contact')}}" class="btn btn-icon hero-btn">
+                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Contact Us' : 'Contact Us'}}
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="brands bg-light">
-            <div class="container">
-                <div class="row align-items-center brand-lis">
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-1.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-2.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-3.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-4.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-5.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-6.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-7.png" alt=""></div>
-                    <div class="brand-list__item col-md-3 col-6"><img src="../../public/images/brand-8.png" alt=""></div>
-                </div>
-            </div>
-        </section>
+        @endif
 @endsection

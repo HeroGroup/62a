@@ -4,7 +4,7 @@
     <a href="#banners" class="d-block card-header py-3 border-bottom-info" data-toggle="collapse" role="button" aria-expanded="true">
         <h6 class="m-0 font-weight-bold text-primary">Banners</h6>
     </a>
-    <div class="collapse show" id="banners">
+    <div class="collapse" id="banners">
         <div class="card-body">
             <button class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#new-banner-modal" >
                 <span class="icon text-white-50">
@@ -142,4 +142,151 @@
         </div>
     </div>
 </div>
+
+<div class="card shadow mb-4">
+    <a href="#top-section" class="d-block card-header py-3 border-bottom-warning" data-toggle="collapse" role="button" aria-expanded="true">
+        <h6 class="m-0 font-weight-bold text-primary">Top Section</h6>
+    </a>
+    <div class="collapse" id="top-section">
+        <div class="card-body">
+        {{ Form::open(array('url' => route('admin.landing.updateTopSection'), 'method' => 'PUT', 'files' => 'true')) }}
+
+                @csrf
+
+                <div style="margin-bottom:30px;">
+                    <span> Inactive </span>
+                    <label class="switch">
+                        <input type="checkbox" name="is_active" @if($top->is_active) checked @endif >
+                        <span class="slider round"></span>
+                    </label>
+                    <span> Active </span>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="title_en">Title (english)</label>
+                        <input class="form-control" name="title_en" value="{{$top->title_en}}" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title_hy">Title (armenian)</label>
+                        <input class="form-control" name="title_hy" value="{{$top->title_hy}}" >
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="description_en">Description (english)</label>
+                        <textarea class="form-control" name="description_en">{{$top->description_en}}</textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="description_hy">Description (armenian)</label>
+                        <textarea class="form-control" name="description_hy">{{$top->description_hy}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label>Current image for top section</label>
+                        <div>
+                            <img src="{{$top->image_url}}" alt="{{$top->image_title_en}}" width="100%" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="photo">Choose an image for top section</label>
+                        <input type="file" name="photo" />
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="image_title_en">Image Title (english)</label>
+                        <input class="form-control" name="image_title_en" value="{{$top->image_title_en}}" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="image_title_hy">Image Title (armenian)</label>
+                        <input class="form-control" name="image_title_hy" value="{{$top->image_title_hy}}">
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <button class="btn btn-success" type="submit">Save</a>
+                    </div>
+                </div>
+
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <a href="#bottom-section" class="d-block card-header py-3 border-bottom-success" data-toggle="collapse" role="button" aria-expanded="true">
+        <h6 class="m-0 font-weight-bold text-primary">Bottom Section</h6>
+    </a>
+    <div class="collapse" id="bottom-section">
+        <div class="card-body">
+        {{ Form::open(array('url' => route('admin.landing.updateBottomSection'), 'method' => 'PUT', 'files' => 'true')) }}
+                @csrf
+
+                <div style="margin-bottom:30px;">
+                    <span> Inactive </span>
+                    <label class="switch">
+                        <input type="checkbox" name="is_active" @if($bottom->is_active) checked @endif >
+                        <span class="slider round"></span>
+                    </label>
+                    <span> Active </span>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="title_en">Title (english)</label>
+                        <input class="form-control" name="title_en" value="{{$bottom->title_en}}" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="title_hy">Title (armenian)</label>
+                        <input class="form-control" name="title_hy" value="{{$bottom->title_hy}}" >
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="description_en">Description (english)</label>
+                        <textarea class="form-control" name="description_en">{{$bottom->description_en}}</textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="description_hy">Description (armenian)</label>
+                        <textarea class="form-control" name="description_hy">{{$bottom->description_hy}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label>Current image for bottom section</label>
+                        <div>
+                            <img src="{{$bottom->image_url}}" alt="{{$bottom->title_en}}" width="100%" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="photo">Choose an image for bottom section</label>
+                        <input type="file" name="photo" />
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <button class="btn btn-success"  type="submit">Save</a>
+                    </div>
+                </div>
+
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+
 @endsection

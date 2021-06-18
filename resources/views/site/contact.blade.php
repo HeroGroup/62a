@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'Career', 'active' => 'contact'])
+@extends('layouts.site', ['pageTitle' => 'Contact', 'active' => 'contact'])
 @section('content')
     <section class="page-title fade-from-top">
         <div class="container">

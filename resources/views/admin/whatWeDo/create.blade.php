@@ -18,11 +18,11 @@
 
                 <div class="form-group row" style="margin-bottom:30px;">
                     <div class="col-md-6">
-                        <label for="description_en">Project Description (en)</label>
+                        <label for="description_en">Description (en)</label>
                         <textarea  class="form-control" name="description_en" id="description_en" value="{{old('description_en')}}"></textarea>
                     </div>
                     <div class="col-md-6">
-                        <label for="description_hy">Project Description (Armenian)</label>
+                        <label for="description_hy">Description (Armenian)</label>
                         <textarea  class="form-control" name="description_hy" id="description_hy" value="{{old('description_hy')}}"></textarea>
                     </div>
                 </div>
