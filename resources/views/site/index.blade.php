@@ -45,7 +45,7 @@
         </section>
         @endif
 
-        <section class="home-projects">
+        <section class="home-projects" style="margin-bottom:300px;">
             <div class="container">
                 <div class="section-title d-md-flex align-items-center">
                     <h2 class="mb-md-0 mb-4 mr-md-4">{{session('lang') == 'hy' ? 'Projects' : 'Projects'}}</h2>

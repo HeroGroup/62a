@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Meet our people' : 'Meet our people'}}</h1>
         <div class="page-title__text fade-from-top" data-delay="200">
-            {{session('lang') == 'hy' ? 'MWe have a passion for simplicity and sustainability, always balancing form with function and delight.' : 'We have a passion for simplicity and sustainability, always balancing form with function and delight.'}}
+            {{session('lang') == 'hy' ? 'We have a passion for simplicity and sustainability, always balancing form with function and delight.' : 'We have a passion for simplicity and sustainability, always balancing form with function and delight.'}}
         </div>
     </div>
 </section>
@@ -16,7 +16,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="team-card">
                     <div class="slide-image-wrap">
-                        <img src="{{$member->photo_url}}" class="team-card__img" alt="Ivanka Young">
+                        <img src="{{$member->photo_url}}" class="team-card__img" alt="{{$member->name}}">
                     </div>
                     <h4 class="team-card__name">{{$member->name}}</h4>
                     <div class="team-card__post">{{session('lang') == 'hy' ? $member->position_hy : $member->position_en}}</div>
@@ -31,25 +31,25 @@
     <div class="container">
     @for($i=0;$i<count($items);$i+=2)
         <div class="row justify-content-between">
-        @if($item[$i])
+        @if($items[$i])
             <div class="col-lg-6 mb-5">
                 <div class="card">
-                    <img src="{{$item[$i]->photo_url}}" alt="{{$item[$i]->title_en}}" class="card-img-top" alt="">
+                    <img src="{{$items[$i]->photo_url}}" alt="{{$items[$i]->title_en}}" class="card-img-top">
                     <div class="card-body">
-                        <h3 class="card-title">{{session('lang') == 'hy' ? $item[$i]->title_hy : $item[$i]->title_en}}</h3>
-                        <p class="card-text">{{session('lang') == 'hy' ? $item[$i]->description_hy : $item[$i]->description_en}}</p>
+                        <h3 class="card-title">{{session('lang') == 'hy' ? $items[$i]->title_hy : $items[$i]->title_en}}</h3>
+                        <p class="card-text">{{session('lang') == 'hy' ? $items[$i]->description_hy : $items[$i]->description_en}}</p>
                     </div>
                 </div>
             </div>
         @endif
-        @if($item[$i+1])
+        @if($items[$i+1])
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title mt-3">{{session('lang') == 'hy' ? $item[$i+1]->title_hy : $item[$i+1]->title_en}}</h3>
-                        <p class="card-text">{{session('lang') == 'hy' ? $item[$i+1]->description_hy : $item[$i+1]->description_en}}</p>
+                        <h3 class="card-title mt-3">{{session('lang') == 'hy' ? $items[$i+1]->title_hy : $items[$i+1]->title_en}}</h3>
+                        <p class="card-text">{{session('lang') == 'hy' ? $items[$i+1]->description_hy : $items[$i+1]->description_en}}</p>
                     </div>
-                    <img src="{{$item[$i+1]->photo_url}}" class="card-img-bottom" alt="{{$item[$i+1]->title_en}}">
+                    <img src="{{$items[$i+1]->photo_url}}" class="card-img-bottom" alt="{{$items[$i+1]->title_en}}">
                 </div>
             </div>
         @endif

@@ -19,33 +19,43 @@
                     <div class="col-lg-5 fade-from-top" data-delay="300">
                         <div class="project-single__table">
                             <table>
+                                @if($project->location_hy || $project->location_en)
                                 <tr>
                                     <th>Location</th>
                                     <td>{{session('lang') == 'hy' ? $project->location_hy : $project->location_en}}</td>
                                 </tr>
+                                @endif
+                                @if($project->type_hy || $project->type_en)
                                 <tr>
                                     <th>Type</th>
                                     <td>{{session('lang') == 'hy' ? $project->type_hy : $project->type_en}}</td>
                                 </tr>
+                                @endif
+                                @if($project->year)
                                 <tr>
                                     <th>Year</th>
                                     <td>{{$project->year}}</td>
                                 </tr>
+                                @endif
+                                @if($project->size_hy || $project->size_en)
                                 <tr>
                                     <th>Size</th>
                                     <td>{{session('lang') == 'hy' ? $project->size_hy : $project->size_en}}</td>
                                 </tr>
+                                @endif
+                                @if($project->budget_hy || $project->budget_en)
                                 <tr>
                                     <th>Budget</th>
                                     <td>{{session('lang') == 'hy' ? $project->budget_hy : $project->budget_en}}</td>
                                 </tr>
+                                @endif
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="project-single__gallery js-gallery fade-from-top-children">
                 @foreach($photos as $photo)
-                    <a class="grid-item" href="/images/project-single-1.jpg">
+                    <a class="grid-item" href="{{$photo->photo_url}}">
                         <div class="slide-image-wrap">
                             <img src="{{$photo->photo_url}}" alt="{{$project->title_en}}">
                         </div>

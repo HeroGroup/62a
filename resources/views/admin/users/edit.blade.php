@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="mobile" class="col-sm-2 control-label">Mobile</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="mobile" minlength="11" maxlength="11" name="mobile" value="{{$user->mobile}}" required>
+                        <input type="text" class="form-control" id="mobile" minlength="8" maxlength="11" name="mobile" value="{{$user->mobile}}" required>
                     </div>
                 </div>
                 <div class="form-group row">

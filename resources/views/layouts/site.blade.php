@@ -29,12 +29,27 @@
         <div class="page-backdrop"></div>
         <div class="container">
             <div class="d-flex align-items-center">
-                <a href="/" class="logo header-logo">62&#xb0; Architecture</a>
+                <a href="/" class="logo header-logo" style="font-size:18px;font-weight: bold;">62&#xb0; Architecture</a>
                 <div class="header-nav ml-auto">
                     <button class="menu-toggle icomoon-menu" id="js-open-menu"></button>
                     <div class="main-menu-wrap" id="js-main-menu">
                         <button class="menu-toggle menu-close icomoon-left-arrow-long" id="js-close-menu"></button>
                         <ul class="nav main-menu">
+                            <li id="language" class="nav-item" style="position: relative;">
+                                <a class="nav-link" href="#" onclick="toggleLanguageBoxDisplay()">
+                                    <img src="/images/language_icon_large.png" width="20" height="20" />
+                                </a>
+                                <div id="language-box" style="background-color:#D9D9D9;border-radius:5px;position: absolute;z-index:2;opacity:0;visibility:hidden;width:120px;transition:opacity 300ms, visibility 300ms;">
+                                    <ul style="list-style-type:none;padding:5px 20px;margin:0;">
+                                        <li>
+                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;color:#333;">English</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;color:#333;">Armenian</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                             <li id="projects" class="nav-item">
                                 <a class="nav-link" href="{{route('site.projects')}}">{{session('lang') == 'hy' ? 'Projects' : 'Projects'}}</a>
                             </li>
@@ -144,6 +159,19 @@
                 });
             }
         });
+
+        function toggleLanguageBoxDisplay() {
+            var languageBox = document.getElementById('language-box'),
+                currentVisibility = languageBox.style.visibility,
+                currentOpacity = languageBox.style.opacity;
+
+            languageBox.style.visibility = currentVisibility === "hidden" ? "visible" : "hidden";
+            languageBox.style.opacity = currentOpacity === "1" ? "0" : "1";
+        }
+
+        function changeLanguage(lang) {
+            window.location.href = "/language/"+lang;
+        }
     </script>
 </body>
 </html>

@@ -15,12 +15,6 @@
     </a>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item" id="dashboard">
-        <a class="nav-link" href="{{route('admin.index')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-
     <li class="nav-item" id="landing">
         <a class="nav-link" href="{{route('admin.landing.index')}}">
             <i class="fas fa-fw fa-home"></i>

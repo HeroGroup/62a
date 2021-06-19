@@ -91,4 +91,11 @@ class SiteController extends Controller
             return $this->fail($exception->getMessage());
         }
     }
+
+    public function changeLanguage($lang)
+    {
+        // dd($lang,\request()->path());
+        session(['lang' => $lang]);
+        return back();
+    }
 }

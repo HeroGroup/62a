@@ -49,8 +49,8 @@
                         <div class="image-full-box"><img src="{{$bottom->image_url}}" alt="{{$bottom->title_en}}"></div>
                     </div>
                     <div class="col-lg-7 projects-contacts__text abs-box abs-box-right" data-delay="200">
-                        <h2>{{session('lang') == 'hy' ? $bottom->title_en : $bottom->title_hy}}</h2>
-                        <p>{{session('lang') == 'hy' ? $bottom->description_en : $bottom->description_hy}}</p>
+                        <h2>{{session('lang') == 'hy' ? $bottom->title_hy : $bottom->title_en}}</h2>
+                        <p>{{session('lang') == 'hy' ? $bottom->description_hy : $bottom->description_en}}</p>
                         <a href="{{route('site.contact')}}" class="btn btn-icon hero-btn">
                             <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Contact Us' : 'Contact Us'}}
                         </a>

@@ -15,6 +15,8 @@ Route::name('site.')->group(function () {
     Route::post('/contactUs/store','Admin\ContactUsController@store')->name('contactUs.store');
 
     Route::get('/getFooter', 'SiteController@getFooter')->name('getFooter');
+
+    Route::get('/language/{lang}', 'SiteController@changeLanguage')->name('changeLanguage');
 });
 
 Auth::routes(['register' => false]);
@@ -24,7 +26,7 @@ Route::namespace('Admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::name('admin.')->group(function () {
-                Route::get('/', function () { return view('admin.index'); })->name('index');
+                Route::get('/', function () { return redirect(route('admin.landing.index')); })->name('index');
                 Route::resource('users', 'UserController');
                 Route::get('users/{user}/resetPassword', 'UserController@resetPassword')->name('users.resetPassword');
                 Route::get('users/{user}/profile', 'UserController@changePassword')->name('users.profile');
