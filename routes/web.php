@@ -32,6 +32,8 @@ Route::namespace('Admin')->group(function () {
                 Route::get('users/{user}/profile', 'UserController@changePassword')->name('users.profile');
                 Route::post('users/updatePassword', 'UserController@updatePassword')->name('users.updatePassword');
 
+                Route::post('/categories', 'ProjectController@storeCategory')->name('categories.store');
+
                 Route::resource('projects', 'ProjectController');
                 Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');
                 Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');

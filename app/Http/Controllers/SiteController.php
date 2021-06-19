@@ -43,7 +43,8 @@ class SiteController extends Controller
         $categories = DB::select('select categories.id,categories.title_en,categories.title_hy,count(*) as cnt
         from categories,project_categories
         where categories.id = project_categories.category_id
-        group by id,title_en,title_hy;');
+        group by id,title_en,title_hy
+        having cnt > 0;');
 
         $projects = DB::select('select projects.id,projects.title_en,projects.title_hy,projects.location_en,projects.location_hy,project_photos.photo_url
         from projects, project_photos
