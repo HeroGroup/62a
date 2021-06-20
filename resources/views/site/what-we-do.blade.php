@@ -49,9 +49,9 @@
                         <div class="icon-box">
                             <h4 class="icon-box__title">Workplace Strategy</h4>
                             <div class="icon-box__text">
-                                We strive to create meaningful connections for users through considered. Don't hesitate and let's get started!
-                                Contact us for a free quote on your
-                                next home improvement project.
+                                We strive to create meaningful connections for users through considered.
+                                Don't hesitate and let's get started!
+                                Contact us for a free quote on your next home improvement project.
                             </div>
                             <div class="icon-box__icon icon-box__icon_bottom">
                                 <img src="../../public/images/what_we_do_icon_1.svg" alt="">
@@ -73,7 +73,7 @@
                         <div class="icon-box">
                             <h4 class="icon-box__title">Change Management</h4>
                             <div class="icon-box__text">
-                                Based in California, Arcworks a licensed general contractor. We are committed to providing the highest level of professionalism, service response, and quality workmanship.
+                                Based in Armenia, Yeravan, 62&#xb0; Architects a licensed general contractor. We are committed to providing the highest level of professionalism, service response, and quality workmanship.
                             </div>
                             <div class="icon-box__icon icon-box__icon_bottom">
                                 <img src="../../public/images/what_we_do_icon_3.svg" alt="">

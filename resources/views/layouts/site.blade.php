@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>62&#xb0; Architecture | {{$pageTitle}}</title>
+    <title>62&#xb0; Architects. | {{$pageTitle}}</title>
 
     <!-- Lib styles -->
     <link rel="stylesheet" href="/libs/bootstrap-4.3.1/css/bootstrap.min.css">
@@ -29,7 +29,7 @@
         <div class="page-backdrop"></div>
         <div class="container">
             <div class="d-flex align-items-center">
-                <a href="/" class="logo header-logo" style="font-size:18px;font-weight: bold;">62&#xb0; Architecture</a>
+                <a href="/" class="logo header-logo" style="font-size:18px;font-weight: bold;">62&#xb0; Architects.</a>
                 <div class="header-nav ml-auto">
                     <button class="menu-toggle icomoon-menu" id="js-open-menu"></button>
                     <div class="main-menu-wrap" id="js-main-menu">
@@ -95,7 +95,7 @@
 
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-auto">
-                    <div class="copy-text">© 62&#xb0; Architecture. All Rights Reserved.</div>
+                    <div class="copy-text">© 62&#xb0; Architects. All Rights Reserved.</div>
                 </div>
             </div>
         </div>
