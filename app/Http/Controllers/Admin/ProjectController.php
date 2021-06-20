@@ -86,7 +86,7 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $project = DB::table('projects')->where('id', $id)->update([
+            DB::table('projects')->where('id', $id)->update([
                 'title_en' => $request->title_en,
                 'title_hy' => $request->title_hy,
                 'description_en' => $request->description_en,
@@ -132,7 +132,6 @@ class ProjectController extends Controller
 
     public function imageUpload(Request $request)
     {
-        // dd($_FILES);
         try {
             $projectId = $request->temp;
             if ($request->hasFile('img')) {

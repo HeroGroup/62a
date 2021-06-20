@@ -10,7 +10,7 @@ class SiteController extends Controller
     public function index()
     {
         $banners = DB::table('banners')->where('is_active',1)->get();
-        $projects = DB::table('projects')->take(6)->get();
+        $projects = DB::table('projects')->where('is_active',1)->take(6)->get();
         $top = DB::table('sections')->where('position','top')->where('is_active',1)->first();
         $bottom = DB::table('sections')->where('position','bottom')->where('is_active',1)->first();
 
@@ -41,8 +41,10 @@ class SiteController extends Controller
     public function projects()
     {
         $categories = DB::select('select categories.id,categories.title_en,categories.title_hy,count(*) as cnt
-        from categories,project_categories
+        from categories,project_categories,projects
         where categories.id = project_categories.category_id
+        and project_categories.project_id=projects.id
+        and projects.is_active=1
         group by id,title_en,title_hy
         having cnt > 0;');
 
@@ -52,7 +54,7 @@ class SiteController extends Controller
         and project_photos.is_cover=1
         and projects.is_active=1;');
 
-        $totalProjects = DB::table('projects')->count();
+        $totalProjects = DB::table('projects')->where('is_active',1)->count();
 
         $bottom = DB::table('sections')->where('position','LIKE','projects-bottom')->where('is_active',1)->first();
 
@@ -63,7 +65,7 @@ class SiteController extends Controller
     {
         $project = DB::table('projects')->find($projectId);
         $photos = DB::table('project_photos')->where('project_id',$projectId)->get();
-        $projects = DB::table('projects')->where('id','!=',$projectId)->take(2)->get();
+        $projects = DB::table('projects')->where('is_active',1)->where('id','!=',$projectId)->take(2)->get();
 
         return view('site.project-single', compact('project','photos','projects'));
     }

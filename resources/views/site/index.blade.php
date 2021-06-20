@@ -60,7 +60,7 @@
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
                             <a href="{{route('site.project',$project->id)}}" class="project-item__img-link">
-                                <img src="{{\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first()->photo_url}}" alt="{{$project->title_en}}" class="project-item__img">
+                                <img src="{{\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first() ? \Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first()->photo_url : (\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->first() ? \Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->first()->photo_url : '/images/blank.jpg')}}" alt="{{$project->title_en}}" class="project-item__img">
                             </a>
                         </div>
                         <h4 class="project-item__title">
