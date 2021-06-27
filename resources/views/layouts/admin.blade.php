@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Navid Hero">
 
-    <title>62&#xb0; Architecture Admin | {{$pageTitle}}</title>
+    <title>62&#xb0; ARCHITECTS Admin | {{$pageTitle}}</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

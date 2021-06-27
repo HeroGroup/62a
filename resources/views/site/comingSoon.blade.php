@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="Navid Hero">
 
-        <title>62&#xb0; Architects.</title>
+        <title>62&#xb0; ARCHITECTS</title>
 
 <style>
 body, html {
@@ -34,7 +34,7 @@ body, html {
 }
 
 </style>
-        
+
     </head>
 <body>
 
