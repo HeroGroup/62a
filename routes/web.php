@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::name('site.')->group(function () {
-    Route::get('/', 'SiteController@index')->name('index');
+    Route::get('/', function() { return view('site.comingSoon'); })->name('comingSoon');
+
+    Route::get('/index', 'SiteController@index')->name('index');
     Route::get('/career', 'SiteController@career')->name('career');
     Route::get('/contact', 'SiteController@contact')->name('contact');
     Route::get('/events', 'SiteController@events')->name('events');
@@ -32,7 +34,7 @@ Route::namespace('Admin')->group(function () {
                 Route::get('users/{user}/profile', 'UserController@changePassword')->name('users.profile');
                 Route::post('users/updatePassword', 'UserController@updatePassword')->name('users.updatePassword');
 
-                Route::post('/categories', 'ProjectController@storeCategory')->name('categories.store');
+                Route::resource('categories', 'CategoryController')->except(['create', 'edit', 'show']);
 
                 Route::resource('projects', 'ProjectController');
                 Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');

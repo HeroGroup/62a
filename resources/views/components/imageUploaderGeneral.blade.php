@@ -20,7 +20,7 @@
 </form>
 
 <script>
-    var uploadRoute = "{{ $uploadRoute }}";
+    var uploadRoute = "{{ $uploadRoute }}", fileSizeLimit = 2; // In MB
 
     function ekUpload() {
         function Init() {
@@ -104,7 +104,7 @@
         }
 
         function parseFile(file) {
-            var imageName = file.name, imageSize = file.size, fileSizeLimit = 2; // In MB
+            var imageName = file.name, imageSize = file.size;
 
             var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
             if (isGood) {
@@ -144,8 +144,7 @@
 
         function uploadFile(file) {
             var xhr = new XMLHttpRequest(),
-                pBar = document.getElementById('file-progress'),
-                fileSizeLimit = 2; // In MB
+                pBar = document.getElementById('file-progress');
             if (xhr.upload) {
                 // Check if file is less than x MB
                 if (file.size <= fileSizeLimit * 1024 * 1024) {

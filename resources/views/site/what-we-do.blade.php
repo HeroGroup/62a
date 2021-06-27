@@ -104,7 +104,7 @@
                             <img src="{{$office->photo_url}}" alt="{{$office->title_en}}">
                         </div>
                         <div class="js-show-on-map-content show-on-map-content">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97583.88432336322!2d44.418527203961425!3d40.15350050893358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406aa2dab8fc8b5b%3A0x3d1479ae87da526a!2sYerevan%2C%20Armenia!5e0!3m2!1sen!2s!4v1623940854545!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            @component('components.locationOnMap')@endcomponent
                         </div>
                     </div>
                 </div>

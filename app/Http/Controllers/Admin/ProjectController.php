@@ -206,18 +206,4 @@ class ProjectController extends Controller
             return $this->fail($exception->getMessage());
         }
     }
-
-    public function storeCategory(Request $request)
-    {
-        try {
-            DB::table('categories')->insert([
-                'title_en' => $request->title_en,
-                'title_hy' => $request->title_hy,
-            ]);
-
-            return back()->with('message', 'new category created successfully.')->with('type', 'success');
-        } catch (\Exception $exception) {
-            return back()->with('message', $exception->getMessage())->with('type', 'danger');
-        }
-    }
 }

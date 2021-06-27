@@ -18,25 +18,36 @@
     <li class="nav-item" id="landing">
         <a class="nav-link" href="{{route('admin.landing.index')}}">
             <i class="fas fa-fw fa-home"></i>
-            <span>Site Landing</span></a>
+            <span>Site Landing</span>
+        </a>
+    </li>
+
+    <li class="nav-item" id="categories">
+        <a class="nav-link" href="{{route('admin.categories.index')}}">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Categories</span>
+        </a>
     </li>
 
     <li class="nav-item" id="projects">
         <a class="nav-link" href="{{route('admin.projects.index')}}">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Projects</span></a>
+            <span>Projects</span>
+        </a>
     </li>
 
     <li class="nav-item" id="aboutUs">
         <a class="nav-link" href="{{route('admin.aboutUs.index')}}">
             <i class="fas fa-fw fa-users"></i>
-            <span>About Us</span></a>
+            <span>About Us</span>
+        </a>
     </li>
 
     <li class="nav-item" id="teamMembers">
         <a class="nav-link" href="{{route('admin.teamMembers.index')}}">
             <i class="fas fa-fw fa-users"></i>
-            <span>Team Members</span></a>
+            <span>Team Members</span>
+        </a>
     </li>
 
     <li class="nav-item" id="contactUs">
@@ -50,19 +61,22 @@
     <li class="nav-item" id="officeDetails">
         <a class="nav-link" href="{{route('admin.officeDetails.index')}}">
             <i class="fas fa-fw fa-building"></i>
-            <span>Office Details </span></a>
+            <span>Office Details </span>
+        </a>
     </li>
 
     <li class="nav-item" id="whatWeDo">
         <a class="nav-link" href="{{route('admin.whatWeDo.index')}}">
             <i class="fas fa-fw fa-list"></i>
-            <span>What We Do</span></a>
+            <span>What We Do</span>
+        </a>
     </li>
 
     <li class="nav-item" id="administrators">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Administrators</span></a>
+            <span>Administrators</span>
+        </a>
     </li>
 
     <!-- Divider -->

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>62&#xb0; Architecture | {{$pageTitle}}</title>
+    <title>62&#xb0; ARCHITECTS. | {{$pageTitle}}</title>
 
     <!-- Lib styles -->
     <link rel="stylesheet" href="/libs/bootstrap-4.3.1/css/bootstrap.min.css">
@@ -29,7 +29,9 @@
         <div class="page-backdrop"></div>
         <div class="container">
             <div class="d-flex align-items-center">
-                <a href="/" class="logo header-logo" style="font-size:18px;font-weight: bold;">62&#xb0; Architecture</a>
+                <a href="/" class="logo header-logo">
+                    <span style="color:#333;font-size:18px;font-weight: bold;">62&#xb0; ARCHITECTS.</span>
+                </a>
                 <div class="header-nav ml-auto">
                     <button class="menu-toggle icomoon-menu" id="js-open-menu"></button>
                     <div class="main-menu-wrap" id="js-main-menu">
@@ -37,15 +39,17 @@
                         <ul class="nav main-menu">
                             <li id="language" class="nav-item" style="position: relative;">
                                 <a class="nav-link" href="#" onclick="toggleLanguageBoxDisplay()">
-                                    <img src="/images/language_icon_large.png" width="20" height="20" />
+                                    <span @if(session('lang')=='hy') style="color:red;" @endif>Հայ</span>
+                                    <span>/<span>
+                                    <span @if(session('lang')=='en') style="color:red;" @endif>Eng</span>
                                 </a>
                                 <div id="language-box" style="background-color:#D9D9D9;border-radius:5px;position: absolute;z-index:2;opacity:0;visibility:hidden;width:120px;transition:opacity 300ms, visibility 300ms;">
                                     <ul style="list-style-type:none;padding:5px 20px;margin:0;">
-                                        <li>
-                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;color:#333;">English</a>
+                                        <li @if(session('lang')=='hy') style="color:red;" @endif>
+                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;@if(session('lang')=='hy') color:red; @else color:#333; @endif">Հայ</a>
                                         </li>
                                         <li>
-                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;color:#333;">Armenian</a>
+                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;@if(session('lang')=='en') color:red; @else color:#333; @endif">English</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -76,6 +80,12 @@
     <footer id="main-footer" class="site-footer">
         <div class="container">
             <div class="row">
+                <div class="widget-col col-lg-2" style="text-align:center;">
+                    <div class="widget widget-logo">
+                        <a href="/" class="logo footer-logo"><img src="images/logo-inverted.png" alt=""></a>
+                    </div>
+                </div>
+
                 <div class="widget-col col-lg-3">
                     <div class="widget widget-text">
                         <p id="phone"></p>
@@ -95,7 +105,7 @@
 
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-auto">
-                    <div class="copy-text">© 62&#xb0; Architecture. All Rights Reserved.</div>
+                    <div class="copy-text">© 62&#xb0; ARCHITECTS. All Rights Reserved.</div>
                 </div>
             </div>
         </div>
@@ -160,7 +170,7 @@
             }
         });
 
-        function toggleLanguageBoxDisplay() {
+        function toggleLanguageBoxDisplay(evt) {
             var languageBox = document.getElementById('language-box'),
                 currentVisibility = languageBox.style.visibility,
                 currentOpacity = languageBox.style.opacity;
