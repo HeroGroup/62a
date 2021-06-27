@@ -39,17 +39,15 @@
                         <ul class="nav main-menu">
                             <li id="language" class="nav-item" style="position: relative;">
                                 <a class="nav-link" href="#" onclick="toggleLanguageBoxDisplay()">
-                                    <span @if(session('lang')=='hy') style="color:red;" @endif>Հայ</span>
-                                    <span>/<span>
-                                    <span @if(session('lang')=='en') style="color:red;" @endif>Eng</span>
+                                    <img src="/images/language_icon_large.png" width="20" height="20" />
                                 </a>
                                 <div id="language-box" style="background-color:#D9D9D9;border-radius:5px;position: absolute;z-index:2;opacity:0;visibility:hidden;width:120px;transition:opacity 300ms, visibility 300ms;">
                                     <ul style="list-style-type:none;padding:5px 20px;margin:0;">
-                                        <li @if(session('lang')=='hy') style="color:red;" @endif>
-                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;@if(session('lang')=='hy') color:red; @else color:#333; @endif">Հայ</a>
+                                        <li>
+                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;color:#333;">English</a>
                                         </li>
                                         <li>
-                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;@if(session('lang')=='en') color:red; @else color:#333; @endif">English</a>
+                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;color:#333;">Armenian</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -170,7 +168,7 @@
             }
         });
 
-        function toggleLanguageBoxDisplay(evt) {
+        function toggleLanguageBoxDisplay() {
             var languageBox = document.getElementById('language-box'),
                 currentVisibility = languageBox.style.visibility,
                 currentOpacity = languageBox.style.opacity;
