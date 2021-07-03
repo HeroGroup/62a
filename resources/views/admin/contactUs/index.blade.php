@@ -2,6 +2,7 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body">
+            <div class="row">
             @foreach($messages as $message)
                 <div class="col-md-4" id="{{$message->id}}">
                     <div class="card mb-4 py-3 border-left-info">
@@ -59,6 +60,7 @@
                     </div>
                 </div>
             @endforeach
+            </div>
         </div>
     </div>
 @endsection

@@ -52,8 +52,8 @@
 
     <li class="nav-item" id="contactUs">
         <a class="nav-link" href="{{route('admin.contactUs.index')}}">
-            <i class="fas fa-fw fa-phone"></i>
-            <span>Contact Us</span>
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Messages</span>
             <span id="new-message" style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;display:none;">New Message</span>
         </a>
     </li>

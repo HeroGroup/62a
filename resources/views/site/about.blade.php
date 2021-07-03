@@ -16,7 +16,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="team-card">
                     <div class="slide-image-wrap">
-                        <img src="{{$member->photo_url}}" class="team-card__img" alt="{{$member->name}}">
+                        <img src="{{$member->photo_url ?? '/images/member_default.png'}}" class="team-card__img" alt="{{$member->name}}">
                     </div>
                     <h4 class="team-card__name">{{$member->name}}</h4>
                     <div class="team-card__post">{{session('lang') == 'hy' ? $member->position_hy : $member->position_en}}</div>
@@ -31,7 +31,7 @@
     <div class="container">
     @for($i=0;$i<count($items);$i+=2)
         <div class="row justify-content-between">
-        @if($items[$i])
+        @if(isset($items[$i]))
             <div class="col-lg-6 mb-5">
                 <div class="card">
                     <img src="{{$items[$i]->photo_url}}" alt="{{$items[$i]->title_en}}" class="card-img-top">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         @endif
-        @if($items[$i+1])
+        @if(isset($items[$i+1]))
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-body">
