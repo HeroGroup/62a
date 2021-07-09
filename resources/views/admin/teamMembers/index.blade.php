@@ -8,10 +8,10 @@
                 <div class="col-md-4" id="{{$member->id}}">
                     <div style="cursor:pointer;text-decoration:none;color:#333;">
                         <a href="{{route('admin.teamMembers.show',$member->id)}}">
-                            <img src="{{$member->photo_url ?? '/images/member_default.png'}}" alt="{{$member->name}}" style="width:100%;max-height:450px;" />
+                            <img src="{{$member->photo_url ?? '/images/member_default.png'}}" alt="{{$member->name_en}}" style="width:100%;max-height:450px;" />
                         </a>
                         <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;">
-                            <h4 style="padding:0;margin-bottom:0;">{{$member->name}}</h4>
+                            <h4 style="padding:0;margin-bottom:0;">{{$member->name_en}}</h4>
                             <a href="" class="btn btn-danger btn-icon-split" onclick="destroy('{{route('admin.teamMembers.destroy',$member->id)}}','{{$member->id}}','{{$member->id}}')">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-trash"></i>

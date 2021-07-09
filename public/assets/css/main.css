@@ -1294,7 +1294,7 @@ h4.section-text-offset {
 .site-footer {
     background: radial-gradient(1453.82px at 0% 100%, #333333 0%, #2B2B2B 100%);
     color: #fff;
-    padding-bottom: 90px;
+    padding-bottom: 40px;
 }
 .site-footer a:hover {
     color: #ccc;

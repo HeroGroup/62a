@@ -10,8 +10,10 @@ class AboutUsController extends Controller
 {
     public function index()
     {
-        $items = DB::table('about_us')->get();
-        return view('admin.aboutUs.index',compact('items'));
+        $items = DB::table('about_us')->where('id','>',1)->get();
+        $haveAnyQuestions = DB::table('about_us')->find(1);
+
+        return view('admin.aboutUs.index',compact('items','haveAnyQuestions'));
     }
 
     public function create()

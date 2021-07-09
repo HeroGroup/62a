@@ -2,7 +2,7 @@
 @section('content')
 <div class="card shadow mb-4">
     <a href="#banners" class="d-block card-header py-3 border-bottom-info" data-toggle="collapse" role="button" aria-expanded="true">
-        <h6 class="m-0 font-weight-bold text-primary">Banners</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Website Banners</h6>
     </a>
     <div class="collapse" id="banners">
         <div class="card-body">
@@ -145,7 +145,7 @@
 
 <div class="card shadow mb-4">
     <a href="#top-section" class="d-block card-header py-3 border-bottom-warning" data-toggle="collapse" role="button" aria-expanded="true">
-        <h6 class="m-0 font-weight-bold text-primary">Top Section</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Top Section of First Page</h6>
     </a>
     <div class="collapse" id="top-section">
         <div class="card-body">
@@ -224,7 +224,7 @@
 
 <div class="card shadow mb-4">
     <a href="#bottom-section" class="d-block card-header py-3 border-bottom-success" data-toggle="collapse" role="button" aria-expanded="true">
-        <h6 class="m-0 font-weight-bold text-primary">Bottom Section</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Bottom Section of First Page</h6>
     </a>
     <div class="collapse" id="bottom-section">
         <div class="card-body">

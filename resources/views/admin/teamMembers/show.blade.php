@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['pageTitle' => $member->name, 'active' => 'teamMembers'])
+@extends('layouts.admin', ['pageTitle' => $member->name_en, 'active' => 'teamMembers'])
 @section('content')
     <div class="card shadow mb-4">
         <a href="#generalInformation" class="d-block card-header py-3 border-bottom-success" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
@@ -12,8 +12,12 @@
 
                     <div class="form-group row" style="margin-bottom:30px;">
                         <div class="col-md-6">
-                            <label for="name">Name</label>
-                            <input class="form-control" name="name" id="name" value="{{$member->name}}">
+                            <label for="name_en">Name (english)</label>
+                            <input class="form-control" name="name_en" id="name_en" value="{{$member->name_en}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name_hy">Name (armenian)</label>
+                            <input class="form-control" name="name_hy" id="name_hy" value="{{$member->name_hy}}">
                         </div>
                     </div>
 
@@ -56,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h5>Current Photo</h5>
-                        <img src="{{$member->photo_url ?? '/images/member_default.png'}}" alt="{{$member->name}}" style="width:100%;max-height:450px;">
+                        <img src="{{$member->photo_url ?? '/images/member_default.png'}}" alt="{{$member->name_en}}" style="width:100%;max-height:450px;">
                     </div>
                     <div class="col-md-6">
                         <h5>Upload New Photo</h5>

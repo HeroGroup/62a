@@ -7,8 +7,12 @@
 
                 <div class="form-group row" style="margin-bottom:30px;">
                     <div class="col-md-6">
-                        <label for="name">Name</label>
-                        <input class="form-control" name="name" id="name" value="{{old('name')}}" required>
+                        <label for="name_en">Name (english)</label>
+                        <input class="form-control" name="name_en" id="name_en" value="{{old('name_en')}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="name_hy">Name (armenian)</label>
+                        <input class="form-control" name="name_hy" id="name_hy" value="{{old('name_hy')}}" required>
                     </div>
                 </div>
 

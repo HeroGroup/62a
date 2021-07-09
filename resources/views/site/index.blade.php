@@ -1,7 +1,6 @@
 @extends('layouts.site', ['pageTitle' => 'HOME', 'active' => 'index'])
 @section('content')
 
-
         <section class="hero" data-bgColorStart="204, 179, 157" data-bgColorEnd="209, 209, 209">
             <div class="hero-slider d-flex flex-column">
                 <div class="js-hero-slider">
@@ -24,8 +23,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 home-figure__img">
-                        <div class="slide-image-wrap">
-                            <figure class="figure slide-image-left">
+                        <div class="fade-from-top"><!--slide-image-wrap-->
+                            <figure class="figure"><!--slide-image-left-->
                                 <img class="figure-img" src="{{$top->image_url ?? '/images/blank.jpg'}}" alt="{{$top->image_title_en}}">
                                 <figcaption class="figure-caption">{{session('lang') == 'hy' ? $top->image_title_hy : $top->image_title_en}}</figcaption>
                             </figure>

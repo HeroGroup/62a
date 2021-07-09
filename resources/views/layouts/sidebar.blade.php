@@ -72,6 +72,14 @@
         </a>
     </li>
 
+    <li class="nav-item" id="careers">
+        <a class="nav-link" href="{{route('admin.careers.index')}}">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Careers</span>
+            <span id="new-career-request" style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;display:inline-block;">New Request</span>
+        </a>
+    </li>
+
     <li class="nav-item" id="administrators">
         <a class="nav-link" href="{{route('admin.users.index')}}">
             <i class="fas fa-fw fa-user"></i>

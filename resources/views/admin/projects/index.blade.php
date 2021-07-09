@@ -43,7 +43,7 @@
 
 <div class="card shadow mb-4">
     <a href="#bottom-section" class="d-block card-header py-3 border-bottom-success" data-toggle="collapse" role="button" aria-expanded="true">
-        <h6 class="m-0 font-weight-bold text-primary">Bottom Section</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Bottom Section of Projects page</h6>
     </a>
     <div class="collapse" id="bottom-section">
         <div class="card-body">

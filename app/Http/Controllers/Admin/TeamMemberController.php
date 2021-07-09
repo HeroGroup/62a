@@ -23,7 +23,8 @@ class TeamMemberController extends Controller
     {
         try {
             $newId = DB::table('team_members')->insertGetId([
-                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'name_hy' => $request->name_hy,
                 'position_en' => $request->position_en,
                 'position_hy' => $request->position_hy,
                 'description_en' => $request->description_en,
@@ -61,7 +62,8 @@ class TeamMemberController extends Controller
     {
         try {
             DB::table('team_members')->where('id',$id)->update([
-                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'name_en' => $request->name_hy,
                 'position_en' => $request->position_en,
                 'position_hy' => $request->position_hy,
                 'description_en' => $request->description_en,

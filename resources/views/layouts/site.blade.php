@@ -30,7 +30,7 @@
         <div class="container">
             <div class="d-flex align-items-center">
                 <a href="/" class="logo header-logo">
-                    <span style="color:#333;font-size:18px;font-weight: bold;">62&#xb0; ARCHITECTS.</span>
+                    <span style="color:#333;font-size:18px;font-weight: bold;padding-left:3px;">62&#xb0; ARCHITECTS.</span>
                 </a>
                 <div class="header-nav ml-auto">
                     <button class="menu-toggle icomoon-menu" id="js-open-menu"></button>
@@ -46,7 +46,7 @@
                                 <div id="language-box" style="background-color:#D9D9D9;border-radius:5px;position: absolute;z-index:2;opacity:0;visibility:hidden;width:120px;transition:opacity 300ms, visibility 300ms;">
                                     <ul style="list-style-type:none;padding:5px 20px;margin:0;">
                                         <li>
-                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;@if(session('lang')=='hy') color:red; @else color:#333; @endif">Armenian</a>
+                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;@if(session('lang')=='hy') color:red; @else color:#333; @endif">Հայ</a>
                                         </li>
                                         <li>
                                             <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;@if(session('lang')=='en') color:red; @else color:#333; @endif">English</a>
@@ -62,6 +62,9 @@
                             </li>
                             <li id="about" class="nav-item">
                                 <a class="nav-link" href="{{route('site.about')}}">{{session('lang') == 'hy' ? 'About Us' : 'About Us'}}</a>
+                            </li>
+                            <li id="career" class="nav-item">
+                                <a class="nav-link" href="{{route('site.career')}}">{{session('lang') == 'hy' ? 'Career' : 'Career'}}</a>
                             </li>
                             <li id="contact" class="nav-item">
                                 <a class="nav-link" href="{{route('site.contact')}}">{{session('lang') == 'hy' ? 'Contact' : 'Contact'}}</a>
@@ -81,21 +84,22 @@
         <div class="container">
             <div class="row">
                 <div class="widget-col col-lg-2" style="text-align:center;">
-                    <div class="widget widget-logo">
+                    <div class="widget widget-logo" style="margin-bottom:40px;">
                         <a href="/" class="logo footer-logo"><img src="images/logo-inverted.png" alt=""></a>
                     </div>
                 </div>
 
                 <div class="widget-col col-lg-3">
-                    <div class="widget widget-text">
+                    <div class="widget widget-text" style="margin-bottom:40px;">
                         <p id="phone"></p>
+                        <p id="mobile"></p>
                         <p><a href="#" id="email"></a></p>
                         <p id="working_hours"></p>
                     </div>
                 </div>
 
                 <div class="widget-col col-lg-3">
-                    <div class="widget widget-text">
+                    <div class="widget widget-text" style="margin-bottom:40px;">
                         <p id="address"></p>
                         <p id="city"></p>
                         <p id="address-detail"></p>
@@ -103,8 +107,9 @@
                 </div>
             </div>
 
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-auto">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-3">
                     <div class="copy-text">© 62&#xb0; ARCHITECTS. All Rights Reserved.</div>
                 </div>
             </div>
@@ -138,6 +143,7 @@
                 if(response.status === 1) {
                     var result = response.data;
                     document.getElementById('phone').innerText = result.phone;
+                    document.getElementById('mobile').innerText = result.mobile;
                     document.getElementById('email').innerText = result.email_address;
                     document.getElementById('email').href = "mailto:"+result.email_address;
                     document.getElementById('working_hours').innerText = result.work_hours_en;

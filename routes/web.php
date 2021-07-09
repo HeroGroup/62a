@@ -67,6 +67,7 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/whatWeDo/itemImageUpload','WhatWeDoController@itemImageUpload')->name('whatWeDo.itemImageUpload');
                 Route::post('/whatWeDo/updateSection', 'WhatWeDoController@updateSection')->name('whatWeDo.updateSection');
 
+                Route::resource('careers', 'CareerController');
             });
         });
     });

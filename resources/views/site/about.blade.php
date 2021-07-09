@@ -2,9 +2,9 @@
 @section('content')
 <section class="page-title fade-from-top">
     <div class="container">
-        <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Meet our people' : 'Meet our people'}}</h1>
+        <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? $haveAnyQuestions->title_hy : $haveAnyQuestions->title_en}}</h1>
         <div class="page-title__text fade-from-top" data-delay="200">
-            {{session('lang') == 'hy' ? 'We have a passion for simplicity and sustainability, always balancing form with function and delight.' : 'We have a passion for simplicity and sustainability, always balancing form with function and delight.'}}
+            {{session('lang') == 'hy' ? $haveAnyQuestions->description_hy : $haveAnyQuestions->description_en}}
         </div>
     </div>
 </section>
@@ -16,9 +16,9 @@
             <div class="col-lg-4 col-md-6">
                 <div class="team-card">
                     <div class="slide-image-wrap">
-                        <img src="{{$member->photo_url ?? '/images/member_default.png'}}" class="team-card__img" alt="{{$member->name}}">
+                        <img src="{{$member->photo_url ?? '/images/member_default.png'}}" class="team-card__img" alt="{{$member->name_en}}">
                     </div>
-                    <h4 class="team-card__name">{{$member->name}}</h4>
+                    <h4 class="team-card__name">{{session('lang') == 'hy' ? $member->name_hy : $member->name_en}}</h4>
                     <div class="team-card__post">{{session('lang') == 'hy' ? $member->position_hy : $member->position_en}}</div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
     </div>
 </section>
 
-<section class="bg-section content-bottom" style="background-image: url('/images/about_2.jpg')">
+<section class="bg-section content-bottom" style="background-image: url({{$haveAnyQuestions->photo_url}})">
     <div class="container">
         <div class="row">
             <div class="col-lg-7 abs-box abs-box-right">

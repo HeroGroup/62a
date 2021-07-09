@@ -42,7 +42,7 @@
 
         <section class="bg-section" style="background-image: url('{{$section->image_url}}')"></section>
 
-        <section class="section icons-section">
+        <!--<section class="section icons-section">
             <div class="container">
                 <div class="row justify-content-between fade-from-top-children">
                     <div class="col-lg-4">
@@ -111,7 +111,7 @@
             @endforeach
             </div>
 
-            <!-- MAP MODAL -->
+
             <div class="office-map-modal modal fade" id="js-office-map-modal" tabindex="-1" role="dialog" aria-labelledby="officeMapModalTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -125,5 +125,5 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
 @endsection

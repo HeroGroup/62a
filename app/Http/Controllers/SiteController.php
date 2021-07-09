@@ -19,7 +19,8 @@ class SiteController extends Controller
 
     public function career()
     {
-        return view('site.career');
+        $careers = DB::table('careers')->where('is_active',1)->get();
+        return view('site.career',compact('careers'));
     }
 
     public function contact()
@@ -73,8 +74,10 @@ class SiteController extends Controller
     public function about()
     {
         $members = DB::table('team_members')->get();
-        $items = DB::table('about_us')->get();
-        return view('site.about',compact('members','items'));
+        $items = DB::table('about_us')->where('id','>',1)->get();
+        $haveAnyQuestions = DB::table('about_us')->find(1);
+
+        return view('site.about',compact('members','items','haveAnyQuestions'));
     }
 
     public function whatWeDo()
