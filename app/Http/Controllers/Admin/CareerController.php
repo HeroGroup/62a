@@ -156,22 +156,20 @@ class CareerController extends Controller
     public function requestForApply(Request $request)
     {
         try {
-            $newId = DB::table('career_requests')->insertGetId([
-                'career_id' => $request->career_id,
-                'name' => $request->name,
-                'email' => $request->email,
-                'mobile' => $request->mobile,
-                'created_at' => \Carbon\Carbon::now()
-            ]);
-
             if($request->hasFile('cv')) {
                 $document = $request->cv;
                 $fileName = time() . '-' . $document->getClientOriginalName();
                 $document->move("resources/assets/images/career_requests/cv/", $fileName);
                 $cv = "/resources/assets/images/career_requests/cv/" . $fileName;
 
-                DB::table('career_requests')->where('id',$newId)->update(['cv' => $cv]);
-
+                DB::table('career_requests')->insertGetId([
+                    'career_id' => $request->career_id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'mobile' => $request->mobile,
+                    'cv' => $cv,
+                    'created_at' => \Carbon\Carbon::now()
+                ]);
                 $successMessage = session() == 'hy' ? 'your application was sent successfully. We will get in touch with you soon.' : 'your application was sent successfully. We will get in touch with you soon.';
                 return back()->with('message', $successMessage)->with('type', 'success');
             } else {
