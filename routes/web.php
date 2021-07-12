@@ -15,6 +15,7 @@ Route::name('site.')->group(function () {
     Route::get('/about', 'SiteController@about')->name('about');
     Route::get('/what-we-do', 'SiteController@whatWeDo')->name('whatWeDo');
     Route::post('/contactUs/store','Admin\ContactUsController@store')->name('contactUs.store');
+    Route::post('/careers/request','Admin\CareerController@requestForApply')->name('careers.request');
 
     Route::get('/getFooter', 'SiteController@getFooter')->name('getFooter');
 
@@ -68,6 +69,16 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/whatWeDo/updateSection', 'WhatWeDoController@updateSection')->name('whatWeDo.updateSection');
 
                 Route::resource('careers', 'CareerController');
+                Route::post('/skillsStoreSingle', 'CareerController@storeSingleSkill')->name('careers.skills.storeSingle');
+                Route::post('/skills', 'CareerController@storeSkills')->name('careers.skills.store');
+                Route::put('/skills/{id}', 'CareerController@updateSkill')->name('careers.skills.update');
+                Route::delete('/skills/{id}', 'CareerController@destroySkill')->name('careers.skills.destroy');
+                Route::get('/newCareerRequests', 'CareerController@newCareerRequests')->name('careers.newRequests');
+                Route::get('/careerRequests/{careerId}', 'CareerController@careerRequests')->name('careers.careerRequests');
+
+                Route::get('/brands','BrandController@index')->name('brands.index');
+                Route::post('/brands','BrandController@store')->name('brands.store');
+                Route::delete('/brands/{id}','BrandController@destroy')->name('brands.destroy');
             });
         });
     });
