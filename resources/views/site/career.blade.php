@@ -42,7 +42,7 @@
                                         <tr>
                                             <th></th>
                                             <td>
-                                                <a href="#" class="btn btn-primary">{{session('lang') == 'hy' ? 'Apply' : 'Apply'}}</a>
+                                                <button class="btn btn-primary" onclick="openModal('{{$career->id}}','{{$career->job_title_en}}')">{{session('lang') == 'hy' ? 'Apply for this position' : 'Apply for this position'}}</button>
                                             </td>
                                         </tr>
                                     </table>
@@ -72,4 +72,48 @@
             </div>
         </div>
     </section>
+
+    <!-- APPLY MODAL -->
+    <div class="apply-modal modal fade" id="apply-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Apply for <b id="career-title"></b> position</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                {!! Form::open(array('url' => route('site.careers.request'), 'method' => 'POST', 'files' => 'true')) !!}
+                        @csrf
+                        <input type="hidden" name="career_id" id="career_id" />
+
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Enter your full name" class="form-control" style="color:#666;" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Enter your email address" class="form-control" style="color:#666;" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="mobile" placeholder="Enter your mobile number" class="form-control" style="color:#666;" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="cv">{{session('lang') == 'hy' ? 'Upload your resume' : 'Upload your resume'}}</label>
+                            <input type="file" name="cv" id="cv" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">{{session('lang') == 'hy' ? 'Apply' : 'Apply'}}</button>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal(careerId, careerTitle) {
+            $("#career-title").text(careerTitle);
+            $("#career_id").val(careerId);
+            $("#apply-modal").modal();
+        }
+    </script>
 @endsection

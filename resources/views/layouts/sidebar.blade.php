@@ -72,11 +72,18 @@
         </a>
     </li>
 
+    <li class="nav-item" id="brands">
+        <a class="nav-link" href="{{route('admin.brands.index')}}">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Brands</span>
+        </a>
+    </li>
+
     <li class="nav-item" id="careers">
         <a class="nav-link" href="{{route('admin.careers.index')}}">
             <i class="fas fa-fw fa-user-tie"></i>
             <span>Careers</span>
-            <span id="new-career-request" style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;display:inline-block;">New Request</span>
+            <span id="new-career-requests" style="color:rgb(56,200,139);font-size:10px;padding:2px 3px;border:1px solid rgb(56,200,139);border-radius:5px;display:none;">New Request</span>
         </a>
     </li>
 
@@ -109,6 +116,17 @@
                 document.getElementById('new-message').style.display = "inline-block";
         });
         xhr.send();
+
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", "{{route('admin.careers.newRequests')}}");
+        xhr2.addEventListener("load", function () {
+            var response = JSON.parse(xhr2.response);
+            if (response.status === 1 && response.data > 0)
+                document.getElementById('new-career-requests').style.display = "inline-block";
+        });
+        xhr2.send();
+
+
     }
 </script>
 <!-- End of Sidebar -->

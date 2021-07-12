@@ -14,7 +14,7 @@
                         <p>Number of requests: <span class="text-success">{{$requests}}</span></p>
                         <div style="display:flex;justify-content:space-between">
                             <div style="visibility:@if($requests>=0) visible @else hidden @endif">
-                                <a href="#" class="btn btn-success">show requests</a>
+                                <a href="{{route('admin.careers.careerRequests',$career->id)}}" class="btn btn-success">show requests</a>
                             </div>
                             <div>
                                 <a href="{{route('admin.careers.show',$career->id)}}" class="btn btn-info btn-icon-split">
