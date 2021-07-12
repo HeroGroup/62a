@@ -17,6 +17,7 @@
                     </div>
                 </div>
             {!! Form::close() !!}
+            <hr/>
             <div class="row">
             @if($brands->count()>0)
             @foreach($brands as $brand)

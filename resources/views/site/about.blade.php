@@ -85,18 +85,5 @@
         </div>
     </section>
 
-    <section class="brands bg-light">
-        <div class="container">
-            <div class="row align-items-center brand-list">
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-1.png" alt="brand-1"></div>
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-2.png" alt="brand-2"></div>
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-3.png" alt="brand-3"></div>
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-4.png" alt="brand-4"></div>
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-5.png" alt="brand-5"></div>
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-6.png" alt="brand-6"></div>
-                <div class="brand-list__item col-lg-4 col-md-4 col-sm-4"><img src="/images/brand-7.png" alt="brand-7"></div>
-                <div class="brand-list__item col-lg-4 col-sm-4 col-sm-4"><img src="/images/brand-8.png" alt="brand-8"></div>
-            </div>
-        </div>
-    </section>
+    @component('components.brands', ['brands' => $brands])@endcomponent
 @endsection

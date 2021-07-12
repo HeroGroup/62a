@@ -20,7 +20,9 @@ class SiteController extends Controller
     public function career()
     {
         $careers = DB::table('careers')->where('is_active',1)->get();
-        return view('site.career',compact('careers'));
+        $brands = DB::table('brands')->get();
+
+        return view('site.career',compact('careers','brands'));
     }
 
     public function contact()
@@ -59,7 +61,9 @@ class SiteController extends Controller
 
         $bottom = DB::table('sections')->where('position','LIKE','projects-bottom')->where('is_active',1)->first();
 
-        return view('site.projects',compact('categories','projects','totalProjects','bottom'));
+        $brands = DB::table('brands')->get();
+
+        return view('site.projects',compact('categories','projects','totalProjects','bottom','brands'));
     }
 
     public function project($projectId)
@@ -76,8 +80,9 @@ class SiteController extends Controller
         $members = DB::table('team_members')->get();
         $items = DB::table('about_us')->where('id','>',1)->get();
         $haveAnyQuestions = DB::table('about_us')->find(1);
+        $brands = DB::table('brands')->get();
 
-        return view('site.about',compact('members','items','haveAnyQuestions'));
+        return view('site.about',compact('members','items','haveAnyQuestions','brands'));
     }
 
     public function whatWeDo()
