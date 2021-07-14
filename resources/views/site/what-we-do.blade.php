@@ -9,12 +9,12 @@
                     {{session('lang') == 'hy' ? $section->description_hy : $section->description_en}}
                 </div>
 
-                <div class="page-title__counter counter fade-from-top" data-delay="400">
+                <!--<div class="page-title__counter counter fade-from-top" data-delay="400">
                     <div class="counter-num">19</div>
                     <div class="counter-text">
                         {{session('lang') == 'hy' ? 'years of global excellence' : 'years of global excellence'}}
                     </div>
-                </div>
+                </div>-->
             </div>
         </section>
 
