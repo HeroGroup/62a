@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'HOME', 'active' => 'index'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy' ? 'Գլխավոր էջ' : 'HOME', 'active' => 'index'])
 @section('content')
 
         <section class="hero" data-bgColorStart="204, 179, 157" data-bgColorEnd="209, 209, 209">
@@ -36,7 +36,7 @@
                             {{session('lang') == 'hy' ? $top->description_hy : $top->description_en}}
                         </div>
                         <a href="{{route('site.contact')}}" class="btn btn-icon hero-btn">
-                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Work With Us' : 'Work With Us'}}
+                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Աշխատեք մեզ հետ' : 'Work With Us'}}
                         </a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="section-title d-md-flex align-items-center">
                     <h2 class="mb-md-0 mb-4 mr-md-4">{{session('lang') == 'hy' ? 'Projects' : 'Projects'}}</h2>
                     <a href="{{route('site.projects')}}" class="btn btn-primary">
-                        {{session('lang') == 'hy' ? 'All Projects' : 'All Projects'}}
+                        {{session('lang') == 'hy' ? 'Բոլոր նախագծեր' : 'All Projects'}}
                         <i class="icomoon-right-arrow-long"></i>
                     </a>
                 </div>
@@ -82,7 +82,7 @@
                             {{session('lang') == 'hy' ? $bottom->description_hy : $bottom->description_en}}
                         </div>
                         <a href="{{route('site.about')}}" class="btn btn-icon hero-btn">
-                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Meet The Team' : 'Meet The Team'}}
+                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Հանդիպեք թիմին' : 'Meet The Team'}}
                         </a>
                     </div>
                 </div>

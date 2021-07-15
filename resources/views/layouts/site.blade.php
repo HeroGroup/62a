@@ -11,21 +11,32 @@
     <link rel="stylesheet" href="/libs/slick/slick.css">
     <link rel="stylesheet" href="/libs/simpleLightbox/simplelightbox.min.css">
 
-    <!-- Font styles -->
-    <link rel="stylesheet" href="/assets/fonts/NunitoSans/NunitoSans.css">
-
     <!-- Icons -->
     <link rel="stylesheet" href="/assets/fonts/icomoon/style.css">
+
+    <style>
+        @font-face {
+            font-family: arialam;
+            src: url('/assets/fonts/Montserratarm.otf');
+        }
+    </style>
+
+    @if(session('lang')=='hy')
+        <style>
+            html,body,h1,h2,h3,h4,h5,h6,a,span,p,label,div,ul,li {
+                font-family: arialam;
+            }
+        </style>
+    @else
+        <!-- Font styles -->
+        <link rel="stylesheet" href="/assets/fonts/NunitoSans/NunitoSans.css">
+    @endif
 
     <!-- Site styles -->
     <link rel="stylesheet" href="/assets/css/main.min.css">
     <link href="/assets/css/colored-toast.css" rel="stylesheet">
 
-    <link rel="icon" href="/favicon.png"/>
-
-    @if(session('lang')=='hy')
-        <link href="/assets/css/armfont.css" rel="stylesheet" />
-    @endif
+    <!--<link rel="icon" href="/favicon.png"/>-->
 </head>
 
 <body>
@@ -43,35 +54,35 @@
                         <ul class="nav main-menu">
                             <li id="language" class="nav-item" style="position: relative;">
                                 <a class="nav-link" href="#" onclick="toggleLanguageBoxDisplay()">
-                                    <span @if(session('lang')=='hy') style="color:#222;" @else style="color:lightgray;" @endif>Հայ</span>
-                                    <span>|</span>
-                                    <span @if(session('lang')=='hy') style="color:lightgray;" @else style="color:#222;" @endif>Eng</span>
+                                    <span @if(session('lang')=='hy') style="font-family:arialam;color:#222;" @else style="font-family:arialam;color:lightgray;" @endif>Հայ</span>
+                                    <span style="color:gray;">|</span>
+                                    <span @if(session('lang')=='hy') style="font-family:'Nunito Sans';color:lightgray;" @else style="color:#222;" @endif>Eng</span>
                                 </a>
                                 <div id="language-box" style="background-color:#D9D9D9;border-radius:5px;position: absolute;z-index:2;opacity:0;visibility:hidden;width:120px;transition:opacity 300ms, visibility 300ms;">
                                     <ul style="list-style-type:none;padding:5px 20px;margin:0;">
                                         <li>
-                                            <a href="#" onclick="changeLanguage('hy')" style="background-color:#D9D9D9;@if(session('lang')=='hy') color:#222; @else color:gray; @endif">Հայ</a>
+                                            <a href="#" onclick="changeLanguage('hy')" style="font-family:arialam;background-color:#D9D9D9;@if(session('lang')=='hy') color:#222; @else color:gray; @endif">Հայ</a>
                                         </li>
                                         <li>
-                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;@if(session('lang')=='hy') color:gray; @else color:#222; @endif">English</a>
+                                            <a href="#" onclick="changeLanguage('en')" style="background-color:#D9D9D9;font-family:'Nunito Sans';@if(session('lang')=='hy') color:gray; @else color:#222; @endif">English</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li id="projects" class="nav-item">
-                                <a class="nav-link" href="{{route('site.projects')}}">{{session('lang') == 'hy' ? 'Projects' : 'Projects'}}</a>
+                                <a class="nav-link" href="{{route('site.projects')}}">{{session('lang') == 'hy' ? 'Նախագծեր' : 'Projects'}}</a>
                             </li>
                             <li id="what-we-do" class="nav-item">
-                                <a class="nav-link" href="{{route('site.whatWeDo')}}">{{session('lang') == 'hy' ? 'What We Do' : 'What We Do'}}</a>
+                                <a class="nav-link" href="{{route('site.whatWeDo')}}">{{session('lang') == 'hy' ? 'Ինչ ենք անում' : 'What We Do'}}</a>
                             </li>
                             <li id="about" class="nav-item">
-                                <a class="nav-link" href="{{route('site.about')}}">{{session('lang') == 'hy' ? 'About Us' : 'About Us'}}</a>
+                                <a class="nav-link" href="{{route('site.about')}}">{{session('lang') == 'hy' ? 'Մեր մասին' : 'About Us'}}</a>
                             </li>
                             <li id="career" class="nav-item">
-                                <a class="nav-link" href="{{route('site.career')}}">{{session('lang') == 'hy' ? 'Career' : 'Career'}}</a>
+                                <a class="nav-link" href="{{route('site.career')}}">{{session('lang') == 'hy' ? 'Կարիերա' : 'Career'}}</a>
                             </li>
                             <li id="contact" class="nav-item">
-                                <a class="nav-link" href="{{route('site.contact')}}">{{session('lang') == 'hy' ? 'Contact' : 'Contact'}}</a>
+                                <a class="nav-link" href="{{route('site.contact')}}">{{session('lang') == 'hy' ? 'Կապ' : 'Contact'}}</a>
                             </li>
                         </ul>
                     </div>
@@ -87,7 +98,7 @@
     <footer id="main-footer" class="site-footer">
         <div class="container">
             <div class="row">
-                <div class="widget-col col-lg-2" style="text-align:center;">
+                <div class="widget-col col-lg-2" style="text-align:center;padding-top:15px;">
                     <div class="widget widget-logo" style="margin-bottom:40px;">
                         <a href="/" class="logo footer-logo"><img src="images/logo-inverted.png" alt=""></a>
                     </div>
@@ -113,8 +124,10 @@
 
             <div class="row">
                 <div class="col-lg-2"></div>
-                <div class="col-lg-3">
-                    <div class="copy-text">© 62&#xb0; ARCHITECTS. All Rights Reserved.</div>
+                <div class="col-lg-5">
+                    <div class="copy-text" style="font-size:12px;">
+                        © 62&#xb0; ARCHITECTS. {{session('lang') == 'hy' ? 'Բոլոր իրավունքները պաշտպանված են.' : 'All Rights Reserved.'}}
+                    </div>
                 </div>
             </div>
         </div>

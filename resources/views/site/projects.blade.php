@@ -1,10 +1,10 @@
-@extends('layouts.site', ['pageTitle' => 'Projects', 'active' => 'projects'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy'?'Նախագծեր':'Projects', 'active' => 'projects'])
 @section('content')
     <section class="page-title projects-title fade-from-top">
         <div class="container">
-            <h1 class="page-title__h fade-from-top" data-delay="100">Projects</h1>
+            <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang')=='hy'?'Նախագծեր':'Projects'}}</h1>
             <div class="page-title__text fade-from-top" data-delay="200">
-                We have a passion for simplicity and sustainability, always balancing form with function and delight.
+                {{session('lang')=='hy' ? $top->description_hy : $top->description_en}}
             </div>
         </div>
     </section>
@@ -12,7 +12,10 @@
     <section class="projects">
         <div class="container">
             <div class="project-filter js-project-filter fade-from-top" data-delay="300">
-                <button class="project-filter__btn active" data-filter="*">All Projects<span class="count">{{$totalProjects}}</span></button>
+                <button class="project-filter__btn active" data-filter="*">
+                    {{session('lang') == 'hy' ? 'Բոլոր նախագծեր' : 'All Projects'}}
+                    <span class="count">{{$totalProjects}}</span>
+                </button>
                 @foreach($categories as $category)
                     <button class="project-filter__btn" data-filter=".{{$category->id}}">{{session('lang') == 'hy' ? $category->title_hy : $category->title_en}}<span class="count">{{$category->cnt}}</span></button>
                 @endforeach
@@ -51,7 +54,7 @@
                     <h2>{{session('lang') == 'hy' ? $bottom->title_hy : $bottom->title_en}}</h2>
                     <p>{{session('lang') == 'hy' ? $bottom->description_hy : $bottom->description_en}}</p>
                     <a href="{{route('site.contact')}}" class="btn btn-icon hero-btn">
-                        <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Contact Us' : 'Contact Us'}}
+                        <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Կապվեք մեզ հետ' : 'Contact Us'}}
                     </a>
                 </div>
             </div>

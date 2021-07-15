@@ -1,8 +1,8 @@
-@extends('layouts.site', ['pageTitle' => 'Career', 'active' => 'career'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy'?'կարիերա':'Career', 'active' => 'career'])
 @section('content')
     <section class="page-title fade-from-top">
         <div class="container">
-            <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Job openings' : 'Job openings'}}</h1>
+            <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Աշխատատեղեր' : 'Job openings'}}</h1>
         </div>
     </section>
 
@@ -26,11 +26,11 @@
                                 <div class="job-item__content">
                                     <table class="job-table">
                                         <tr>
-                                            <th>{{session('lang') == 'hy' ? 'Job description' : 'Job description'}}</th>
+                                            <th>{{session('lang') == 'hy' ? 'Աշխատանքի նկարագրություն' : 'Job description'}}</th>
                                             <td>{{session('lang') == 'hy' ? $career->job_description_hy : $career->job_description_en}}</td>
                                         </tr>
                                         <tr>
-                                            <th>{{session('lang') == 'hy' ? 'Your skills' : 'Your skills'}}</th>
+                                            <th>{{session('lang') == 'hy' ? 'Ձեր հմտություններ' : 'Your skills'}}</th>
                                             <td>
                                                 <ul>
                                                     @foreach(\Illuminate\Support\Facades\DB::table('career_items')->where('career_id',$career->id)->get() as $item)
@@ -42,7 +42,7 @@
                                         <tr>
                                             <th></th>
                                             <td>
-                                                <button class="btn btn-primary" onclick="openModal('{{$career->id}}','{{$career->job_title_en}}')">{{session('lang') == 'hy' ? 'Apply for this position' : 'Apply for this position'}}</button>
+                                                <button class="btn btn-primary" onclick="openModal('{{$career->id}}','{{$career->job_title_en}}')">{{session('lang') == 'hy' ? 'Դիմեք, այս աշխատատեղը' : 'Apply for this position'}}</button>
                                             </td>
                                         </tr>
                                     </table>
@@ -52,7 +52,7 @@
                     </div>
                 @endforeach
                 @else
-                <h4 style="color:gray;">{{session('lang') == 'hy' ? 'Unfortunately there are no job openings right now!' : 'Unfortunately there are no job openings right now!'}}</h4>
+                <h4 style="color:gray;">{{session('lang') == 'hy' ? 'Ցավոք, չկան թափուր աշխատատեղերի այս պահին:' : 'Unfortunately there are no job openings right now!'}}</h4>
                 @endif
             </div>
         </div>
@@ -76,20 +76,20 @@
                         <input type="hidden" name="career_id" id="career_id" />
 
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Enter your full name" class="form-control" style="color:#666;" required />
+                            <input type="text" name="name" placeholder="{{session('lang')=='hy'?'Անուն':'Name'}}" class="form-control" style="color:#666;" required />
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Enter your email address" class="form-control" style="color:#666;" required />
+                            <input type="email" name="email" placeholder="{{session('lang')=='hy'?'էլ. հասցե':'E-Mail'}}" class="form-control" style="color:#666;" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="mobile" placeholder="Enter your mobile number" class="form-control" style="color:#666;" required />
+                            <input type="text" name="mobile" placeholder="{{session('lang')=='hy'?'Բջջային':'Mobile'}}" class="form-control" style="color:#666;" required />
                         </div>
                         <div class="form-group">
-                            <label for="cv">{{session('lang') == 'hy' ? 'Upload your resume' : 'Upload your resume'}}</label>
+                            <label for="cv">{{session('lang') == 'hy' ? 'Վերբեռնեք ձեր ռեզյումեն' : 'Upload your resume'}}</label>
                             <input type="file" name="cv" id="cv" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">{{session('lang') == 'hy' ? 'Apply' : 'Apply'}}</button>
+                            <button type="submit" class="btn btn-primary">{{session('lang') == 'hy' ? 'Դիմել' : 'Apply'}}</button>
                         </div>
                     {!! Form::close() !!}
                 </div>

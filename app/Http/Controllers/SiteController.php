@@ -59,11 +59,13 @@ class SiteController extends Controller
 
         $totalProjects = DB::table('projects')->where('is_active',1)->count();
 
+        $top = DB::table('sections')->where('position','LIKE','projects-top')->where('is_active',1)->first();
+
         $bottom = DB::table('sections')->where('position','LIKE','projects-bottom')->where('is_active',1)->first();
 
         $brands = DB::table('brands')->get();
 
-        return view('site.projects',compact('categories','projects','totalProjects','bottom','brands'));
+        return view('site.projects',compact('categories','projects','totalProjects','top','bottom','brands'));
     }
 
     public function project($projectId)

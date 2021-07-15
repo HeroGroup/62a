@@ -11,9 +11,10 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = DB::table('projects')->get();
+        $top = DB::table('sections')->where('position','LIKE','projects-top')->first();
         $bottom = DB::table('sections')->where('position','LIKE','projects-bottom')->first();
 
-        return view('admin.projects.index',compact('projects','bottom'));
+        return view('admin.projects.index',compact('projects','top','bottom'));
     }
 
     public function create()
@@ -172,6 +173,22 @@ class ProjectController extends Controller
             DB::table('project_photos')->where('id',$request->photo_id)->update(['is_cover' => 1]);
 
             return $this->success('photo updated successfully');
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function updateTopSection(Request $request)
+    {
+        try {
+            DB::table('sections')->where('position','like','projects-top')->update([
+                'description_en' => $request->description_en,
+                'description_hy' => $request->description_hy,
+                'is_active' => $request->is_active ? 1 : 0,
+                'updated_at' => \Carbon\Carbon::now()
+            ]);
+
+            return back()->with('message',"Updated Successfully")->with('type','success');
         } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }

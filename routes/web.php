@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/fontTest', function() { return view('fontTest'); });
+
 Route::name('site.')->group(function () {
     Route::get('/', function() { return view('site.comingSoon'); })->name('comingSoon');
 
@@ -41,6 +43,7 @@ Route::namespace('Admin')->group(function () {
                 Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');
                 Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');
                 Route::post('/projects/makeCover','ProjectController@makeCover')->name('projects.makeCover');
+                Route::post('/projects/updateTopSection', 'ProjectController@updateTopSection')->name('projects.updateTopSection');
                 Route::post('/projects/updateBottomSection', 'ProjectController@updateBottomSection')->name('projects.updateBottomSection');
 
                 Route::resource('aboutUs', 'AboutUsController');

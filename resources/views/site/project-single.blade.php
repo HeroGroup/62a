@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'Project', 'active' => 'projects'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy'?'Նախագծեր':'Project', 'active' => 'projects'])
 @section('content')
 
         <section class="page-title fade-from-top">
@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h2 class="project-single__content-title fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Project description' : 'Project description'}}</h2>
+                        <h2 class="project-single__content-title fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Նախագծի նկարագրություն' : 'Project description'}}</h2>
                         <div class="project-single__content fade-from-top" data-delay="200">
                             {{session('lang') == 'hy' ? $project->description_hy : $project->description_en}}
                         </div>

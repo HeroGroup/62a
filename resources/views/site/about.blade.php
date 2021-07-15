@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'About', 'active' => 'about'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy'?'Մեր մասին':'About', 'active' => 'about'])
 @section('content')
     <section class="page-title fade-from-top">
         <div class="container">
@@ -62,22 +62,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 abs-box abs-box-right">
-                    <h3>{{session('lang') == 'hy' ? 'Have any questions?' : 'Have any questions?'}}</h3>
+                    <h3>{{session('lang') == 'hy' ? 'Հարցեր ունե՞ք:' : 'Have any questions?'}}</h3>
                     <form class="questions-form" method="post" action="{{route('site.contactUs.store')}}">
                         @csrf
                         <div class="row">
                             <div class="col-lg form-group">
-                                <input type="email" name="email" class="form-control" placeholder="E-mail">
+                                <input type="email" name="email" class="form-control" placeholder="{{session('lang')=='hy'?'էլ. հասցե':'E-mail'}}">
                             </div>
                             <div class="col-lg form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Name">
+                                <input type="text" name="name" class="form-control" placeholder="{{session('lang')=='hy'?'Անուն':'Name'}}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Message" rows="1"></textarea>
+                            <textarea class="form-control" name="message" placeholder="{{session('lang')=='hy'?'Հաղորդագրություն':'Message'}}" rows="1"></textarea>
                         </div>
                         <button type="submit" class="btn btn-icon form-btn">
-                            <i class="icomoon-letter"></i> {{session('lang') == 'hy' ? 'Send us a message' : 'Send us a message'}}
+                            <i class="icomoon-letter"></i> {{session('lang') == 'hy' ? 'Ուղարկեք մեզ հաղորդագրություն' : 'Send us a message'}}
                         </button>
                     </form>
                 </div>

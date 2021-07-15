@@ -1,10 +1,10 @@
-@extends('layouts.site', ['pageTitle' => 'Contact', 'active' => 'contact'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy'?'Կապ':'Contact', 'active' => 'contact'])
 @section('content')
     <section class="page-title fade-from-top">
         <div class="container">
-            <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Contacts' : 'Contacts'}}</h1>
+            <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Կապ' : 'Contacts'}}</h1>
             <div class="page-title__text fade-from-top" data-delay="200">
-                {{session('lang') == 'hy' ? 'Got a project? Please email us at' : 'Got a project? Please email us at'}} <br>
+                {{session('lang') == 'hy' ? 'Առաջարկ եք ստացե՞լ : Խնդրում ենք ուղարկել մեզ էլ.փոստով ' : 'Got a project? Please email us at'}} <br>
                 <a href="mailto:{{$office->email_address}}">{{$office->email_address}}</a>
             </div>
         </div>
@@ -24,7 +24,7 @@
                             <p>{{$office->phone}}</p>
                             <p>{{$office->mobile}}</p>
                         </div>
-                        <a href="#" class="btn btn-link" data-toggle="modal" data-target="#office-map-modal-1">{{session('lang') == 'hy' ? 'Get Directions' : 'Get Directions'}}</a>
+                        <a href="#" class="btn btn-link" data-toggle="modal" data-target="#office-map-modal-1">{{session('lang') == 'hy' ? 'Ուղղություններ ստանալ' : 'Get Directions'}}</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -40,20 +40,20 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-4">
-                    <h3 class="font-weight-normal">{{session('lang') == 'hy' ? 'Have any questions?' : 'Have any questions?'}}</h3>
+                    <h3 class="font-weight-normal">{{session('lang') == 'hy' ? 'Հարցեր ունե՞ք:' : 'Have any questions?'}}</h3>
                     <form class="questions-form" method="post" action="{{route('site.contactUs.store')}}">
                         @csrf
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control" placeholder="E-mail" style="color:#333;" required>
+                            <input type="email" name="email" class="form-control" placeholder="{{session('lang')=='hy'?'էլ. հասցե':'E-mail'}}" style="color:#333;" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Name" style="color:#333;" required>
+                            <input type="text" name="name" class="form-control" placeholder="{{session('lang')=='hy'?'Անուն':'Name'}}" style="color:#333;" required>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Message" rows="3" style="color:#333;" required></textarea>
+                            <textarea class="form-control" name="message" placeholder="{{session('lang')=='hy'?'Հաղորդագրություն':'Message'}}" rows="3" style="color:#333;" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-icon form-btn">
-                            <i class="icomoon-letter"></i> {{session('lang') == 'hy' ? 'Send us a message' : 'Send us a message'}}
+                            <i class="icomoon-letter"></i> {{session('lang') == 'hy' ? 'Ուղարկեք մեզ հաղորդագրություն' : 'Send us a message'}}
                         </button>
                     </form>
                 </div>

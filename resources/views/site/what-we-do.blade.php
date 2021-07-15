@@ -1,4 +1,4 @@
-@extends('layouts.site', ['pageTitle' => 'What We Do', 'active' => 'what-we-do'])
+@extends('layouts.site', ['pageTitle' => session('lang')=='hy'?'Ինչ ենք անում':'What We Do', 'active' => 'what-we-do'])
 @section('content')
         <section class="page-title fade-from-top">
             <div class="container">
@@ -40,7 +40,7 @@
             </div>
         </section>
 
-        <section class="bg-section" style="background-image: url('{{$section->image_url}}')"></section>
+        <section class="bg-section" style="background-image: url('{{$section->image_url}}')" loading="lazy"></section>
 
         <!--<section class="section icons-section">
             <div class="container">
@@ -110,7 +110,6 @@
                 </div>
             @endforeach
             </div>
-
 
             <div class="office-map-modal modal fade" id="js-office-map-modal" tabindex="-1" role="dialog" aria-labelledby="officeMapModalTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

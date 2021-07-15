@@ -41,6 +41,49 @@
     </div>
 </div>
 
+
+<div class="card shadow mb-4">
+    <a href="#top-section" class="d-block card-header py-3 border-bottom-info" data-toggle="collapse" role="button" aria-expanded="true">
+        <h6 class="m-0 font-weight-bold text-primary">Top Section of Projects page</h6>
+    </a>
+    <div class="collapse" id="top-section">
+        <div class="card-body">
+        {{ Form::open(array('url' => route('admin.projects.updateTopSection'), 'method' => 'POST')) }}
+
+                @csrf
+
+                <div style="margin-bottom:30px;">
+                    <span> Inactive </span>
+                    <label class="switch">
+                        <input type="checkbox" name="is_active" @if($top->is_active) checked @endif >
+                        <span class="slider round"></span>
+                    </label>
+                    <span> Active </span>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <label for="description_en">Description (english)</label>
+                        <textarea class="form-control" name="description_en">{{$top->description_en}}</textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="description_hy">Description (armenian)</label>
+                        <textarea class="form-control" name="description_hy">{{$top->description_hy}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-bottom:30px;">
+                    <div class="col-md-6">
+                        <button class="btn btn-success" type="submit">Save</a>
+                    </div>
+                </div>
+
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+
+
 <div class="card shadow mb-4">
     <a href="#bottom-section" class="d-block card-header py-3 border-bottom-success" data-toggle="collapse" role="button" aria-expanded="true">
         <h6 class="m-0 font-weight-bold text-primary">Bottom Section of Projects page</h6>
