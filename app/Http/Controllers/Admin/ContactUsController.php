@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CustomerContact;
+use App\Mail\Support;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
@@ -31,7 +34,12 @@ class ContactUsController extends Controller
 
     public function reply(Request $request)
     {
-        return back()->with('message','Email settings has not been set yet!')->with('type','danger');
+        try {
+            Mail::to($request->email)->send(new Support($request->reply_message));
+            return back()->with('message','Email was sent successfully')->with('type','success');
+        } catch (\Exception $exception) {
+            return back()->with('message',$exception->getMessage())->with('type','danger');
+        }
     }
 
     public function store(Request $request)
@@ -42,6 +50,9 @@ class ContactUsController extends Controller
                 'name' => $request->name,
                 'message' => $request->message,
             ]);
+
+            Mail::to("info@62a.am")->send(new CustomerContact($request->name,$request->email,$request->message));
+
             return back()->with('message',"message posted successfully.")->with('type','success');
         } catch (\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');

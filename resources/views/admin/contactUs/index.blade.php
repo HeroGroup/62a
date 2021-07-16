@@ -45,13 +45,13 @@
                                 @csrf
                                 <input type="hidden" name="email" value="{{$message->email}}">
                                 <div class="modal-body">
-                                    <textarea name="reply-message" class="form-control" rows="3" placeholder="Message to reply..."></textarea>
+                                    <textarea name="reply_message" class="form-control" rows="3" placeholder="Message to reply..."></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-success btn-icon-split" type="submit">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-reply"></i>
-                                </span>
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-reply"></i>
+                                        </span>
                                         <span class="text">Send</span>
                                     </button>
                                 </div>
