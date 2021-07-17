@@ -14,23 +14,34 @@
     <!-- Icons -->
     <link rel="stylesheet" href="/assets/fonts/icomoon/style.css">
 
+    <!-- Font styles -->
+    <!-- <link rel="stylesheet" href="/assets/fonts/NunitoSans/NunitoSans.css"> -->
+
     <style>
         @font-face {
             font-family: arialam;
             src: url('/assets/fonts/Montserratarm.otf');
         }
-    </style>
+        html,body,h1,h2,h3,h4,h5,h6,a,span,p,label,div,ul,li {
+            font-family: arialam;
+        }
 
-    @if(session('lang')=='hy')
-        <style>
-            html,body,h1,h2,h3,h4,h5,h6,a,span,p,label,div,ul,li {
-                font-family: arialam;
+        @media only screen and (max-width: 991px) {
+            .footer-logo-img {
+                width: 120px;
             }
-        </style>
-    @else
-        <!-- Font styles -->
-        <link rel="stylesheet" href="/assets/fonts/NunitoSans/NunitoSans.css">
-    @endif
+        }
+
+        @media only screen and (min-width: 992px) {
+            .footer-logo-container {
+                text-align:center;
+                padding-top:50px;
+            }
+            .footer-logo-img {
+                height: 135px;
+            }
+        }
+    </style>
 
     <!-- Site styles -->
     <link rel="stylesheet" href="/assets/css/main.min.css">
@@ -98,9 +109,11 @@
     <footer id="main-footer" class="site-footer">
         <div class="container">
             <div class="row">
-                <div class="widget-col col-lg-2" style="text-align:center;padding-top:15px;">
+                <div class="widget-col col-lg-2 footer-logo-container">
                     <div class="widget widget-logo" style="margin-bottom:40px;">
-                        <a href="/" class="logo footer-logo"><img src="images/logo-inverted.png" alt=""></a>
+                        <a href="/" class="logo footer-logo">
+                            <img src="images/logo-inverted-cropped.png" alt="62 ARCHITECTS." class="footer-logo-img">
+                        </a>
                     </div>
                 </div>
 
