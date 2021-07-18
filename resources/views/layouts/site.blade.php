@@ -41,6 +41,16 @@
                 height: 135px;
             }
         }
+
+        .pre-loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/images/Preloader.gif') center no-repeat #fff;
+        }
     </style>
 
     <!-- Site styles -->
@@ -51,6 +61,7 @@
 </head>
 
 <body>
+    <div class="pre-loader"></div>
     <header id="main-header" class="site-header is-fixed">
         <div class="page-backdrop"></div>
         <div class="container">
@@ -162,6 +173,10 @@
     <script src="/assets/js/sweetalert2.min.js"></script>
 
     <script>
+        $(window).on('load', function() {
+            $(".pre-loader").fadeOut("slow");
+        });
+
         $(document).ready(function() {
             var active = "{{$active}}";
             $(`#${active}`).addClass("active");

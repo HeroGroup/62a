@@ -57,7 +57,7 @@
                 @foreach($photos as $photo)
                     <a class="grid-item" href="{{$photo->photo_url}}">
                         <div class="slide-image-wrap">
-                            <img src="{{$photo->photo_url}}" alt="{{$project->title_en}}">
+                            <img src="{{$photo->photo_url}}" alt="{{$project->title_en}}" loading="lazy">
                         </div>
                     </a>
                 @endforeach
@@ -68,9 +68,9 @@
         <section class="project-nav">
             <div class="container">
                 <div class="section-title d-flex flex-wrap align-items-center ">
-                    <h2 class="mb-3 mr-4">{{session('lang') == 'hy' ? 'Projects' : 'Projects'}}</h2>
+                    <h2 class="mb-3 mr-4">{{session('lang') == 'hy' ? 'Նախագծեր' : 'Projects'}}</h2>
                     <a href="{{route('site.projects')}}" class="btn btn-primary mb-3">
-                        {{session('lang') == 'hy' ? 'All projects' : 'All projects'}} <i class="icomoon-right-arrow-long"></i>
+                        {{session('lang') == 'hy' ? 'Բոլոր նախագծեր' : 'All projects'}} <i class="icomoon-right-arrow-long"></i>
                     </a>
                 </div>
                 <div class="row">
