@@ -67,14 +67,14 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg form-group">
-                                <input type="email" name="email" class="form-control" placeholder="{{session('lang')=='hy'?'էլ. հասցե':'E-mail'}}">
+                                <input type="email" name="email" class="form-control" placeholder="{{session('lang')=='hy'?'էլ. հասցե':'E-mail'}}" required>
                             </div>
                             <div class="col-lg form-group">
-                                <input type="text" name="name" class="form-control" placeholder="{{session('lang')=='hy'?'Անուն':'Name'}}">
+                                <input type="text" name="name" class="form-control" placeholder="{{session('lang')=='hy'?'Անուն':'Name'}}" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="{{session('lang')=='hy'?'Հաղորդագրություն':'Message'}}" rows="1"></textarea>
+                            <textarea class="form-control" name="message" placeholder="{{session('lang')=='hy'?'Հաղորդագրություն':'Message'}}" rows="1" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-icon form-btn">
                             <i class="icomoon-letter"></i> {{session('lang') == 'hy' ? 'Ուղարկեք մեզ հաղորդագրություն' : 'Send us a message'}}

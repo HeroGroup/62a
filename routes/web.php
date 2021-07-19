@@ -41,6 +41,8 @@ Route::namespace('Admin')->group(function () {
 
                 Route::resource('projects', 'ProjectController');
                 Route::post('/projects/imageUpload','ProjectController@imageUpload')->name('projects.imageUpload');
+                Route::get('/projects/{projectId}/videoUpload','ProjectController@videoUploadView')->name('projects.videoUploadView');
+                Route::post('/projects/videoUpload','ProjectController@videoUpload')->name('projects.videoUpload');
                 Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');
                 Route::post('/projects/makeCover','ProjectController@makeCover')->name('projects.makeCover');
                 Route::post('/projects/updateTopSection', 'ProjectController@updateTopSection')->name('projects.updateTopSection');

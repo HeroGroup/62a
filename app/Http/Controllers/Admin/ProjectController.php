@@ -155,6 +155,37 @@ class ProjectController extends Controller
         }
     }
 
+    public function videoUploadView($projectId)
+    {
+        $projectTitle = DB::table('projects')->find($projectId)->title_en;
+        return view('admin.projects.videoUpload', compact('projectId','projectTitle'));
+    }
+
+    public function videoUpload(Request $request)
+    {
+        try {
+            $projectId = $request->temp;
+            if ($request->hasFile('video')) {
+                $document = $request->video;
+                $fileName = time() . '-' . $document->getClientOriginalName();
+                $document->move("resources/assets/videos/project_videos/$projectId/", $fileName);
+                $videoUrl = "/resources/assets/videos/project_videos/$projectId/" . $fileName;
+
+                DB::table('project_videos')->insert([
+                    'project_id' => $projectId,
+                    'video_url' => $videoUrl,
+                    'created_at' => \Carbon\Carbon::now()
+                ]);
+
+                return $this->success('video uploaded successfully');
+            } else {
+                return $this->fail("invalid video");
+            }
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
     public function deleteImage(Request $request)
     {
         try {

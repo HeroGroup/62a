@@ -45,15 +45,19 @@ class ContactUsController extends Controller
     public function store(Request $request)
     {
         try {
-            DB::table('contact_us')->insert([
-                'email' => $request->email,
-                'name' => $request->name,
-                'message' => $request->message,
-            ]);
+            if($request->email && $request->name && $request->message) {
+                DB::table('contact_us')->insert([
+                    'email' => $request->email,
+                    'name' => $request->name,
+                    'message' => $request->message,
+                ]);
 
-            Mail::to("info@62a.am")->send(new CustomerContact($request->name,$request->email,$request->message));
+                Mail::to("info@62a.am")->send(new CustomerContact($request->name, $request->email, $request->message));
 
-            return back()->with('message',"message posted successfully.")->with('type','success');
+                return back()->with('message', "message posted successfully.")->with('type', 'success');
+            } else {
+                return back()->with('message','Please fill out all required fields')->with('type','danger');
+            }
         } catch (\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
         }

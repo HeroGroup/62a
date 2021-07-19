@@ -53,14 +53,24 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="project-single__gallery js-gallery fade-from-top-children">
                 @foreach($photos as $photo)
                     <a class="grid-item" href="{{$photo->photo_url}}">
                         <div class="slide-image-wrap">
-                            <img src="{{$photo->photo_url}}" alt="{{$project->title_en}}" loading="lazy">
+                            <img src="{{$photo->photo_url}}" alt="" loading="lazy">
                         </div>
                     </a>
                 @endforeach
+                </div>
+
+                <div>
+                    @foreach($videos as $video)
+                        <video controls>
+                            <source src="{{$video->video_url}}" type="video/mp4">
+                            Your browser does not support playing videos.
+                        </video>
+                    @endforeach
                 </div>
             </div>
         </section>

@@ -1,11 +1,11 @@
-@extends('layouts.admin', ['pageTitle' => 'Upload Image for Project '.$projectTitle, 'active' => 'projects'])
+@extends('layouts.admin', ['pageTitle' => 'Upload Video for Project '.$projectTitle, 'active' => 'projects'])
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body border-bottom-success">
             <div>
-                @component('components.imageUploaderGeneral', [
-                    'uploadText' => 'Select Project Images from your computer, or drag here',
-                    'uploadRoute' => route('admin.projects.imageUpload'),
+                @component('components.videoUploaderGeneral', [
+                    'uploadText' => 'Select Project Videos from your computer, or drag here',
+                    'uploadRoute' => route('admin.projects.videoUpload'),
                     'temp' => $projectId,
                     'multiple' => true
                     ])
@@ -17,11 +17,11 @@
             </div>
 
             <div class="col-md-12" style="text-align:right;">
-                <a href="{{route('admin.projects.')}}" class="btn btn-success btn-icon-split">
+                <a href="{{route('admin.projects.index')}}" class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-check"></i>
                     </span>
-                    <span class="text">Next - Upload Video</span>
+                    <span class="text">Done</span>
                 </a>
             </div>
         </div>
