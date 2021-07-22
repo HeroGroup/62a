@@ -101,8 +101,12 @@
     </div>
     <script>
         function openVideoModal(video_url) {
-            $("#watch-video").attr("src",video_url);
-            $("#video-modal").modal();
+            var vid = document.getElementById("watch-video"), videoModal = $('#video-modal');
+            vid.setAttribute("src",video_url);
+            videoModal.on('hidden.bs.modal', function () {
+                vid.pause();
+            });
+            videoModal.modal();
         }
     </script>
 @endsection
