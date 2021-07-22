@@ -66,8 +66,9 @@ class ProjectController extends Controller
         try {
             $categories = DB::table('categories')->pluck('title_en','id')->toArray();
             $photos = DB::table('project_photos')->where('project_id',$id)->get();
+            $videos = DB::table('project_videos')->where('project_id',$id)->get();
             $project = DB::table('projects')->find($id);
-            return view('admin.projects.show',compact('project','photos','categories'));
+            return view('admin.projects.show',compact('project','photos','categories','videos'));
         } catch(\Exception $exception) {
             return back()->with('message',$exception->getMessage())->with('type','danger');
         }
@@ -143,7 +144,8 @@ class ProjectController extends Controller
 
                 DB::table('project_photos')->insert([
                     'project_id' => $projectId,
-                    'photo_url' => $imageUrl
+                    'photo_url' => $imageUrl,
+                    'created_at' => \Carbon\Carbon::now()
                 ]);
 
                 return $this->success('photo uploaded successfully');
@@ -191,6 +193,16 @@ class ProjectController extends Controller
         try {
             DB::table('project_photos')->where('id',$request->photo_id)->delete();
             return $this->success('photo deleted successfully');
+        } catch (\Exception $exception) {
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function deleteVideo(Request $request)
+    {
+        try {
+            DB::table('project_videos')->where('id',$request->video_id)->delete();
+            return $this->success('video deleted successfully');
         } catch (\Exception $exception) {
             return $this->fail($exception->getMessage());
         }

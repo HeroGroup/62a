@@ -40,6 +40,40 @@ class LandingController extends Controller
         }
     }
 
+    public function uploadBannerVideo(Request $request)
+    {
+        try {
+            if ($request->hasFile('video')) {
+                $bannerId = $request->id;
+                $document = $request->video;
+                $fileName = time() . '-' . $document->getClientOriginalName();
+                $document->move("resources/assets/videos/banner_videos/$bannerId/", $fileName);
+                $videoUrl = "/resources/assets/videos/banner_videos/$bannerId/" . $fileName;
+
+                DB::table('banners')->where('id',$bannerId)->update([
+                    'video_url' => $videoUrl,
+                    'updated_at' => \Carbon\Carbon::now()
+                ]);
+
+                return back()->with('message','video uploaded successfully')->with('type','success');
+            } else {
+                return back()->with("message","invalid video")->with('type','danger');
+            }
+        } catch (\Exception $exception) {
+            return back()->with('message',$exception->getMessage())->with('type','danger');
+        }
+    }
+
+    public function deleteBannerVideo(Request $request)
+    {
+        try {
+            DB::table('banners')->where('id',$request->id)->update(['video_url' =>null]);
+            return back()->with('message', 'video removed successfully')->with('type','success');
+        } catch(\Exception $exception) {
+            return back()->with('message', $exception->getMessage())->with('type','danger');
+        }
+    }
+
     public function updateBannerDetails(Request $request)
     {
         try {

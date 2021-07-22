@@ -169,6 +169,45 @@
         </div>
     </div>
 
+    <div class="card shadow mb-4">
+        <a href="#projectVideos" class="d-block card-header py-3 border-bottom-warning" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+            <h6 class="m-0 font-weight-bold text-primary">Project Videos</h6>
+        </a>
+        <div class="collapse" id="projectVideos">
+            <div class="card-body ">
+                <div class="row" style="padding:10px;">
+                @if($videos->count() > 0)
+                @foreach($videos as $video)
+                    <div class="col-md-6" id="video-{{$video->id}}-container">
+                        <div id="video-{{$video->id}}">
+                            <video controls style="border:1px solid lightgray;">
+                              <source src="{{$video->video_url}}" type="video/mp4">
+                              Your browser does not support HTML video.
+                            </video>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="removeVideo({{$video->id}})" style="position:absolute;top:0;left:0;opacity:0.85;">
+                                <i class="fa fa-fw fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+                @else
+                    <h4 style="text-align:center;">No videos yet!</h4>
+                @endif
+                </div>
+
+                <div>
+                    @component('components.videoUploaderGeneral', [
+                        'uploadText' => 'Select Project Videos from your computer, or drag here',
+                        'uploadRoute' => route('admin.projects.videoUpload'),
+                        'temp' => $project->id,
+                        'multiple' => true
+                        ])
+                    @endcomponent
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="new-category-modal" tabindex="-1" role="dialog" aria-labelledby="newCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -223,6 +262,17 @@
             xhr.open('POST', "{{ route('admin.projects.deleteImage') }}", true);
             xhr.addEventListener("load", function() {
                 document.getElementById(id+"-container").remove();
+            });
+            xhr.send(formData);
+        }
+        function removeVideo(id) {
+            let formData = new FormData();
+            formData.append('_token', "{{csrf_token()}}");
+            formData.append("video_id",id);
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', "{{ route('admin.projects.deleteVideo') }}", true);
+            xhr.addEventListener("load", function() {
+                document.getElementById("video-"+id+"-container").remove();
             });
             xhr.send(formData);
         }

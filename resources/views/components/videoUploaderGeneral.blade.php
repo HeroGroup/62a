@@ -1,7 +1,7 @@
-<form id="file-upload-form" action="#" class="uploader">
-    <input id="file-upload" type="file" name="fileUpload" accept="video/*" @if(isset($multiple)) multiple @endif />
+<form id="video-upload-form" action="#" class="uploader">
+    <input id="video-upload" type="file" name="videoUpload" accept="video/*" @if(isset($multiple)) multiple @endif />
 
-    <label for="file-upload" id="file-drag">
+    <label for="video-upload" id="video-drag">
         <div id="start" class="start">
             <i class="fa fa-download" aria-hidden="true"></i>
             <div>{{$uploadText}}</div>
@@ -20,16 +20,16 @@
 </form>
 
 <script>
-    var uploadRoute = "{{ $uploadRoute }}", fileSizeLimit = 100; // In MB
+    var uploadRoute = "{{ $uploadRoute }}", fileSizeLimit = 10; // In MB
 
     function ekUpload() {
         function Init() {
-            var fileSelect = document.getElementById('file-upload'),
-                fileDrag = document.getElementById('file-drag');
+            var fileSelect = document.getElementById('video-upload'),
+                fileDrag = document.getElementById('video-drag');
 
             fileSelect.addEventListener('change', fileSelectHandler, false);
 
-            // Is XHR2 available?
+            // Is XHR available?
             var xhr = new XMLHttpRequest();
             if (xhr.upload) {
                 // File Drop
@@ -40,12 +40,12 @@
         }
 
         function fileDragHover(e) {
-            var fileDrag = document.getElementById('file-drag');
+            var fileDrag = document.getElementById('video-drag');
 
             e.stopPropagation();
             e.preventDefault();
 
-            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body video-upload');
         }
 
         function fileSelectHandler(e) {
@@ -66,6 +66,7 @@
             var m = document.getElementById('messages');
             m.style.color = "red";
             m.innerHTML = msg;
+            console.log(msg);
         }
 
         function clearOutput() {
@@ -100,7 +101,7 @@
             btn.style.opacity = "0.85";
             container.appendChild(btn);
 
-            document.getElementById('photos').appendChild(container);
+            document.getElementById('videos').appendChild(container);
         }
 
         function parseFile(file) {
@@ -114,14 +115,14 @@
                     document.getElementById('notimage').classList.remove("hidden");
                     document.getElementById('start').classList.remove("hidden");
                     document.getElementById('response').classList.add("hidden");
-                    document.getElementById("file-upload-form").reset();
+                    document.getElementById("video-upload-form").reset();
                     output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
                 }
             } else {
                 document.getElementById('notimage').classList.remove("hidden");
                 document.getElementById('start').classList.remove("hidden");
                 document.getElementById('response').classList.add("hidden");
-                document.getElementById("file-upload-form").reset();
+                document.getElementById("video-upload-form").reset();
                 output("Format not supported.");
             }
         }
@@ -178,7 +179,7 @@
         if (window.File && window.FileList && window.FileReader) {
             Init();
         } else {
-            document.getElementById('file-drag').style.display = 'none';
+            document.getElementById('video-drag').style.display = 'none';
         }
     }
     ekUpload();

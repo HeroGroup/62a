@@ -9,6 +9,7 @@
                         <div class="container hero-slide-inner full-height">
                             <h1 class="hero-title">{{session('lang') == 'hy' ? $banner->title_hy : $banner->title_en}}</h1>
                             <div class="hero-text">{{session('lang') == 'hy' ? $banner->description_hy : $banner->description_en}}</div>
+                            @if($banner->video_url)<button class="btn btn-icon hero-btn" onclick="openVideoModal('{{$banner->video_url}}')"><i class="icomoon-play"></i> Watch video</button>@endif
                             <div class="hero-author">{{session('lang') == 'hy' ? $banner->location_hy : $banner->location_en}}</div>
                         </div>
                     </div>
@@ -89,4 +90,19 @@
             </div>
         </section>
         @endif
+
+    <!-- MAP MODAL -->
+    <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <video id="watch-video" src="#" controls>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openVideoModal(video_url) {
+            $("#watch-video").attr("src",video_url);
+            $("#video-modal").modal();
+        }
+    </script>
 @endsection

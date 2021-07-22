@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-md-12" style="text-align:right;">
-                <a href="{{route('admin.projects.')}}" class="btn btn-success btn-icon-split">
+                <a href="{{route('admin.projects.videoUploadView',$projectId)}}" class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-check"></i>
                     </span>

@@ -44,6 +44,7 @@ Route::namespace('Admin')->group(function () {
                 Route::get('/projects/{projectId}/videoUpload','ProjectController@videoUploadView')->name('projects.videoUploadView');
                 Route::post('/projects/videoUpload','ProjectController@videoUpload')->name('projects.videoUpload');
                 Route::post('/projects/deleteImage','ProjectController@deleteImage')->name('projects.deleteImage');
+                Route::post('/projects/deleteVideo','ProjectController@deleteVideo')->name('projects.deleteVideo');
                 Route::post('/projects/makeCover','ProjectController@makeCover')->name('projects.makeCover');
                 Route::post('/projects/updateTopSection', 'ProjectController@updateTopSection')->name('projects.updateTopSection');
                 Route::post('/projects/updateBottomSection', 'ProjectController@updateBottomSection')->name('projects.updateBottomSection');
@@ -55,6 +56,8 @@ Route::namespace('Admin')->group(function () {
 
                 Route::get('/landing', 'LandingController@index')->name('landing.index');
                 Route::post('/landing/uploadBannerImage', 'LandingController@uploadBannerImage')->name('landing.uploadBannerImage');
+                Route::post('/landing/uploadBannerVideo','LandingController@uploadBannerVideo')->name('landing.uploadBannerVideo');
+                Route::post('/landing/deleteBannerVideo','LandingController@deleteBannerVideo')->name('landing.deleteBannerVideo');
                 Route::put('/landing/updateBannerDetails', 'LandingController@updateBannerDetails')->name('landing.updateBannerDetails');
                 Route::delete('/landing/deleteBanner', 'LandingController@deleteBanner')->name('landing.deleteBanner');
                 Route::put('/landing/updateTopSection', 'LandingController@updateTopSection')->name('landing.updateTopSection');

@@ -72,9 +72,10 @@ class SiteController extends Controller
     {
         $project = DB::table('projects')->find($projectId);
         $photos = DB::table('project_photos')->where('project_id',$projectId)->get();
+        $videos = DB::table('project_videos')->where('project_id',$projectId)->get();
         $projects = DB::table('projects')->where('is_active',1)->where('id','!=',$projectId)->take(2)->get();
 
-        return view('site.project-single', compact('project','photos','projects'));
+        return view('site.project-single', compact('project','photos','projects','videos'));
     }
 
     public function about()

@@ -22,6 +22,12 @@
                     </div>
                     <div class="col-sm-6">
                         <div style="text-align:center;">
+                            <button class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#upload-video-modal-{{$banner->id}}">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-play"></i>
+                                </span>
+                                <span class="text">Upload Video</span>
+                            </button>
                             <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#edit-banner-modal-{{$banner->id}}">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-info-circle"></i>
@@ -32,7 +38,7 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-trash"></i>
                                 </span>
-                                <span class="text">Delete Permanently</span>
+                                <span class="text">Delete</span>
                             </button>
                         </div>
                         <div style="padding-top:10px;">
@@ -42,6 +48,59 @@
                             <h5>{{$banner->description_hy}}</h5>
                             <h5>{{$banner->location_en}}</h5>
                             <h5>{{$banner->location_hy}}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Video Modal-->
+                <div class="modal fade" id="upload-video-modal-{{$banner->id}}" tabindex="-1" role="dialog" aria-labelledby="uploadVideoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadVideoModalLabel">Upload Video</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @if($banner->video_url)
+                                    <video controls>
+                                        <source src="{{$banner->video_url}}">
+                                    </video>
+                                    <div>
+                                        <form action="{{route('admin.landing.deleteBannerVideo')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$banner->id}}">
+                                        <button class="btn btn-danger btn-icon-split" type="submit">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Delete Video</span>
+                                        </button>
+                                        </form>
+                                    </div>
+                                    <hr>
+                                @endif
+
+                                {!! Form::open(['url' => route('admin.landing.uploadBannerVideo'), 'method' => 'POST', 'files' => 'true']) !!}
+                                @csrf
+                                <input type="hidden" name="id" value="{{$banner->id}}">
+                                <div class="form-group row" style="margin-bottom:30px;">
+                                    <div class="col-md-6">
+                                        <label for="video"> @if($banner->video_url) Replace with new video @else Upload new video @endif </label>
+                                        <input type="file" accept="video/*" name="video">
+                                    </div>
+                                </div>
+                                <div class="form-group row" style="margin-bottom:30px;">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success" type="submit">Save and close</button>
+                                    </div>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>

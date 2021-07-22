@@ -64,13 +64,13 @@
                 @endforeach
                 </div>
 
-                <div>
-                    @foreach($videos as $video)
-                        <video controls>
-                            <source src="{{$video->video_url}}" type="video/mp4">
-                            Your browser does not support playing videos.
-                        </video>
-                    @endforeach
+                <div style="text-align:center;">
+                @foreach($videos as $video)
+                    <video controls>
+                        <source src="{{$video->video_url}}" type="video/mp4">
+                        Your browser does not support HTML video.
+                    </video>
+                @endforeach
                 </div>
             </div>
         </section>
