@@ -13,7 +13,7 @@
         <div class="container">
             <div class="project-filter js-project-filter fade-from-top" data-delay="300">
                 <button class="project-filter__btn active" data-filter="*">
-                    {{session('lang') == 'hy' ? 'Բոլոր նախագծեր' : 'All Projects'}}
+                    {{session('lang') == 'hy' ? 'Բոլոր նախագծերը' : 'All Projects'}}
                     <span class="count">{{$totalProjects}}</span>
                 </button>
                 @foreach($categories as $category)

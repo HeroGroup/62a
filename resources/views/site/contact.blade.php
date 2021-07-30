@@ -4,7 +4,7 @@
         <div class="container">
             <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Կապ' : 'Contacts'}}</h1>
             <div class="page-title__text fade-from-top" data-delay="200">
-                {{session('lang') == 'hy' ? 'Առաջարկ եք ստացե՞լ : Խնդրում ենք ուղարկել մեզ էլ.փոստով ' : 'Got a project? Please email us at'}} <br>
+                {{session('lang') == 'hy' ? 'Նախագծի առաջարկ ունե՞ք: Խնդրում ենք ուղարկել մեզ էլ.փոստով ' : 'Got a project? Please email us at'}} <br>
                 <a href="mailto:{{$office->email_address}}">{{$office->email_address}}</a>
             </div>
         </div>
@@ -24,7 +24,7 @@
                             <p>{{$office->phone}}</p>
                             <p>{{$office->mobile}}</p>
                         </div>
-                        <a href="#" class="btn btn-link" data-toggle="modal" data-target="#office-map-modal-1">{{session('lang') == 'hy' ? 'Ուղղություններ ստանալ' : 'Get Directions'}}</a>
+                        <a href="#" class="btn btn-link" data-toggle="modal" data-target="#office-map-modal-1">{{session('lang') == 'hy' ? 'Ինչպե՞ս գտնել մեզ' : 'Get Directions'}}</a>
                     </div>
                 </div>
                 <div class="col-lg-6">

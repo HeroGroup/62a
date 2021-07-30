@@ -50,7 +50,7 @@
                 <div class="section-title d-md-flex align-items-center">
                     <h2 class="mb-md-0 mb-4 mr-md-4">{{session('lang') == 'hy' ? 'Նախագծեր' : 'Projects'}}</h2>
                     <a href="{{route('site.projects')}}" class="btn btn-primary">
-                        {{session('lang') == 'hy' ? 'Բոլոր նախագծեր' : 'All Projects'}}
+                        {{session('lang') == 'hy' ? 'Բոլոր նախագծերը' : 'All Projects'}}
                         <i class="icomoon-right-arrow-long"></i>
                     </a>
                 </div>
@@ -83,7 +83,7 @@
                             {{session('lang') == 'hy' ? $bottom->description_hy : $bottom->description_en}}
                         </div>
                         <a href="{{route('site.about')}}" class="btn btn-icon hero-btn">
-                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Հանդիպեք թիմին' : 'Meet The Team'}}
+                            <i class="icomoon-right-arrow"></i> {{session('lang') == 'hy' ? 'Ծանոթացեք թիմին' : 'Meet The Team'}}
                         </a>
                     </div>
                 </div>
