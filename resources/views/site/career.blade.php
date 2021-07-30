@@ -42,7 +42,7 @@
                                         <tr>
                                             <th></th>
                                             <td>
-                                                <button class="btn btn-primary" onclick="openModal('{{$career->id}}','{{$career->job_title_en}}')">{{session('lang') == 'hy' ? 'Դիմեք, այս աշխատատեղը' : 'Apply for this position'}}</button>
+                                                <button class="btn btn-primary" onclick="openModal('{{$career->id}}','{{$career->job_title_en}}')">{{session('lang') == 'hy' ? 'Դիմեք այս աշխատատեղի համար' : 'Apply for this position'}}</button>
                                             </td>
                                         </tr>
                                     </table>
