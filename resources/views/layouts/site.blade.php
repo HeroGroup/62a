@@ -28,7 +28,8 @@
 
         @media only screen and (max-width: 991px) {
             .footer-logo-img {
-                width: 120px;
+                /*width: 120px;*/
+                display: none;
             }
         }
 
@@ -49,7 +50,7 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url('/images/Preloader.gif') center no-repeat #fff;
+            background: url('/images/Preloader_new.gif') center no-repeat #fff;
         }
     </style>
 

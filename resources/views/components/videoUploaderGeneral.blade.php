@@ -20,26 +20,26 @@
 </form>
 
 <script>
-    var uploadRoute = "{{ $uploadRoute }}", fileSizeLimit = 10; // In MB
+    var uploadVideoRoute = "{{ $uploadRoute }}", videoSizeLimit = 10; // In MB
 
-    function ekUpload() {
-        function Init() {
+    function vUpload() {
+        function vInit() {
             var fileSelect = document.getElementById('video-upload'),
                 fileDrag = document.getElementById('video-drag');
 
-            fileSelect.addEventListener('change', fileSelectHandler, false);
+            fileSelect.addEventListener('change', vFileSelectHandler, false);
 
             // Is XHR available?
             var xhr = new XMLHttpRequest();
             if (xhr.upload) {
                 // File Drop
-                fileDrag.addEventListener('dragover', fileDragHover, false);
-                fileDrag.addEventListener('dragleave', fileDragHover, false);
-                fileDrag.addEventListener('drop', fileSelectHandler, false);
+                fileDrag.addEventListener('dragover', vFileDragHover, false);
+                fileDrag.addEventListener('dragleave', vFileDragHover, false);
+                fileDrag.addEventListener('drop', vFileSelectHandler, false);
             }
         }
 
-        function fileDragHover(e) {
+        function vFileDragHover(e) {
             var fileDrag = document.getElementById('video-drag');
 
             e.stopPropagation();
@@ -48,34 +48,34 @@
             fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body video-upload');
         }
 
-        function fileSelectHandler(e) {
+        function vFileSelectHandler(e) {
             // Fetch FileList object
             var files = e.target.files || e.dataTransfer.files;
 
             // Cancel event and hover styling
-            fileDragHover(e);
+            vFileDragHover(e);
 
             // Process all File objects
             for (var i = 0, f; f = files[i]; i++) {
-                parseFile(f);
-                uploadFile(f);
+                vParseFile(f);
+                vUploadFile(f);
             }
         }
 
-        function output(msg) {
+        function vOutput(msg) {
             var m = document.getElementById('messages');
             m.style.color = "red";
             m.innerHTML = msg;
             console.log(msg);
         }
 
-        function clearOutput() {
+        function vClearOutput() {
             var m = document.getElementById('messages');
             m.style.color = "inherit";
             m.innerHTML = "";
         }
 
-        function thumbnailPreview(file) {
+        function vThumbnailPreview(file) {
             // Thumbnail Preview
             var container  = document.createElement("DIV");
             container.style.display = "inline-block";
@@ -104,47 +104,35 @@
             document.getElementById('videos').appendChild(container);
         }
 
-        function parseFile(file) {
+        function vParseFile(file) {
             var fileName = file.name, fileSize = file.size;
 
             var isGood = (/\.(?=mp4)/gi).test(fileName);
             if (isGood) {
-                if (fileSize <= fileSizeLimit * 1024 * 1024) {
-                    thumbnailPreview(file);
+                if (fileSize <= videoSizeLimit * 1024 * 1024) {
+                    vThumbnailPreview(file);
                 } else {
                     document.getElementById('notimage').classList.remove("hidden");
                     document.getElementById('start').classList.remove("hidden");
                     document.getElementById('response').classList.add("hidden");
                     document.getElementById("video-upload-form").reset();
-                    output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                    vOutput('Please upload a smaller file (< ' + videoSizeLimit + ' MB).');
                 }
             } else {
                 document.getElementById('notimage').classList.remove("hidden");
                 document.getElementById('start').classList.remove("hidden");
                 document.getElementById('response').classList.add("hidden");
                 document.getElementById("video-upload-form").reset();
-                output("Format not supported.");
+                vOutput("Format not supported.");
             }
         }
 
-        function setProgressMaxValue(e) {
-            console.log(e);
-            if (e.lengthComputable)
-                document.getElementById('file-progress').max = e.total;
-        }
-
-        function updateFileProgress(e) {
-            console.log(e);
-            if (e.lengthComputable)
-                document.getElementById('file-progress').value = e.loaded;
-        }
-
-        function uploadFile(file) {
+        function vUploadFile(file) {
             var xhr = new XMLHttpRequest(),
                 pBar = document.getElementById('file-progress');
             if (xhr.upload) {
                 // Check if file is less than x MB
-                if (file.size <= fileSizeLimit * 1024 * 1024) {
+                if (file.size <= videoSizeLimit * 1024 * 1024) {
                     pBar.style.display = 'inline';
                     xhr.onreadystatechange = function(e) {
                         if (xhr.readyState === 4) { /**/ }
@@ -156,7 +144,7 @@
                     formData.append('temp', "{{$temp}}");
 
                     // Start upload
-                    xhr.open('POST', uploadRoute, true);
+                    xhr.open('POST', uploadVideoRoute, true);
 
                     xhr.addEventListener("load", function() {
                         var response = JSON.parse(xhr.response);
@@ -170,17 +158,17 @@
 
                     xhr.send(formData);
                 } else {
-                    output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                    vOutput('Please upload a smaller file (< ' + videoSizeLimit + ' MB).');
                 }
             }
         }
 
         // Check for the various File API support.
         if (window.File && window.FileList && window.FileReader) {
-            Init();
+            vInit();
         } else {
             document.getElementById('video-drag').style.display = 'none';
         }
     }
-    ekUpload();
+    vUpload();
 </script>
