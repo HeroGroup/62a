@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="slide-image-wrap">
-                        <img src="{{$office->photo_url}}" alt="{{$office->title_en}} photo" class="slide-image-left event__thumb w-100" alt="">
+                        <img src="{{str_replace(' ','%20',$office->photo_url)}}" alt="{{$office->title_en}} photo" class="slide-image-left event__thumb w-100" alt="">
                     </div>
                 </div>
             </div>

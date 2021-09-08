@@ -31,7 +31,7 @@
                                 </p>
                             </div>
                             <div class="slide-image-wrap">
-                                <img src="{{$item->photo_url}}" class="card-img-bottom" alt="{{$item->title_en}}">
+                                <img src="{{str_replace(' ','%20',$item->photo_url)}}" class="card-img-bottom" alt="{{$item->title_en}}">
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
             </div>
         </section>
 
-        <section class="bg-section" style="background-image: url('{{$section->image_url}}')" loading="lazy"></section>
+        <section class="bg-section" style="background-image: url('{{str_replace(' ','%20',$section->image_url)}}')" loading="lazy"></section>
 
         <!--<section class="section icons-section">
             <div class="container">

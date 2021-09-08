@@ -31,6 +31,17 @@
                     <div class="col-md-6">
                         <label for="categories">Project Category</label>
                         {!! Form::select('categories[]',$categories,null,array('multiple'=>'multiple','class'=>'form-control','id'=>'categories')) !!}
+                        <div style="font-size:12px;color:gray;">
+                            current categories:
+                            <?php
+                            $res = "";
+                            $cats = \Illuminate\Support\Facades\DB::table('project_categories')->where('project_id',$project->id)->get();
+                            foreach($cats as $cat) {
+                                $res .= (\Illuminate\Support\Facades\DB::table('categories')->find($cat->category_id)->title_en . ", ");
+                            }
+                            echo substr($res,0,strlen($res)-2);
+                            ?>
+                        </div>
                     </div>
                     <div class="col-md-6" style="margin-top:35px;">
                         <a href="#" data-toggle="modal" data-target="#new-category-modal">+ Add new category</a>
@@ -51,11 +62,11 @@
                 <div class="form-group row" style="margin-bottom:30px;">
                     <div class="col-md-6">
                         <label for="description_en">Project Description (en)</label>
-                        <textarea  class="form-control" name="description_en" id="description_en" value="{{$project->description_en}}" placeholder="Enter project description (english)"></textarea>
+                        <textarea  class="form-control" name="description_en" id="description_en" placeholder="Enter project description (english)">{{$project->description_en}}</textarea>
                     </div>
                     <div class="col-md-6">
                         <label for="description_hy">Project Description (Armenian)</label>
-                        <textarea  class="form-control" name="description_hy" id="description_hy" value="{{$project->description_hy}}" placeholder="Enter project description (armenian)"></textarea>
+                        <textarea  class="form-control" name="description_hy" id="description_hy" placeholder="Enter project description (armenian)">{{$project->description_hy}}</textarea>
                     </div>
                 </div>
 
