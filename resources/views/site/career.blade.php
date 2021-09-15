@@ -27,7 +27,9 @@
                                     <table class="job-table">
                                         <tr>
                                             <th>{{session('lang') == 'hy' ? 'Աշխատանքի նկարագրություն' : 'Job description'}}</th>
-                                            <td>{{session('lang') == 'hy' ? $career->job_description_hy : $career->job_description_en}}</td>
+                                            <td>
+                                                <?php echo session('lang') == 'hy' ? '<p>'.str_replace("\n","</p><p>",$career->job_description_hy).'</p>' : '<p>'.str_replace("\n","</p><p>",$career->job_description_en).'</p>' ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>{{session('lang') == 'hy' ? 'Ձեր հմտությունները' : 'Your skills'}}</th>

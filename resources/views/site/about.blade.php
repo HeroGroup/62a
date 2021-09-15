@@ -4,7 +4,7 @@
         <div class="container">
             <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? $haveAnyQuestions->title_hy : $haveAnyQuestions->title_en}}</h1>
             <div class="page-title__text fade-from-top" data-delay="200">
-                {{session('lang') == 'hy' ? $haveAnyQuestions->description_hy : $haveAnyQuestions->description_en}}
+                <?php echo session('lang') == 'hy' ? '<p>'.str_replace("\n","</p><p>",$haveAnyQuestions->description_hy).'</p>' : '<p>'.str_replace("\n","</p><p>",$haveAnyQuestions->description_en).'</p>' ?>
             </div>
         </div>
     </section>
