@@ -71,7 +71,7 @@ class SiteController extends Controller
     public function project($projectId)
     {
         $project = DB::table('projects')->find($projectId);
-        $photos = DB::table('project_photos')->where('project_id',$projectId)->get();
+        $photos = DB::table('project_photos')->where('project_id',$projectId)->orderBy('id')->get();
         $videos = DB::table('project_videos')->where('project_id',$projectId)->get();
         $projects = DB::table('projects')->where('is_active',1)->where('id','!=',$projectId)->take(2)->get();
 

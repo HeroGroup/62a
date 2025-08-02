@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['pageTitle' => 'Skills for '.$career->job_title_en, 'active' => 'careers'])
+@extends('layouts.admin', ['pageTitle' => 'Qualifications for '.$career->job_title_en, 'active' => 'careers'])
 @section('content')
     <style>
         .empty-error {
@@ -9,14 +9,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th>skill description (en)</th>
-                <th>skill description (hy)</th>
+                <th>Qualification description (en)</th>
+                <th>Qualification description (hy)</th>
                 <th style="text-align:right;">
                     <button class="btn btn-primary btn-icon-split" onclick="add()">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
-                        <span class="text">new skill</span>
+                        <span class="text">new Qualification</span>
                     </a>
                 </th>
             </tr>
@@ -25,7 +25,7 @@
     </table>
 </div>
 <div>
-    <button class="btn btn-success" onclick="save()">Save Skills</button>
+    <button class="btn btn-success" onclick="save()">Save Qualifications</button>
 </div>
 <script>
     var id=0;

@@ -65,7 +65,7 @@
 
     <div class="card shadow mb-4">
         <a href="#skills" class="d-block card-header py-3 border-bottom-info" data-toggle="collapse" role="button" aria-expanded="true">
-            <h6 class="m-0 font-weight-bold text-primary">Skills</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Qualifications</h6>
         </a>
         <div class="collapse" id="skills">
             <div class="card-body">
@@ -73,13 +73,13 @@
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">New Skill</span>
+                    <span class="text">New Qualification</span>
                 </a>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Skill Description (english)</th>
-                            <th>Skill Description (armenian)</th>
+                            <th>Qualification Description (english)</th>
+                            <th>Qualification Description (armenian)</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

@@ -27,10 +27,12 @@
                                     <table class="job-table">
                                         <tr>
                                             <th>{{session('lang') == 'hy' ? 'Աշխատանքի նկարագրություն' : 'Job description'}}</th>
-                                            <td>{{session('lang') == 'hy' ? $career->job_description_hy : $career->job_description_en}}</td>
+                                            <td>
+                                                <?php echo nl2br(session('lang') == 'hy' ? $career->job_description_hy : $career->job_description_en) ?>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>{{session('lang') == 'hy' ? 'Ձեր հմտությունները' : 'Your skills'}}</th>
+                                            <th>{{session('lang') == 'hy' ? 'Որակավորումներ' : 'Qualifications'}}</th>
                                             <td>
                                                 <ul>
                                                     @foreach(\Illuminate\Support\Facades\DB::table('career_items')->where('career_id',$career->id)->get() as $item)

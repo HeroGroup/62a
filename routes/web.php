@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/fontTest', function() { return view('fontTest'); });
 
 Route::name('site.')->group(function () {
-    Route::get('/', function() { return view('site.comingSoon'); })->name('comingSoon');
+    // Route::get('/', function() { return view('site.comingSoon'); })->name('comingSoon');
 
-    Route::get('/index', 'SiteController@index')->name('index');
+    Route::get('/', 'SiteController@index')->name('index');
     Route::get('/career', 'SiteController@career')->name('career');
     Route::get('/contact', 'SiteController@contact')->name('contact');
     Route::get('/events', 'SiteController@events')->name('events');

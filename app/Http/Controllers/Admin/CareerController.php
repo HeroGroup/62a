@@ -99,7 +99,7 @@ class CareerController extends Controller
 
     public function update(Request $request, $id)
     {
-    try {
+        try {
             DB::table('careers')->where('id',$id)->update([
                 'job_title_en' => $request->job_title_en,
                 'job_title_hy' => $request->job_title_hy,
