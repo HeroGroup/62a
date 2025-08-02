@@ -13,7 +13,7 @@
                     <div class="col-lg-7">
                         <h2 class="project-single__content-title fade-from-top" data-delay="100">{{session('lang') == 'hy' ? 'Նախագծի նկարագրություն' : 'Project description'}}</h2>
                         <div class="project-single__content fade-from-top" data-delay="200">
-                            {{session('lang') == 'hy' ? $project->description_hy : $project->description_en}}
+                            <?php echo session('lang') == 'hy' ? '<p>'.str_replace("\n","</p><p>",$project->description_hy).'</p>' : '<p>'.str_replace("\n","</p><p>",$project->description_en).'</p>' ?>
                         </div>
                     </div>
                     <div class="col-lg-5 fade-from-top" data-delay="300">

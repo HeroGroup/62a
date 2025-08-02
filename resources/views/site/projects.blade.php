@@ -30,11 +30,11 @@
                     <div class="col-md-6 project-item {{$res}}">
                         <div class="slide-image-wrap">
                             <a href="{{route('site.project',$project->id)}}" class="project-item__img-link">
-                                <img src="{{$project->photo_url}}" alt="{{$project->title_en}}" class="project-item__img">
+                                <img src="{{str_replace(' ','%20',$project->photo_url)}}" alt="{{$project->title_en}}" class="project-item__img">
                             </a>
                         </div>
                         <h4 class="project-item__title">
-                            <a href="project-single.html">{{session('lang') == 'hy' ? $project->title_hy : $project->title_en}}</a>
+                            <a href="{{route('site.project',$project->id)}}">{{session('lang') == 'hy' ? $project->title_hy : $project->title_en}}</a>
                         </h4>
                         <div class="project-item__loc">{{session('lang') == 'hy' ? $project->location_hy : $project->location_en}}</div>
                     </div>
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 projects-contacts__img image-full">
-                    <div class="image-full-box"><img src="{{$bottom->image_url}}" alt="{{$bottom->title_en}}"></div>
+                    <div class="image-full-box"><img src="{{str_replace(' ','%20',$bottom->image_url)}}" alt="{{$bottom->title_en}}"></div>
                 </div>
                 <div class="col-lg-7 projects-contacts__text abs-box abs-box-right" data-delay="200">
                     <h2>{{session('lang') == 'hy' ? $bottom->title_hy : $bottom->title_en}}</h2>

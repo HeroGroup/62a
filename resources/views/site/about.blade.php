@@ -4,7 +4,7 @@
         <div class="container">
             <h1 class="page-title__h fade-from-top" data-delay="100">{{session('lang') == 'hy' ? $haveAnyQuestions->title_hy : $haveAnyQuestions->title_en}}</h1>
             <div class="page-title__text fade-from-top" data-delay="200">
-                {{session('lang') == 'hy' ? $haveAnyQuestions->description_hy : $haveAnyQuestions->description_en}}
+                <?php echo session('lang') == 'hy' ? '<p>'.str_replace("\n","</p><p>",$haveAnyQuestions->description_hy).'</p>' : '<p>'.str_replace("\n","</p><p>",$haveAnyQuestions->description_en).'</p>' ?>
             </div>
         </div>
     </section>
@@ -16,7 +16,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="team-card">
                         <div class="slide-image-wrap">
-                            <img src="{{$member->photo_url ?? '/images/member_default.png'}}" class="team-card__img" alt="{{$member->name_en}}">
+                            <img src="{{$member->photo_url ? str_replace(' ','%20',$member->photo_url) : '/images/member_default.png'}}" class="team-card__img" alt="{{$member->name_en}}">
                         </div>
                         <h4 class="team-card__name">{{session('lang') == 'hy' ? $member->name_hy : $member->name_en}}</h4>
                         <div class="team-card__post">{{session('lang') == 'hy' ? $member->position_hy : $member->position_en}}</div>
@@ -34,7 +34,7 @@
             @if(isset($items[$i]))
                 <div class="col-lg-6 mb-5">
                     <div class="card">
-                        <img src="{{$items[$i]->photo_url}}" alt="{{$items[$i]->title_en}}" class="card-img-top">
+                        <img src="{{str_replace(' ','%20',$items[$i]->photo_url)}}" alt="{{$items[$i]->title_en}}" class="card-img-top">
                         <div class="card-body">
                             <h3 class="card-title">{{session('lang') == 'hy' ? $items[$i]->title_hy : $items[$i]->title_en}}</h3>
                             <p class="card-text">{{session('lang') == 'hy' ? $items[$i]->description_hy : $items[$i]->description_en}}</p>
@@ -49,7 +49,7 @@
                             <h3 class="card-title mt-3">{{session('lang') == 'hy' ? $items[$i+1]->title_hy : $items[$i+1]->title_en}}</h3>
                             <p class="card-text">{{session('lang') == 'hy' ? $items[$i+1]->description_hy : $items[$i+1]->description_en}}</p>
                         </div>
-                        <img src="{{$items[$i+1]->photo_url}}" class="card-img-bottom" alt="{{$items[$i+1]->title_en}}">
+                        <img src="{{str_replace(' ','%20',$items[$i+1]->photo_url)}}" class="card-img-bottom" alt="{{$items[$i+1]->title_en}}">
                     </div>
                 </div>
             @endif
@@ -58,7 +58,7 @@
         </div>
     </section>
 
-    <section class="bg-section content-bottom" style="background-image: url({{$haveAnyQuestions->photo_url}})">
+    <section class="bg-section content-bottom" style="background-image: url({{str_replace(' ','%20',$haveAnyQuestions->photo_url)}})">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 abs-box abs-box-right">

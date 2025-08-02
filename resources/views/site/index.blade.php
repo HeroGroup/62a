@@ -5,7 +5,7 @@
             <div class="hero-slider d-flex flex-column">
                 <div class="js-hero-slider">
                 @foreach($banners as $banner)
-                    <div class="hero-slide" style="background-image: url('{{$banner->image_url}}')">
+                    <div class="hero-slide" style="background-image: url('{{str_replace(' ','%20',$banner->image_url)}}')">
                         <div class="container hero-slide-inner full-height">
                             <h1 class="hero-title">{{session('lang') == 'hy' ? $banner->title_hy : $banner->title_en}}</h1>
                             <div class="hero-text">{{session('lang') == 'hy' ? $banner->description_hy : $banner->description_en}}</div>
@@ -26,7 +26,7 @@
                     <div class="col-lg-5 home-figure__img">
                         <div class="fade-from-top"><!--slide-image-wrap-->
                             <figure class="figure"><!--slide-image-left-->
-                                <img class="figure-img" src="{{$top->image_url ?? '/images/blank.jpg'}}" alt="{{$top->image_title_en}}">
+                                <img class="figure-img" src="{{$top->image_url ? str_replace(' ','%20',$top->image_url) : '/images/blank.jpg'}}" alt="{{$top->image_title_en}}">
                                 <figcaption class="figure-caption">{{session('lang') == 'hy' ? $top->image_title_hy : $top->image_title_en}}</figcaption>
                             </figure>
                         </div>
@@ -60,7 +60,7 @@
                     <div class="col-md-6 project-item">
                         <div class="slide-image-wrap">
                             <a href="{{route('site.project',$project->id)}}" class="project-item__img-link">
-                                <img src="{{\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first() ? \Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first()->photo_url : (\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->first() ? \Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->first()->photo_url : '/images/blank.jpg')}}" alt="{{$project->title_en}}" class="project-item__img">
+                                <img src="{{\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first() ? str_replace(' ','%20',\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->where('is_cover',1)->first()->photo_url) : (\Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->first() ? \Illuminate\Support\Facades\DB::table('project_photos')->where('project_id',$project->id)->first()->photo_url : '/images/blank.jpg')}}" alt="{{$project->title_en}}" class="project-item__img">
                             </a>
                         </div>
                         <h4 class="project-item__title">
@@ -74,7 +74,7 @@
         </section>
 
         @if(isset($bottom) && $bottom)
-        <section class="bg-section content-bottom home-bg" style="background-image: url('{{$bottom->image_url ?? '/images/blank.jpg'}}')">
+        <section class="bg-section content-bottom home-bg" style="background-image: url('{{$bottom->image_url ? str_replace(' ','%20',$bottom->image_url) : '/images/blank.jpg'}}')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 abs-box">
