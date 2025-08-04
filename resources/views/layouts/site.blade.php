@@ -28,7 +28,7 @@
 
         @media only screen and (max-width: 991px) {
             .footer-logo-img {
-                width: 120px;
+                width: 100px;
                 /*display: none;*/
             }
         }
@@ -36,11 +36,10 @@
         @media only screen and (min-width: 992px) {
             .footer-logo-container {
                 text-align:center;
-                padding-top:30px;
-                /* padding-top:50px; */
+                padding-top:55px;
             }
             .footer-logo-img {
-                height: 150px;
+                width: 90px;
                 /* height: 135px; */
             }
         }
