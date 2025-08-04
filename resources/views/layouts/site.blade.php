@@ -28,18 +28,20 @@
 
         @media only screen and (max-width: 991px) {
             .footer-logo-img {
-                /*width: 120px;*/
-                display: none;
+                width: 120px;
+                /*display: none;*/
             }
         }
 
         @media only screen and (min-width: 992px) {
             .footer-logo-container {
                 text-align:center;
-                padding-top:50px;
+                padding-top:30px;
+                /* padding-top:50px; */
             }
             .footer-logo-img {
-                height: 135px;
+                height: 150px;
+                /* height: 135px; */
             }
         }
 
